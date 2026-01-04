@@ -11,127 +11,178 @@ const metadata = {
   
   <HeroText
     tagline="Tools"
-    title="โปรแกรมคำนวณความชื้น ต้นทุนและกำไร ออนไลน์"
+    title="โปรแกรมคำนวณความชื้น ต้นทุนและกำไร"
     subtitle="คำนวณหาน้ำหนักน้ำ เนื้อแห้ง และเปรียบเทียบราคาอย่างง่ายดาย"
   />
 
-  <section class="px-4 py-8 mx-auto max-w-6xl">
-    <div id="grain-calc-wrapper">
-      <div id="grain-calc-header">
-        <h2>Grain Moisture Calculator</h2>
+  <section class="px-4 py-8 mx-auto max-w-5xl">
+    <div id="grain-calc-wrapper" class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-slate-700">
+      
+      <div id="grain-calc-header" class="bg-gradient-to-r from-green-700 to-green-800 p-6 text-center text-white">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight">
+          Grain Moisture Calculator
+        </h2>
+        <p class="text-green-100 text-sm md:text-base mt-1 opacity-90">
+          เครื่องมือคำนวณความชื้นแม่นยำ
+        </p>
       </div>
       
-      <div class="gc-container">
-        <div class="gc-input-grid">
+      <div class="p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
           <div class="gc-form-group">
-            <label>น้ำหนักเมล็ดสด (หน่วย**) [เริ่มต้น]</label>
-            <input type="number" id="inpWeight" placeholder="เช่น 1000">
+            <label class="block text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              น้ำหนักเมล็ดสด (กก./ตัน) <span class="text-green-600 dark:text-green-400">[เริ่มต้น]</span>
+            </label>
+            <input type="number" id="inpWeight" placeholder="เช่น 1000" 
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition text-base md:text-lg"
+            >
           </div>
           <div class="gc-form-group">
-            <label>ความชื้นปัจจุบัน (%) [เริ่มต้น]</label>
-            <input type="number" id="inpMoistInit" placeholder="เช่น 25">
+            <label class="block text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              ความชื้นปัจจุบัน (%) <span class="text-green-600 dark:text-green-400">[เริ่มต้น]</span>
+            </label>
+            <input type="number" id="inpMoistInit" placeholder="เช่น 25" 
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition text-base md:text-lg"
+            >
           </div>
           <div class="gc-form-group">
-            <label>ลดเหลือความชื้น (%) [เป้าหมาย]</label>
-            <input type="number" id="inpMoistTarget" value="15">
+            <label class="block text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              ลดเหลือความชื้น (%) <span class="text-blue-600 dark:text-blue-400">[เป้าหมาย]</span>
+            </label>
+            <input type="number" id="inpMoistTarget" value="15" 
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition text-base md:text-lg"
+            >
           </div>
         </div>
 
-        <label class="gc-option-toggle">
-          <input type="checkbox" id="chkPriceOption">
-          <span>ต้องการคำนวณราคา/กำไร (Option)</span>
+        <label class="flex items-center p-4 bg-gray-50 dark:bg-slate-700/50 rounded-lg cursor-pointer border border-gray-200 dark:border-slate-600 hover:bg-gray-100 dark:hover:bg-slate-700 transition mb-6 select-none">
+          <input type="checkbox" id="chkPriceOption" class="w-5 h-5 text-green-600 rounded focus:ring-green-500 border-gray-300">
+          <span class="ml-3 text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
+            ต้องการคำนวณราคา/กำไร (Option)
+          </span>
         </label>
 
-        <div id="sec-price-inputs">
-          <div class="gc-input-grid">
-            <div class="gc-form-group">
-              <label>ราคาขายสด[@ความชื้นเริ่มต้น]  (บาท/หน่วย)</label>
-              <input type="number" id="inpPriceFresh" placeholder="ราคาหน้าลาน">
+        <div id="sec-price-inputs" class="hidden bg-green-50 dark:bg-slate-700/30 p-4 md:p-6 rounded-xl border border-dashed border-green-300 dark:border-green-700 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">ราคาขายสด (บาท/หน่วย)</label>
+              <input type="number" id="inpPriceFresh" placeholder="ราคาหน้าลาน" class="w-full p-2.5 rounded border border-gray-300 dark:border-gray-600 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none">
             </div>
-            <div class="gc-form-group">
-              <label>ราคาเมล็ดแห้ง[@ความชื้นเป้าหมาย] (บาท/หน่วย)</label>
-              <input type="number" id="inpPriceDry" placeholder="ราคารับซื้อเมื่อแห้ง">
+            <div>
+              <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">ราคาเมล็ดแห้ง (บาท/หน่วย)</label>
+              <input type="number" id="inpPriceDry" placeholder="ราคารับซื้อเมื่อแห้ง" class="w-full p-2.5 rounded border border-gray-300 dark:border-gray-600 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none">
             </div>
-            <div class="gc-form-group">
-              <label>ค่าจ้างตาก/อบ (บาท/หน่วย)</label>
-              <input type="number" id="inpCostDrying" value="0" placeholder="ถ้าตากเองใส่ 0">
+            <div>
+              <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">ค่าจ้างตาก/อบ (บาท/หน่วย)</label>
+              <input type="number" id="inpCostDrying" value="0" placeholder="ถ้าตากเองใส่ 0" class="w-full p-2.5 rounded border border-gray-300 dark:border-gray-600 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none">
             </div>
           </div>
-          <div class="text-xs text-gray-500 mt-[-10px]">*กรอกข้อมูลให้ครบเพื่อเปรียบเทียบความคุ้มค่า</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">*กรอกข้อมูลให้ครบเพื่อเปรียบเทียบความคุ้มค่า</div>
         </div>
 
-        <button class="gc-btn" id="btnCalc">คำนวณผลลัพธ์</button>
+        <button id="btnCalc" class="w-full py-3 md:py-4 px-6 bg-green-700 hover:bg-green-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform active:scale-[0.98] transition duration-200 text-base md:text-xl">
+          คำนวณผลลัพธ์
+        </button>
 
-        <div id="gc-result-area">
-          <div class="gc-result-compare">
-            <div class="gc-card fresh">
-              <div class="gc-card-head">1. สภาวะเริ่มต้น (สด)</div>
-              <div class="gc-row">
-                <span>ความชื้น</span><span class="gc-val"><span id="lblM1">0</span>%</span>
-              </div>
-              <div class="gc-row">
-                <span>น้ำหนักน้ำ</span><span class="gc-val gc-water" id="lblWater1">0</span>
-              </div>
-              <div class="gc-row">
-                <span>เนื้อเมล็ดแห้ง</span><span class="gc-val gc-highlight" id="lblDry1">0</span>
-              </div>
-              <div class="gc-row font-bold text-lg border-t pt-2 mt-2">
-                <span>น้ำหนักรวม</span><span class="gc-val"><span id="lblW1">0</span></span>
+        <div id="gc-result-area" class="hidden mt-8 md:mt-10 animate-fade-in-up">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div class="gc-card fresh bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-sm p-5 md:p-6 border-t-[6px] border-t-orange-500">
+              <div class="text-center font-bold text-lg md:text-xl mb-4 text-gray-800 dark:text-white">
+                1. สภาวะเริ่มต้น (สด)
               </div>
               
-              <div class="row-financial mt-4 pt-2 border-t border-dashed border-orange-300">
-                <div class="gc-row text-sm">
-                  <span>ราคาขาย/หน่วย</span><span class="gc-val"><span id="lblP1">0</span> บ.</span>
+              <div class="space-y-3 text-sm md:text-base">
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">ความชื้น</span>
+                  <span class="font-bold text-gray-900 dark:text-white"><span id="lblM1" class="text-lg">0</span>%</span>
                 </div>
-                <div class="gc-row mt-2">
-                  <span>รายได้สุทธิ</span>
-                  <div class="gc-net-total"><span id="resMoney1">0</span> บาท</div>
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">น้ำหนักน้ำ</span>
+                  <span class="font-bold text-blue-600 dark:text-blue-400" id="lblWater1">0</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">เนื้อเมล็ดแห้ง</span>
+                  <span class="font-bold text-orange-600 dark:text-orange-400" id="lblDry1">0</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 font-bold text-lg md:text-xl text-gray-900 dark:text-white">
+                  <span>น้ำหนักรวม</span>
+                  <span id="lblW1">0</span>
                 </div>
               </div>
-            </div>
-
-            <div class="gc-card dry">
-              <div class="gc-card-head">2. เป้าหมาย (แห้ง)</div>
-              <div class="gc-row">
-                <span>ความชื้น</span><span class="gc-val"><span id="lblM2">0</span>%</span>
-              </div>
-              <div class="gc-row">
-                <span>น้ำหนักน้ำ</span><span class="gc-val gc-water" id="lblWater2">0</span>
-              </div>
-              <div class="gc-row">
-                <span>เนื้อเมล็ดแห้ง</span><span class="gc-val gc-highlight" id="lblDry2">0</span>
-              </div>
-               <div class="gc-row font-bold text-lg border-t pt-2 mt-2">
-                <span>น้ำหนักรวม</span><span class="gc-val"><span id="lblW2">0</span></span>
-              </div>
-
-              <div class="row-financial mt-4 pt-2 border-t border-dashed border-green-300">
-                <div class="gc-row text-sm">
-                  <span>ราคาขายเมล็ดแห้ง</span><span class="gc-val"><span id="lblP2">0</span> บ.</span>
+              
+              <div class="row-financial mt-4 pt-4 border-t border-dashed border-orange-300 dark:border-orange-700">
+                <div class="flex justify-between text-sm text-gray-600 dark:text-gray-300 mb-2">
+                  <span>ราคาขาย/หน่วย</span>
+                  <span><span id="lblP1" class="font-semibold">0</span> บ.</span>
                 </div>
-                <div class="gc-row text-sm text-red-600">
-                  <span>หัก: ค่าอบ</span><span class="gc-val">-<span id="lblCost">0</span> บ.</span>
-                </div>
-                <div class="gc-row mt-2">
-                  <span>รายได้สุทธิ</span>
-                  <div class="gc-net-total"><span id="resMoney2">0</span> บาท</div>
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold text-gray-700 dark:text-gray-200">รายได้สุทธิ</span>
+                  <div class="text-xl md:text-2xl font-extrabold text-green-700 dark:text-green-400">
+                    <span id="resMoney1">0</span> บาท
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class="gc-card dry bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-sm p-5 md:p-6 border-t-[6px] border-t-green-500">
+              <div class="text-center font-bold text-lg md:text-xl mb-4 text-gray-800 dark:text-white">
+                2. เป้าหมาย (แห้ง)
+              </div>
+              
+              <div class="space-y-3 text-sm md:text-base">
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">ความชื้น</span>
+                  <span class="font-bold text-gray-900 dark:text-white"><span id="lblM2" class="text-lg">0</span>%</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">น้ำหนักน้ำ</span>
+                  <span class="font-bold text-blue-600 dark:text-blue-400" id="lblWater2">0</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-slate-700">
+                  <span class="text-gray-500 dark:text-gray-400">เนื้อเมล็ดแห้ง</span>
+                  <span class="font-bold text-orange-600 dark:text-orange-400" id="lblDry2">0</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 font-bold text-lg md:text-xl text-gray-900 dark:text-white">
+                  <span>น้ำหนักรวม</span>
+                  <span id="lblW2">0</span>
+                </div>
+              </div>
+
+              <div class="row-financial mt-4 pt-4 border-t border-dashed border-green-300 dark:border-green-700">
+                <div class="flex justify-between text-sm text-gray-600 dark:text-gray-300 mb-1">
+                  <span>ราคาขายเมล็ดแห้ง</span>
+                  <span><span id="lblP2" class="font-semibold">0</span> บ.</span>
+                </div>
+                <div class="flex justify-between text-sm text-red-500 mb-2">
+                  <span>หัก: ค่าอบ</span>
+                  <span>-<span id="lblCost">0</span> บ.</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold text-gray-700 dark:text-gray-200">รายได้สุทธิ</span>
+                  <div class="text-xl md:text-2xl font-extrabold text-green-700 dark:text-green-400">
+                    <span id="resMoney2">0</span> บาท
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="gc-loss-box">
-            สรุป: น้ำหนักหายไปจากการตาก <span id="lblLossTotal" class="text-2xl font-bold">0</span> (หน่วย**)
+          <div class="mt-6 p-4 md:p-5 bg-orange-50 dark:bg-orange-900/20 border border-dashed border-orange-300 dark:border-orange-700 rounded-lg text-center">
+             <span class="text-orange-800 dark:text-orange-200 text-sm md:text-base">สรุป: น้ำหนักหายไปจากการตาก</span> 
+             <div class="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400 mt-1">
+               <span id="lblLossTotal">0</span> <span class="text-lg font-normal text-orange-800 dark:text-orange-200">(หน่วย**)</span>
+             </div>
           </div>
 
-          <div class="gc-winner-box" id="sec-winner">
-            <div class="text-lg text-gray-700 mb-2">บทสรุปความคุ้มค่า</div>
-            <div class="gc-winner-result" id="txtWinner">...</div>
+          <div id="sec-winner" class="hidden mt-6 p-6 bg-white dark:bg-slate-800 border-2 border-green-600 rounded-xl text-center shadow-md">
+            <div class="text-lg text-gray-600 dark:text-gray-300 mb-2 font-medium">บทสรุปความคุ้มค่า</div>
+            <div id="txtWinner" class="text-xl md:text-2xl font-bold">...</div>
           </div>
+
         </div>
       </div>
     </div>
-
   </section>
 </Layout>
 
@@ -143,14 +194,19 @@ const metadata = {
 
   // Toggle ส่วนราคา
   function togglePriceSection() {
-    const chk = document.getElementById('chkPriceOption');
+    const chk = document.getElementById('chkPriceOption') as HTMLInputElement;
     if (!chk) return;
     const isChecked = chk.checked;
     const priceSection = document.getElementById('sec-price-inputs');
     const resultArea = document.getElementById('gc-result-area');
     
-    if (priceSection) priceSection.style.display = isChecked ? 'block' : 'none';
-    if (!isChecked && resultArea) resultArea.style.display = 'none';
+    // ใช้ classList.remove/add แทน style.display เพื่อให้ CSS ทำงานได้ดีกว่า
+    if (priceSection) {
+        if(isChecked) priceSection.classList.remove('hidden');
+        else priceSection.classList.add('hidden');
+    }
+
+    if (!isChecked && resultArea) resultArea.classList.add('hidden');
   }
 
   // คำนวณหลัก
@@ -218,38 +274,37 @@ const metadata = {
       const txtWinner = document.getElementById('txtWinner');
       
       if (diff > 0) {
-        txtWinner.innerHTML = `<span style="color:#2e7d32">"ตากแล้วขาย"</span> ได้เพิ่ม ${formatNum(diff)} บาท`;
-        winnerBox.style.borderColor = "#2e7d32";
+        txtWinner.innerHTML = `<span class="text-green-700 dark:text-green-400">"ตากแล้วขาย"</span> ได้เพิ่ม ${formatNum(diff)} บาท`;
+        winnerBox.style.borderColor = "#15803d";
       } else if (diff < 0) {
-        txtWinner.innerHTML = `<span style="color:#d32f2f">"ขายสดทันที"</span> คุ้มกว่า ${formatNum(Math.abs(diff))} บาท`;
-        winnerBox.style.borderColor = "#d32f2f";
+        txtWinner.innerHTML = `<span class="text-red-600 dark:text-red-400">"ขายสดทันที"</span> คุ้มกว่า ${formatNum(Math.abs(diff))} บาท`;
+        winnerBox.style.borderColor = "#dc2626";
       } else {
         txtWinner.innerHTML = "ทั้งสองทางเลือก ได้เงินเท่ากัน";
-        winnerBox.style.borderColor = "#f57f17";
+        winnerBox.style.borderColor = "#ca8a04";
       }
 
       financialRows.forEach(el => (el as HTMLElement).style.display = 'block');
-      if (winnerBox) winnerBox.style.display = 'block';
+      if (winnerBox) winnerBox.classList.remove('hidden');
 
     } else {
       financialRows.forEach(el => (el as HTMLElement).style.display = 'none');
-      if (winnerBox) winnerBox.style.display = 'none';
+      if (winnerBox) winnerBox.classList.add('hidden');
     }
 
     const resultArea = document.getElementById('gc-result-area');
-    if (resultArea) resultArea.style.display = 'block';
+    if (resultArea) resultArea.classList.remove('hidden');
   }
 
   // Event Listeners
   document.addEventListener('astro:page-load', () => {
-     // ใช้ astro:page-load เพื่อรองรับ View Transitions ของ AstroWind
      const btn = document.getElementById('btnCalc');
      if(btn) btn.addEventListener('click', calcGrainSmart);
 
      const chk = document.getElementById('chkPriceOption');
      if(chk) chk.addEventListener('change', togglePriceSection);
   });
-   // Fallback สำหรับโหลดครั้งแรกปกติ
+  
   document.addEventListener('DOMContentLoaded', () => {
      const btn = document.getElementById('btnCalc');
      if(btn) btn.addEventListener('click', calcGrainSmart);
@@ -260,167 +315,12 @@ const metadata = {
 </script>
 
 <style>
-  /* CSS Scoped */
-  #grain-calc-wrapper {
-    font-family: 'Kanit', sans-serif;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 3rem;
+  /* เหลือไว้เฉพาะ CSS ที่จำเป็นจริงๆ หรือ Tailwind ทำไม่ได้ง่ายๆ */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
   }
-
-  #grain-calc-header {
-    background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-    color: white;
-    padding: 24px;
-    text-align: center;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  #grain-calc-header h2 { margin: 0; font-size: 1.5rem; font-weight: 700; color: white; }
-
-  #grain-calc-body {
-    background: #f0fdf4;
-    color: #166534;
-    padding: 16px 24px;
-    font-size: 0.9rem;
-  }
-
-  .gc-container { padding: 24px; }
-
-  .gc-input-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .gc-form-group label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    display: block;
-    color: #374151;
-  }
-
-  .gc-form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-  }
-  .gc-form-group input:focus { outline: none; border-color: #15803d; ring: 2px solid #15803d; }
-
-  .gc-option-toggle {
-    background-color: #f9fafb;
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  .gc-option-toggle input { width: 18px; height: 18px; margin-right: 12px; }
-
-  #sec-price-inputs {
-    display: none; 
-    background-color: #ecfdf5;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    border: 1px dashed #34d399;
-  }
-
-  .gc-btn {
-    background-color: #15803d;
-    color: white;
-    border: none;
-    padding: 16px;
-    width: 100%;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  .gc-btn:hover { background-color: #166534; }
-
-  #gc-result-area {
-    margin-top: 32px;
-    display: none;
-  }
-
-  .gc-result-compare {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  @media (max-width: 768px) { .gc-result-compare { grid-template-columns: 1fr; } }
-
-  .gc-card {
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid #e5e7eb;
-    background-color: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  }
-  .gc-card.fresh { border-top: 5px solid #f97316; }
-  .gc-card.dry { border-top: 5px solid #22c55e; }
-
-  .gc-card-head { text-align: center; font-weight: 700; margin-bottom: 16px; font-size: 1.1rem; }
-
-  .gc-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
-  .gc-val { font-weight: 600; color: #111; }
-  .gc-water { color: #2563eb; } 
-  .gc-highlight { color: #ea580c; } 
-  
-  .row-financial { display: none; } 
-  .gc-net-total { font-size: 1.25rem; font-weight: 800; color: #15803d; }
-
-  .gc-loss-box {
-    margin-top: 24px;
-    padding: 16px;
-    background-color: #fff7ed;
-    border: 1px dashed #fdba74;
-    border-radius: 8px;
-    text-align: center;
-    color: #c2410c;
-  }
-
-  .gc-winner-box {
-    display: none;
-    background: #fff;
-    border: 2px solid #15803d;
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    margin-top: 24px;
-  }
-  .gc-winner-result { font-size: 1.4rem; font-weight: 700; color: #15803d; }
-  
-  /* Product Box Styling */
-  .product-box {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    border-radius: 12px;
-    padding: 30px;
-  }
-  
-  .btn-contact, .btn-detail {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 99px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-contact { background-color: #dc2626; color: white; }
-  .btn-contact:hover { background-color: #b91c1c; }
-  
-  .btn-detail { background-color: #166534; color: white; }
-  .btn-detail:hover { background-color: #14532d; }
-
 </style>
