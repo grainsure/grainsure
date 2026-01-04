@@ -15,6 +15,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import MyProductList from '~/components/widgets/MyProductList.astro';
 import GSImageGrid from '~/components/widgets/GS-ImageGrid.astro';
+import gsCalImg from '~/assets/images/GScal.png';
 
 const metadata = {
   // title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -145,13 +146,17 @@ subtitle='<span class="font-bold text-gray-900 dark:text-white text-lg">4 ทศ
         icon: 'tabler:letter-case',
       },
 {
-        // ใส่ <a href="..."> ครอบข้อความไว้
-        title: '<a href="/GScalculator" class="text-green-700 hover:underline cursor-pointer transition">Ready! ถ้าพร้อมไปเลย (คลิก)</a>', 
-        icon: 'tabler:check',
-        description: 'เปิดโปรแกรมคำนวณความชื้นเมล็ดทันที', // ใส่คำอธิบายเพิ่มหน่อยก็ดีครับ
+        /* แก้ตรงนี้: ใส่ Class แต่งให้เป็นปุ่มสีเขียว */
+        title: `
+          <a href="/GScalculator" class="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-white transition duration-300 bg-green-600 rounded-lg hover:bg-green-700 shadow-md hover:shadow-lg no-underline">
+             Ready! เริ่มคำนวณ (คลิกเลย)
+          </a>
+        `,
+        icon: 'tabler:calculator', /* เปลี่ยนไอคอนเป็นรูปเครื่องคิดเลขให้สื่อความหมาย */
+        description: 'เปิดโปรแกรมคำนวณความชื้นเมล็ดทันที',
       },    ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      src: gsCalImg,
       alt: 'Steps image',
     }}
   />
