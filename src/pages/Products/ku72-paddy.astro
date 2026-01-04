@@ -1,4 +1,6 @@
 ---
+import heroImage from '~/assets/images/KU72-PADDY02L.png';        // ภาพแนวนอน (Desktop)
+import heroMobile from '~/assets/images/KU72-PADDY02H.png'; // ภาพแนวตั้ง (Mobile) **(ตรวจสอบชื่อไฟล์ของคุณอีกทีนะครับ)**
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -16,7 +18,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Hero
+<Hero
     tagline="ตีตรารับรอง สำนักงานกลางชั่งตวงวัด"
     title="KU72-PADDY"
     subtitle="เครื่องวัดความชื้นข้าวเปลือก แม่นยำ ทนทาน ใช้งานง่าย<br>ผ่านการรับจองจากสำนักชั่งตวงวัด ถูกต้องตามประกาศกระทรวงพาณิชย์<br>ใช้ซื้อ-ขายข้าวเปลือกได้ พร้อมลุยทุกหน้างาน"
@@ -27,20 +29,28 @@ const metadata = {
         href: 'https://line.me/ti/p/~@grainsure',
         icon: 'tabler:message-circle',
         target: '_blank',
-        /* เพิ่มบรรทัดนี้: สีเขียว (Green) */
         class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
       },
       {
         text: 'ดูวิดีโอสาธิต',
         href: '#video-demo',
-        icon: 'tabler:player-play' /* ผมแถมไอคอน Play ให้ด้วยครับ */,
-        /* เพิ่มบรรทัดนี้: สีแดง (Red) */
+        icon: 'tabler:player-play',
         class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
       },
     ]}
+    
+    /* 2. ส่วนของรูปภาพ (แก้ไขตรงนี้) */
+    
+    /* ภาพสำหรับ Desktop (แนวนอน) */
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80', // เปลี่ยนเป็นรูปสินค้าจริง
+      src: heroImage, 
       alt: 'เครื่องวัดความชื้น KU72',
+    }}
+
+    /* ภาพสำหรับ Mobile (แนวตั้ง) - เพิ่มตรงนี้ */
+    mobileImage={{
+      src: heroMobile,
+      alt: 'เครื่องวัดความชื้น KU72 บนมือถือ',
     }}
   />
 
@@ -72,7 +82,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80', // รูปประกอบ (เช่น รูปตอนใช้งานจริง)
+      src: '~/assets/images/KU72-PADDY03.png', // รูปประกอบ (เช่น รูปตอนใช้งานจริง)
       alt: 'การใช้งาน KU72',
     }}
   >
