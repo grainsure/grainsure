@@ -10,19 +10,33 @@ import Image from '~/components/common/Image.astro';
 // Metadata สำหรับ SEO
 const metadata = {
   title: 'KU72-PADDY เครื่องวัดความชื้นข้าวเปลือก - Grainsure',
-  description: 'รายละเอียดเครื่องวัดความชื้นข้าวเปลือก รุ่นKU72-Paddy ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน แม่นยำ ทนทาน ใช้งานง่าย เหมาะสำหรับเกษตรกรและโรงสีข้าว',
+  description:
+    'รายละเอียดเครื่องวัดความชื้นข้าวเปลือก รุ่นKU72-Paddy ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน แม่นยำ ทนทาน ใช้งานง่าย เหมาะสำหรับเกษตรกรและโรงสีข้าว',
 };
 ---
 
 <Layout metadata={metadata}>
-  
   <Hero
-    tagline="Best Seller"
+    tagline="ตีตรารับรอง สำนักงานกลางชั่งตวงวัด"
     title="KU72-PADDY"
-    subtitle="เครื่องวัดความชื้นข้าวเปลือกที่ครองใจเกษตรกรไทยมายาวนาน แม่นยำ ทนทาน ใช้งานง่าย พร้อมลุยทุกหน้างาน"
+    subtitle="เครื่องวัดความชื้นข้าวเปลือก แม่นยำ ทนทาน ใช้งานง่าย<br>ผ่านการรับจองจากสำนักชั่งตวงวัด ถูกต้องตามประกาศกระทรวงพาณิชย์<br>ใช้ซื้อ-ขายข้าวเปลือกได้ พร้อมลุยทุกหน้างาน"
     actions={[
-      { variant: 'primary', text: 'สั่งซื้อ / สอบถามราคา', href: 'https://line.me/ti/p/~@grainsure', icon: 'tabler:message-circle', target: '_blank' },
-      { text: 'ดูวิดีโอสาธิต', href: '#video-demo' },
+      {
+        variant: 'primary',
+        text: 'สั่งซื้อ / สอบถามราคา',
+        href: 'https://line.me/ti/p/~@grainsure',
+        icon: 'tabler:message-circle',
+        target: '_blank',
+        /* เพิ่มบรรทัดนี้: สีเขียว (Green) */
+        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
+      },
+      {
+        text: 'ดูวิดีโอสาธิต',
+        href: '#video-demo',
+        icon: 'tabler:player-play' /* ผมแถมไอคอน Play ให้ด้วยครับ */,
+        /* เพิ่มบรรทัดนี้: สีแดง (Red) */
+        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
+      },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80', // เปลี่ยนเป็นรูปสินค้าจริง
@@ -35,19 +49,26 @@ const metadata = {
     title="ทำไมต้อง KU72-PADDY?"
     items={[
       {
-        title: 'อ่านค่าได้ทันที ไม่ต้องบด',
-        description: 'ประหยัดเวลาในการทำงาน เพียงตักเมล็ดใส่เครื่องก็ทราบผลทันที',
-        icon: 'tabler:clock-bolt',
+        title: 'เที่ยงตรง เป็นมาตรฐานเดียวกันทั่วประเทศ',
+        description:
+          'ทุกเครื่องจะต้องผ่านการสอบเทียบและตรวจรับรองตีตราจากสำนักงานกลางชั่งตวงวัด ตาม พระราชบัญญัติมาตราชั่งตวงวัด พ.ศ.2542',
+        icon: 'tabler:target-arrow',
       },
       {
-        title: 'ระบบชดเชยอุณหภูมิอัตโนมัติ',
-        description: 'แม่นยำทุกสภาพอากาศ ไม่ว่าจะวัดตอนเช้าหรือตอนบ่าย',
+        title: 'ใช้งานง่าย วัดค่าได้รวดเร็ว',
+        description:
+          'เครื่องออกแบบมาให้ใช้งานง่าย เพียงตวงตัวอย่างเต็มถ้วยตวง เทข้าวเปลือกลงในช่องวัดช้าๆ รอไม่เกิน 10 วินาที ก็ทราบค่าความชื้นได้ทันที',
         icon: 'tabler:thermometer',
       },
       {
         title: 'ทนทานงานหนัก',
-        description: 'ตัวเครื่องทำจากโลหะ แข็งแรง ทนการกระแทก เหมาะกับการใช้งานภาคสนาม',
+        description: 'ตัวเครื่องทำจากโลหะ แข็งแรง ทนการกระแทก ใช้งานดีทั้งภาคสนามและในห้องปฏิบัติการ',
         icon: 'tabler:shield',
+      },
+      {
+        title: 'ลดความผิดพลาด สะดวกกว่าด้วยฟังก์ชันช่วยวัด',
+        description: 'วัดค่าเฉลี่ยในการวัดหลายครั้ง ดูจำนวนครั้งที่วัด อ่านค่าอุณหภูมิเมล็ด ชดเชยอุณหภูมิอัตโนมัติ',
+        icon: 'tabler:settings-automation',
       },
     ]}
     image={{
@@ -56,10 +77,12 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">มาตรฐานที่โรงสีไว้วางใจ</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        เที่ยงตรง ผ่านการรับรองมาตรฐานตามกฎหมาย
+      </h3>
       <p>
-        KU72-PADDY ถูกออกแบบมาเพื่อแก้ปัญหาความคลาดเคลื่อนในการซื้อขายข้าวเปลือก
-        ด้วยเทคโนโลยี Capacitance Sensor ที่มีความเสถียรสูง ทำให้ทั้งผู้ซื้อและผู้ขายมั่นใจในตัวเลขเดียวกัน
+        KU72-PADDY ถูกออกแบบมาเพื่อแก้ปัญหาความคลาดเคลื่อนในการซื้อขายข้าวเปลือก ด้วยเทคโนโลยี
+        ที่วิจัยและพัฒนาโดยคนไทยเพื่อคนไทยได้มีเครื่องมือดีราคาไม่แพง เพื่อยกระดับคุณภาพผลผลิตข้าวเปลือกและขายได้ราคาดี
       </p>
     </Fragment>
   </Content>
@@ -71,37 +94,102 @@ const metadata = {
         <p class="text-xl text-gray-600 dark:text-slate-400">รายละเอียดทางเทคนิคของเครื่องรุ่น KU72-PADDY</p>
       </div>
 
-      <div class="overflow-x-auto bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+      <div
+        class="overflow-x-auto bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700"
+      >
         <table class="w-full text-left text-sm md:text-base">
           <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white w-1/3 bg-gray-50 dark:bg-slate-800/50">พืชที่วัดได้</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ข้าวเปลือกเจ้า, ข้าวเปลือกเหนียว</td>
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white w-1/3 bg-gray-50 dark:bg-slate-800/50"
+                >พืชที่วัดได้
+              </th              >
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ข้าวเปลือกเท่านั้น (บังคับประกาศกระทรวงฯ)</td>
             </tr>
             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ช่วงการวัด</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">10% - 35%</td>
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ปริมาณข้าวเปลือกตัวอย่าง
+            </th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">280 มิลลิลิตร</td>
             </tr>
             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความแม่นยำ</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">± 0.5%</td>
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >วัดความชื้นได้สูงสุด
+              </th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">35%(บังคับประกาศกระทรวงฯ)</td>
             </tr>
             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">แหล่งพลังงาน</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ถ่าน AA x 4 ก้อน (ใช้งานได้ยาวนาน)</td>
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ช่วงการวัดความชื้น</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">10-35%</td>
             </tr>
             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ขนาด / น้ำหนัก</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">164 x 94 x 40 มม. / 1.5 กก.</td>
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ความละเอียด</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0.1%</td>
             </tr>
-             <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">อุปกรณ์ในกล่อง</th>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ความแม่นยำ</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">± 0.8%</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >วัดอุณหภูมิได้สูงสุด
+              </th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">50°C</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ช่วงการวัดอุณหภูมิ</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">10-50°C</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ความละเอียดอุณหภูมิ</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0.1°C</td>
+            </tr>
+
+
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >การประมวลผล</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ระบบดิจิตอล:ควบคุมด้วยไมโครโปรเซสเซอร์</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ฟังก์ชั่นเสริม</th>
               <td class="py-4 px-6 text-gray-700 dark:text-gray-300">
                 <ul class="list-disc list-inside space-y-1">
-                    <li>ตัวเครื่อง KU72</li>
-                    <li>กระเป๋าผ้าใบพกพา</li>
-                    <li>ถ่าน AA 4 ก้อน</li>
-                    <li>คู่มือการใช้งานภาษาไทย</li>
+                  <li>แสดงค่าความชื้นเฉลี่ย(สูงสุด99ตัวอย่าง)</li>
+                  <li>แสดงจำนวนครั้งที่วัดได้(สูงสุด99ครั้ง)</li>
+                  <li>แสดงค่าอุณหภูมิเมล็ด</li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >แหล่งพลังงาน</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ถ่านสี่เหลี่ยม 9โวลต์(6F22/PP3) </td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >ขนาด / น้ำหนัก</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">164 x 94 x 40 มม. / 1.5 กก.</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50"
+                >อุปกรณ์ในกล่อง</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>ตัวเครื่อง KU72</li>
+                  <li>กล่องพกพา</li>
+                  <li>ถ่าน 9โวลต์ 1 ก้อน</li>
+                  <li>กรวยเท</li>
+                  <li>ถ้วยตวง</li>
+                  <li>คู่มือการใช้งานภาษาไทย</li>
                 </ul>
               </td>
             </tr>
@@ -111,23 +199,64 @@ const metadata = {
     </div>
   </section>
 
-  <div id="video-demo" class="py-16 container mx-auto px-4">
-    <div class="text-center mb-10">
-      <div class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-red-600 uppercase bg-red-100 rounded-full">
-        Video Review
+<div id="video-demo" class="py-16 bg-white dark:bg-slate-900 overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-10 max-w-3xl mx-auto">
+        <div class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-red-600 uppercase bg-red-100 rounded-full">
+          Video Manual
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">คู่มือการใช้งานรูปแบบวีดีโอ</h2>
+        <p class="text-xl text-gray-600 dark:text-slate-400">
+          เรียนรู้วิธีการใช้งานเครื่อง KU72-PADDY ให้เต็มประสิทธิภาพ ทั้งแบบละเอียดและเทคนิคพิเศษ
+        </p>
       </div>
-      <h2 class="text-3xl font-bold">สาธิตวิธีการใช้งานง่ายๆ ใน 1 นาที</h2>
-    </div>
-    
-    <div class="relative max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
-      <iframe 
-        class="absolute top-0 left-0 w-full h-full"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=DemoVideo" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen>
-      </iframe>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto items-start">
+        
+        <div class="lg:col-span-2 flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">1</span>
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">สาธิตวิธีการใช้งานฉบับเต็ม</h3>
+          </div>
+          
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl ring-1 ring-gray-900/10 dark:ring-white/10">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/uwuVc6OXS2M"
+              title="สาธิตการใช้งาน KU72"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+            แนะนำส่วนประกอบ วิธีการเตรียมเครื่อง ขั้นตอนการวัดค่าความชื้น และการอ่านค่าผลลัพธ์อย่างละเอียด เข้าใจง่ายภายใน 5 นาที
+          </p>
+        </div>
+
+        <div class="lg:col-span-1 flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white font-bold text-sm">2</span>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">เทคนิคการเทตัวอย่าง (Shorts)</h3>
+          </div>
+
+          <div class="relative w-full max-w-[320px] mx-auto aspect-[9/16] rounded-xl overflow-hidden shadow-2xl ring-1 ring-gray-900/10 dark:ring-white/10">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/6pf99nSbCbA"
+              title="วิธีเทตัวอย่างเมล็ดข้าวเปลือก"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 text-sm md:text-center lg:text-left">
+            เทคนิคสำคัญ! วิธีการเทข้าวเปลือกลงเครื่องให้ถูกต้อง เพื่อให้ได้ค่าความชื้นที่แม่นยำที่สุด (คลิปสั้น 47 วินาที)
+          </p>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -141,42 +270,45 @@ const metadata = {
         description: 'รายละเอียดสเปกและจุดเด่นทั้งหมด PDF ไฟล์',
         icon: 'tabler:file-download',
         callToAction: {
-             text: 'ดาวน์โหลด PDF',
-             href: '/downloads/ku72-brochure.pdf', // ใส่ลิงก์ไฟล์จริง
-             variant: 'link',
-             icon: 'tabler:download'
-        }
+          text: 'ดาวน์โหลด PDF',
+          href: '/downloads/ku72-paddy-brochureTH.pdf', // ใส่ลิงก์ไฟล์จริง
+          variant: 'link',
+          icon: 'tabler:download',
+        },
       },
       {
         title: 'User Manual (คู่มือการใช้งาน)',
         description: 'วิธีการใช้งาน การตั้งค่า และการดูแลรักษา',
         icon: 'tabler:book',
         callToAction: {
-             text: 'ดาวน์โหลดคู่มือ',
-             href: '/downloads/ku72-manual.pdf', // ใส่ลิงก์ไฟล์จริง
-             variant: 'link',
-             icon: 'tabler:download'
-        }
+          text: 'ดาวน์โหลดคู่มือ',
+          href: '/downloads/ku72-paddy-manualTH.pdf', // ใส่ลิงก์ไฟล์จริง
+          variant: 'link',
+          icon: 'tabler:download',
+        },
       },
     ]}
   />
 
   <CallToAction
     title="พร้อมเป็นเจ้าของความแม่นยำหรือยัง?"
-    subtitle="สั่งซื้อวันนี้ พร้อมรับโปรโมชั่นพิเศษและบริการหลังการขายที่ดีที่สุด"
-    actions={[
+    subtitle="สั่งซื้อวันนี้ พร้อมรับบริการหลังการขายที่ดีที่สุด"
+actions={[
       {
         variant: 'primary',
         text: 'สั่งซื้อผ่าน LINE',
         href: 'https://line.me/ti/p/~@grainsure',
         icon: 'tabler:brand-line',
+        target: '_blank',
+        /* ปุ่มสีเขียว (Green) */
+        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
       },
       {
-        text: 'โทรปรึกษา: 08x-xxx-xxxx',
-        href: 'tel:08xxxxxxxx',
+        text: 'โทรปรึกษา: 081-611-9016', /* ปรับเป็นบรรทัดเดียวให้อ่านง่ายครับ */
+        href: 'tel:0816119016',
         icon: 'tabler:phone',
-      }
-    ]}
-  />
-
+        /* ปุ่มสีแดง (Red) */
+        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
+      },
+    ]}  />
 </Layout>
