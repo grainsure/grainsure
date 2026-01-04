@@ -14,7 +14,6 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import MyProductList from '~/components/widgets/MyProductList.astro';
-import GSImageGrid from '~/components/widgets/GS-ImageGrid.astro';
 
 const metadata = {
   // title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -107,55 +106,191 @@ subtitle='<span class="font-bold text-gray-900 dark:text-white text-lg">4 ทศ
     ]}
   />
 
-  <!-- Content Widget Compare product -->
+  <!-- Content Widget KU72-PADDY -->
 <MyProductList />
+  <Content2
+    linkUrl="/"
+    items={[
+      {
+        title: 'เครื่องวัดความชื้นข้าวเปลือก',
+        description:
+          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+      },
+      {
+        title: 'Styled using Tailwind CSS',
+        description:
+          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+      },
+      {
+        title: 'Cross-browser compatibility',
+        description:
+          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      Gain a competitive advantage by incorporating industry leading practices
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+   <!-- Content Widget KU72-CORN -->
+
+  <Content2
+    isAfterContent
+    isReversed
+    linkUrl="/"
+    items={[
+      {
+        title: 'High level of customization',
+        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+      },
+      {
+        title: 'Multiple layout possibilities',
+        description:
+          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+      },
+      {
+        title: 'Fully responsive design',
+        description:
+          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+      },
+      {
+        title: 'Integration of media',
+        description:
+          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Blueprint Image',
+    }}
+  >
+  
+    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget KU60 -->
+
+  <Content2
+    isAfterContent
+    items={[
+      {
+        title: 'Enhanced user engagement',
+        description:
+          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+      },
+      {
+        title: 'Continuous improvement',
+        description:
+          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+      },
+      {
+        title: 'Time and resource efficiency',
+        description:
+          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+      },
+      {
+        title: 'Community support',
+        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Astronauts Image',
+    }}
+  >
+    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget EE-KU -->
+  <Content2
+    isAfterContent
+    isReversed
+    items={[
+      {
+        title: 'Enhanced user engagement',
+        description:
+          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+      },
+      {
+        title: 'Continuous improvement',
+        description:
+          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+      },
+      {
+        title: 'Time and resource efficiency',
+        description:
+          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+      },
+      {
+        title: 'Community support',
+        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Astronauts Image',
+    }}
+  >
+    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+<!-- End Content Widget **************** -->
+
+
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title='โปรแกรม <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 font-extrabold pt-4">คำนวณความชื้น</span><br />รู้ต้นทุน <span class="text-orange-500 font-bold">เห็นกำไร</span> ทันที!'
+    title="Get your dream website up and running in no time with AstroWind."
     items={[
       {
-        title: '',
+        title: 'Step 1: <span class="font-medium">Download</span>',
         description:
-          "ฟรี โปรแกรมสำหรับเกษตรกรและผู้ประกอบการคำนวณหากำไรจากการลดความชื้น คำนวณหาปริมาณน้ำที่ประกอบอยู่ในเมล็ด เพื่อวางแผนการจัดการเมล็ดก่อนนำไปขายหรือจัดเก็บ สามารถคำนวณหาความชื้นหลังจากลดความชื้นแล้ว อีกทั้งช่วยในการประเมินต้นทุนและความคุ้มค่าในการดำเนินการ ซึ่งต้องเตรียมข้อมูลดังนี้",
+          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
         icon: 'tabler:package',
       },
       {
-        title: '1 : <span class="font-medium">ปริมาณของเมล็ดเริ่มต้น</span>',
+        title: 'Step 2: <span class="font-medium">Add content</span>',
         description:
-          "ชั่งน้ำหนักเมล็ดที่เราจะทำการปรับความชื้น ใช้หน่วยน้ำหนักอะไรก็ได้เช่น กิโลกรัม, ตัน, ปอนด์ เป็นต้น ผลการคำนวณที่ได้มาจะขึ้นอยู่กับหน่วยน้ำหนักที่เราใช้",
+          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
         icon: 'tabler:letter-case',
       },
       {
-        title: '2 : <span class="font-medium">ค่าความชื้นเริ่มต้น</span>',
+        title: 'Step 3: <span class="font-medium">Customize styles</span>',
         description:
-          'ค่าความชื้นของเมล็ดเริ่มต้นที่วัดมาได้ ต้องเป็นความชื้นที่ถถูกต้อง วิธีที่สะดวกที่สุดคือการใช้เครื่องวัดความชื้นเมล็ดที่ได้มาตรฐาน ถ้าค่าที่วัดได้ถูกต้องการคำนวณก็จะถูกต้องตามไปด้วย',
-        icon: 'tabler:letter-case',
+          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
+        icon: 'tabler:paint',
       },
       {
-        title: '3 : <span class="font-medium">ค่าความชื้นที่ต้องการ</span>',
-        description:
-          'ค่าความชื้นของเมล็ดที่เราต้องการหลังจากการลดความชื้นแล้ว',
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: '4 : <span class="font-medium">ต้นทุนดำเนินการ(ทางเลือก)</span>',
-        description:
-          'ต้นทุนที่ใช้ในการลดความชื้นเมล็ดต่อหน่วยน้ำหนัก ราคาขายสด ราคาขายที่ความชื้นเป้าหมาย เช่น ค่าไฟฟ้า ค่าจ้างแรงงาน เป็นต้น ถ้าไม่ต้องการคำนวณกำไรก็ไม่ต้องกรอกข้อมูลนี้',
-        icon: 'tabler:letter-case',
-      },
-{
-        // ใส่ <a href="..."> ครอบข้อความไว้
-        title: '<a href="/GScalculator" class="text-green-700 hover:underline cursor-pointer transition">Ready! ถ้าพร้อมไปเลย (คลิก)</a>', 
+        title: 'Ready!',
         icon: 'tabler:check',
-        description: 'เปิดโปรแกรมคำนวณความชื้นเมล็ดทันที', // ใส่คำอธิบายเพิ่มหน่อยก็ดีครับ
-      },    ]}
+      },
+    ]}
     image={{
       src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
       alt: 'Steps image',
     }}
   />
-<GSImageGrid />
 
   <!-- Features2 Widget ************** -->
 

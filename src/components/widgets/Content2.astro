@@ -1,0 +1,133 @@
+---
+import type { Content as Props } from '~/types';
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  content = await Astro.slots.render('content'),
+  callToAction,
+  items = [],
+  columns,
+  image = await Astro.slots.render('image'),
+  isReversed = false,
+  isAfterContent = false,
+  
+  // เพิ่มตัวแปร linkUrl มารับค่าลิงก์
+  linkUrl, 
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// ตรวจสอบว่ามีลิงก์ไหม? ถ้ามีให้ใช้ tag <a> ถ้าไม่มีใช้ <div>
+const Container = linkUrl ? 'a' : 'div';
+const linkProps = linkUrl ? { href: linkUrl } : {};
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-7xl mx-auto ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+      title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+      subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
+    }}
+  />
+  <div class="mx-auto max-w-7xl p-4 md:px-8">
+    
+    {/* 1. ใช้ <Container> แทน div เพื่อเปลี่ยนเป็นลิงก์ได้
+      2. ใส่ class 'group' เพื่อคุมลูกเล่นข้างใน
+      3. ใส่ hover effect: เด้งขึ้น (-translate-y-1), เงา (shadow-xl), พื้นหลังเปลี่ยน
+    */}
+    <Container 
+      {...linkProps}
+      class={`
+        block 
+        flex flex-col md:flex-row 
+        ${isReversed ? 'md:flex-row-reverse' : ''} 
+        md:gap-16 
+        
+        /* --- ส่วนลูกเล่น (Effects) --- */
+        group 
+        transition-all duration-300 ease-in-out
+        ${linkUrl ? 'hover:-translate-y-2 hover:shadow-2xl hover:bg-white/50 dark:hover:bg-slate-800/50 cursor-pointer rounded-2xl p-4 -m-4' : ''}
+      `}
+    >
+      
+      {/* ส่วนรูปภาพ */}
+      <div aria-hidden="true" class="mt-0 md:mt-0 md:basis-1/2">
+        {
+          image && (
+            <div class="relative m-auto max-w-4xl overflow-hidden rounded-lg shadow-lg">
+              {typeof image === 'string' ? (
+                <Fragment set:html={image} />
+              ) : (
+                /* เพิ่ม effect ให้รูปขยายตัว (scale) เมื่อเอาเมาส์ชี้ที่กล่องแม่ (group-hover) */
+                <Image
+                  class="mx-auto w-full bg-gray-500 transition-transform duration-500 group-hover:scale-105"
+                  width={500}
+                  height={500}
+                  widths={[400, 768]}
+                  sizes="(max-width: 768px) 100vw, 432px"
+                  layout="responsive"
+                  {...image}
+                />
+              )}
+            </div>
+          )
+        }
+      </div>
+
+      {/* ส่วนเนื้อหา */}
+      <div class="mt-6 md:mt-0 md:basis-1/2 self-center">
+        {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
+
+        {/* ถ้าคลิกทั้งก้อนแล้ว ไม่ควรมีปุ่มซ้อน ให้แสดงเป็นข้อความแทน หรือปุ่มปลอม */}
+        {
+          callToAction && !linkUrl && (
+            <div class="mt-[-40px] mb-8 text-primary">
+              <Button variant="link" {...callToAction} />
+            </div>
+          )
+        }
+         {/* ถ้าเป็นลิงก์ทั้งก้อน อาจจะอยากโชว์ปุ่มหลอกๆ เพื่อบอกว่าคลิกได้ */}
+        {
+           callToAction && linkUrl && (
+            <div class="mt-[-40px] mb-8 text-primary font-bold underline decoration-2 underline-offset-4 group-hover:text-blue-700 transition-colors">
+               {callToAction.text || 'ดูรายละเอียด'} &raquo;
+            </div>
+           )
+        }
+
+        <ItemGrid
+          items={items}
+          columns={columns}
+          defaultIcon="tabler:check"
+          classes={{
+            container: `gap-y-4 md:gap-y-8`,
+            panel: 'max-w-none',
+            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+            icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-green-600 dark:bg-green-700 text-gray-50 p-1 group-hover:bg-blue-600 transition-colors duration-300', // เปลี่ยนสีไอคอนเมื่อ Hover ได้ด้วย
+            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+          }}
+        />
+      </div>
+    </Container>
+  </div>
+</WidgetWrapper>

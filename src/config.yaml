@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Grainsure
+  site: 'https://grainsure.pages.dev'
   base: '/'
   trailingSlash: false
 
@@ -9,48 +9,48 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Grainsure | ผู้เชี่ยวชาญการวัดความชื้นเมล็ด ผลิต จำหน่ายความชื้นวัดความชื้น และบริการหลังการขาย
+    template: '%s — Grainsure'
+  description: "ผู้นำด้านเทคโนโลยีเครื่องวัดความชื้นเมล็ดพืชและวัสดุชนิดเม็ดในประเทศไทย ด้วยประสบการณ์กว่า 40 ปี ผลิตและจำหน่ายเครื่องวัดความชื้น พร้อมบริการหลังการขายที่ยอดเยี่ยม"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Grainsure
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/gs-bg1.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: ''
+    site: ''
     cardType: summary_large_image
 
 i18n:
-  language: en
+  language: th
   textDirection: ltr
 
 apps:
   blog:
     isEnabled: true
-    postsPerPage: 6
+    postsPerPage: 9
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: /%category%/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'article' # Blog main path, you can change this to "articles" (/articles)
       robots:
         index: true
 
     category:
       isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      pathname: 'topic' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
       robots:
         index: true
 

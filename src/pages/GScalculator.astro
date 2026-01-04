@@ -1,0 +1,435 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const metadata = {
+  title: 'โปรแกรมคำนวณความชื้นเมล็ด - Grainsure',
+};
+---
+
+<Layout metadata={metadata}>
+  
+  <HeroText
+    tagline="Tools"
+    title="โปรแกรมคำนวณความชื้น ต้นทุนและกำไร ออนไลน์"
+    subtitle="คำนวณหาน้ำหนักน้ำ เนื้อแห้ง และเปรียบเทียบราคาอย่างง่ายดาย"
+  />
+
+  <section class="px-4 py-8 mx-auto max-w-6xl">
+    <div id="grain-calc-wrapper">
+      <div id="grain-calc-header">
+        <h2>Grain Moisture Calculator</h2>
+      </div>
+      
+      <div id="grain-calc-body">
+        <h3>#ข้อแนะนำการใช้งาน</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>เครื่องมือช่วยตัดสินใจเบื้องต้นก่อนการซื้อขายหรือจัดเก็บ</li>
+          <li>ใช้ได้กับพืชทุกชนิด (ข้าว, ข้าวโพด, มันฯ)</li>
+          <li><strong>หน่วย**:</strong> กรอกหน่วยอะไรก็ได้ (กิโล, ตัน) ผลลัพธ์จะเป็นหน่วยนั้น</li>
+        </ul>
+      </div>
+
+      <div class="gc-container">
+        <div class="gc-input-grid">
+          <div class="gc-form-group">
+            <label>น้ำหนักเมล็ดสด (หน่วย**) [เริ่มต้น]</label>
+            <input type="number" id="inpWeight" placeholder="เช่น 1000">
+          </div>
+          <div class="gc-form-group">
+            <label>ความชื้นปัจจุบัน (%) [เริ่มต้น]</label>
+            <input type="number" id="inpMoistInit" placeholder="เช่น 25">
+          </div>
+          <div class="gc-form-group">
+            <label>ลดเหลือความชื้น (%) [เป้าหมาย]</label>
+            <input type="number" id="inpMoistTarget" value="15">
+          </div>
+        </div>
+
+        <label class="gc-option-toggle">
+          <input type="checkbox" id="chkPriceOption">
+          <span>ต้องการคำนวณราคา/กำไร (Option)</span>
+        </label>
+
+        <div id="sec-price-inputs">
+          <div class="gc-input-grid">
+            <div class="gc-form-group">
+              <label>ราคาขายสด[@ความชื้นเริ่มต้น]  (บาท/หน่วย)</label>
+              <input type="number" id="inpPriceFresh" placeholder="ราคาหน้าลาน">
+            </div>
+            <div class="gc-form-group">
+              <label>ราคาเมล็ดแห้ง[@ความชื้นเป้าหมาย] (บาท/หน่วย)</label>
+              <input type="number" id="inpPriceDry" placeholder="ราคารับซื้อเมื่อแห้ง">
+            </div>
+            <div class="gc-form-group">
+              <label>ค่าจ้างตาก/อบ (บาท/หน่วย)</label>
+              <input type="number" id="inpCostDrying" value="0" placeholder="ถ้าตากเองใส่ 0">
+            </div>
+          </div>
+          <div class="text-xs text-gray-500 mt-[-10px]">*กรอกข้อมูลให้ครบเพื่อเปรียบเทียบความคุ้มค่า</div>
+        </div>
+
+        <button class="gc-btn" id="btnCalc">คำนวณผลลัพธ์</button>
+
+        <div id="gc-result-area">
+          <div class="gc-result-compare">
+            <div class="gc-card fresh">
+              <div class="gc-card-head">1. สภาวะเริ่มต้น (สด)</div>
+              <div class="gc-row">
+                <span>ความชื้น</span><span class="gc-val"><span id="lblM1">0</span>%</span>
+              </div>
+              <div class="gc-row">
+                <span>น้ำหนักน้ำ</span><span class="gc-val gc-water" id="lblWater1">0</span>
+              </div>
+              <div class="gc-row">
+                <span>เนื้อเมล็ดแห้ง</span><span class="gc-val gc-highlight" id="lblDry1">0</span>
+              </div>
+              <div class="gc-row font-bold text-lg border-t pt-2 mt-2">
+                <span>น้ำหนักรวม</span><span class="gc-val"><span id="lblW1">0</span></span>
+              </div>
+              
+              <div class="row-financial mt-4 pt-2 border-t border-dashed border-orange-300">
+                <div class="gc-row text-sm">
+                  <span>ราคาขาย/หน่วย</span><span class="gc-val"><span id="lblP1">0</span> บ.</span>
+                </div>
+                <div class="gc-row mt-2">
+                  <span>รายได้สุทธิ</span>
+                  <div class="gc-net-total"><span id="resMoney1">0</span> บาท</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gc-card dry">
+              <div class="gc-card-head">2. เป้าหมาย (แห้ง)</div>
+              <div class="gc-row">
+                <span>ความชื้น</span><span class="gc-val"><span id="lblM2">0</span>%</span>
+              </div>
+              <div class="gc-row">
+                <span>น้ำหนักน้ำ</span><span class="gc-val gc-water" id="lblWater2">0</span>
+              </div>
+              <div class="gc-row">
+                <span>เนื้อเมล็ดแห้ง</span><span class="gc-val gc-highlight" id="lblDry2">0</span>
+              </div>
+               <div class="gc-row font-bold text-lg border-t pt-2 mt-2">
+                <span>น้ำหนักรวม</span><span class="gc-val"><span id="lblW2">0</span></span>
+              </div>
+
+              <div class="row-financial mt-4 pt-2 border-t border-dashed border-green-300">
+                <div class="gc-row text-sm">
+                  <span>ราคาขายเมล็ดแห้ง</span><span class="gc-val"><span id="lblP2">0</span> บ.</span>
+                </div>
+                <div class="gc-row text-sm text-red-600">
+                  <span>หัก: ค่าอบ</span><span class="gc-val">-<span id="lblCost">0</span> บ.</span>
+                </div>
+                <div class="gc-row mt-2">
+                  <span>รายได้สุทธิ</span>
+                  <div class="gc-net-total"><span id="resMoney2">0</span> บาท</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gc-loss-box">
+            สรุป: น้ำหนักหายไปจากการตาก <span id="lblLossTotal" class="text-2xl font-bold">0</span> (หน่วย**)
+          </div>
+
+          <div class="gc-winner-box" id="sec-winner">
+            <div class="text-lg text-gray-700 mb-2">บทสรุปความคุ้มค่า</div>
+            <div class="gc-winner-result" id="txtWinner">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</Layout>
+
+<script>
+  // Function Format ตัวเลข
+  function formatNum(num) {
+    return num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  // Toggle ส่วนราคา
+  function togglePriceSection() {
+    const chk = document.getElementById('chkPriceOption');
+    if (!chk) return;
+    const isChecked = chk.checked;
+    const priceSection = document.getElementById('sec-price-inputs');
+    const resultArea = document.getElementById('gc-result-area');
+    
+    if (priceSection) priceSection.style.display = isChecked ? 'block' : 'none';
+    if (!isChecked && resultArea) resultArea.style.display = 'none';
+  }
+
+  // คำนวณหลัก
+  function calcGrainSmart() {
+    const W_init = parseFloat((document.getElementById('inpWeight') as HTMLInputElement).value);
+    const M_init = parseFloat((document.getElementById('inpMoistInit') as HTMLInputElement).value);
+    const M_target = parseFloat((document.getElementById('inpMoistTarget') as HTMLInputElement).value);
+    const wantPrice = (document.getElementById('chkPriceOption') as HTMLInputElement).checked;
+
+    if (isNaN(W_init) || isNaN(M_init) || isNaN(M_target)) {
+      alert("กรุณากรอกข้อมูลน้ำหนักและความชื้นให้ครบ");
+      return;
+    }
+    if (M_target >= M_init) {
+      alert("ความชื้นเป้าหมาย ต้องน้อยกว่า ความชื้นเริ่มต้น");
+      return;
+    }
+
+    // ฟิสิกส์
+    const dryMatter = W_init * (100 - M_init) / 100;
+    const waterInit = W_init - dryMatter;
+    const W_final = dryMatter / ((100 - M_target) / 100);
+    const waterFinal = W_final - dryMatter;
+    const weightLoss = W_init - W_final;
+
+    // แสดงผล
+    document.getElementById('lblM1').innerText = M_init.toString();
+    document.getElementById('lblW1').innerText = formatNum(W_init);
+    document.getElementById('lblWater1').innerText = formatNum(waterInit);
+    document.getElementById('lblDry1').innerText = formatNum(dryMatter);
+
+    document.getElementById('lblM2').innerText = M_target.toString();
+    document.getElementById('lblW2').innerText = formatNum(W_final);
+    document.getElementById('lblWater2').innerText = formatNum(waterFinal);
+    document.getElementById('lblDry2').innerText = formatNum(dryMatter);
+    document.getElementById('lblLossTotal').innerText = formatNum(weightLoss);
+
+    // การเงิน
+    const financialRows = document.querySelectorAll('.row-financial');
+    const winnerBox = document.getElementById('sec-winner');
+
+    if (wantPrice) {
+      const P_fresh = parseFloat((document.getElementById('inpPriceFresh') as HTMLInputElement).value);
+      const P_dry = parseFloat((document.getElementById('inpPriceDry') as HTMLInputElement).value);
+      const Cost_per_ton = parseFloat((document.getElementById('inpCostDrying') as HTMLInputElement).value);
+
+      if (isNaN(P_fresh) || isNaN(P_dry)) {
+        alert("กรุณากรอกราคาขายให้ครบถ้วน");
+        return;
+      }
+
+      const Income_Fresh = W_init * P_fresh;
+      const Income_Dry_Gross = W_final * P_dry;
+      const Total_Drying_Cost = (W_init / 1000) * (isNaN(Cost_per_ton) ? 0 : Cost_per_ton);
+      const Income_Dry_Net = Income_Dry_Gross - Total_Drying_Cost;
+
+      document.getElementById('lblP1').innerText = formatNum(P_fresh);
+      document.getElementById('resMoney1').innerText = formatNum(Income_Fresh);
+      
+      document.getElementById('lblP2').innerText = formatNum(P_dry);
+      document.getElementById('lblCost').innerText = formatNum(Total_Drying_Cost);
+      document.getElementById('resMoney2').innerText = formatNum(Income_Dry_Net);
+
+      const diff = Income_Dry_Net - Income_Fresh;
+      const txtWinner = document.getElementById('txtWinner');
+      
+      if (diff > 0) {
+        txtWinner.innerHTML = `<span style="color:#2e7d32">"ตากแล้วขาย"</span> ได้เพิ่ม ${formatNum(diff)} บาท`;
+        winnerBox.style.borderColor = "#2e7d32";
+      } else if (diff < 0) {
+        txtWinner.innerHTML = `<span style="color:#d32f2f">"ขายสดทันที"</span> คุ้มกว่า ${formatNum(Math.abs(diff))} บาท`;
+        winnerBox.style.borderColor = "#d32f2f";
+      } else {
+        txtWinner.innerHTML = "ทั้งสองทางเลือก ได้เงินเท่ากัน";
+        winnerBox.style.borderColor = "#f57f17";
+      }
+
+      financialRows.forEach(el => (el as HTMLElement).style.display = 'block');
+      if (winnerBox) winnerBox.style.display = 'block';
+
+    } else {
+      financialRows.forEach(el => (el as HTMLElement).style.display = 'none');
+      if (winnerBox) winnerBox.style.display = 'none';
+    }
+
+    const resultArea = document.getElementById('gc-result-area');
+    if (resultArea) resultArea.style.display = 'block';
+  }
+
+  // Event Listeners
+  document.addEventListener('astro:page-load', () => {
+     // ใช้ astro:page-load เพื่อรองรับ View Transitions ของ AstroWind
+     const btn = document.getElementById('btnCalc');
+     if(btn) btn.addEventListener('click', calcGrainSmart);
+
+     const chk = document.getElementById('chkPriceOption');
+     if(chk) chk.addEventListener('change', togglePriceSection);
+  });
+   // Fallback สำหรับโหลดครั้งแรกปกติ
+  document.addEventListener('DOMContentLoaded', () => {
+     const btn = document.getElementById('btnCalc');
+     if(btn) btn.addEventListener('click', calcGrainSmart);
+
+     const chk = document.getElementById('chkPriceOption');
+     if(chk) chk.addEventListener('change', togglePriceSection);
+  });
+</script>
+
+<style>
+  /* CSS Scoped */
+  #grain-calc-wrapper {
+    font-family: 'Kanit', sans-serif;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 3rem;
+  }
+
+  #grain-calc-header {
+    background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+    color: white;
+    padding: 24px;
+    text-align: center;
+  }
+  #grain-calc-header h2 { margin: 0; font-size: 1.5rem; font-weight: 700; color: white; }
+
+  #grain-calc-body {
+    background: #f0fdf4;
+    color: #166534;
+    padding: 16px 24px;
+    font-size: 0.9rem;
+  }
+
+  .gc-container { padding: 24px; }
+
+  .gc-input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .gc-form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+    color: #374151;
+  }
+
+  .gc-form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  .gc-form-group input:focus { outline: none; border-color: #15803d; ring: 2px solid #15803d; }
+
+  .gc-option-toggle {
+    background-color: #f9fafb;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .gc-option-toggle input { width: 18px; height: 18px; margin-right: 12px; }
+
+  #sec-price-inputs {
+    display: none; 
+    background-color: #ecfdf5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 1px dashed #34d399;
+  }
+
+  .gc-btn {
+    background-color: #15803d;
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .gc-btn:hover { background-color: #166534; }
+
+  #gc-result-area {
+    margin-top: 32px;
+    display: none;
+  }
+
+  .gc-result-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) { .gc-result-compare { grid-template-columns: 1fr; } }
+
+  .gc-card {
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+  .gc-card.fresh { border-top: 5px solid #f97316; }
+  .gc-card.dry { border-top: 5px solid #22c55e; }
+
+  .gc-card-head { text-align: center; font-weight: 700; margin-bottom: 16px; font-size: 1.1rem; }
+
+  .gc-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .gc-val { font-weight: 600; color: #111; }
+  .gc-water { color: #2563eb; } 
+  .gc-highlight { color: #ea580c; } 
+  
+  .row-financial { display: none; } 
+  .gc-net-total { font-size: 1.25rem; font-weight: 800; color: #15803d; }
+
+  .gc-loss-box {
+    margin-top: 24px;
+    padding: 16px;
+    background-color: #fff7ed;
+    border: 1px dashed #fdba74;
+    border-radius: 8px;
+    text-align: center;
+    color: #c2410c;
+  }
+
+  .gc-winner-box {
+    display: none;
+    background: #fff;
+    border: 2px solid #15803d;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .gc-winner-result { font-size: 1.4rem; font-weight: 700; color: #15803d; }
+  
+  /* Product Box Styling */
+  .product-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 30px;
+  }
+  
+  .btn-contact, .btn-detail {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 99px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-contact { background-color: #dc2626; color: white; }
+  .btn-contact:hover { background-color: #b91c1c; }
+  
+  .btn-detail { background-color: #166534; color: white; }
+  .btn-detail:hover { background-color: #14532d; }
+
+</style>
