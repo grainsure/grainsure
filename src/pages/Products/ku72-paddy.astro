@@ -2,7 +2,7 @@
 import heroImage from '~/assets/images/KU72-PADDY02L.png';        // ภาพแนวนอน (Desktop)
 import heroMobile from '~/assets/images/KU72-PADDY02H.png'; // ภาพแนวตั้ง (Mobile) **(ตรวจสอบชื่อไฟล์ของคุณอีกทีนะครับ)**
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Hero from '~/components/widgets/Hero3.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features3 from '~/components/widgets/Features3.astro';
@@ -18,7 +18,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-<Hero
+  <Hero
     tagline="ตีตรารับรอง สำนักงานกลางชั่งตวงวัด"
     title="KU72-PADDY"
     subtitle="เครื่องวัดความชื้นข้าวเปลือก แม่นยำ ทนทาน ใช้งานง่าย<br>ผ่านการรับจองจากสำนักชั่งตวงวัด ถูกต้องตามประกาศกระทรวงพาณิชย์<br>ใช้ซื้อ-ขายข้าวเปลือกได้ พร้อมลุยทุกหน้างาน"
@@ -52,6 +52,21 @@ const metadata = {
       src: heroMobile,
       alt: 'เครื่องวัดความชื้น KU72 บนมือถือ',
     }}
+
+  /* 🎨 ปรับแต่งความชัดตรงนี้ */
+  /* Title: ปรับเงา Overlay บนภาพ */
+  bgOverlayClass="bg-gradient-to-r from-black/60 via-black/30 to-transparent"
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+   taglineClass=""
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+  titleClass="drop-shadow-[0_5px_10px_rgba(100,100,100,0.9)]"
+  
+  /* Subtitle: ขอบดำบาง 0.5px + เงาดำรองพื้น */
+  subtitleClass=""
+
+
   />
 
   <Content

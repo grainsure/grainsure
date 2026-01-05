@@ -49,9 +49,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <header
   class:list={[
-    // แก้ไข: เปลี่ยน transition-[opacity] เป็น transition-transform duration-300 เพื่อให้ขยับขึ้นลงนุ่มนวล
     { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-transform duration-300 ease-in-out',
+    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
@@ -75,9 +74,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       <a class="flex items-center" href={getHomePermalink()}>
         <Logo />
       </a>
-      
+      <div class="flex items-center md:hidden">
+        <ToggleMenu />
       </div>
-    
+    </div>
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
@@ -165,43 +165,3 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
-
-<script is:inline>
-  document.addEventListener('astro:page-load', () => {
-    // ใช้ astro:page-load เพื่อรองรับ View Transitions (ถ้าเปิดใช้) หรือใช้ DOMContentLoaded
-    const header = document.getElementById('header');
-    let lastScrollY = window.scrollY;
-
-    if (header) {
-      window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        // ถ้าเลื่อนลงมากกว่า 50px และเลื่อนลงมาเรื่อยๆ
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          // ซ่อน Header (เลื่อนขึ้นไปข้างบน)
-          header.classList.add('-translate-y-full');
-        } else {
-          // แสดง Header (กลับมาที่เดิม)
-          header.classList.remove('-translate-y-full');
-        }
-
-        lastScrollY = currentScrollY;
-      });
-    }
-  });
-  
-  // กรณีไม่ได้ใช้ View Transitions ให้ทำงานทันทีด้วย
-  const header = document.getElementById('header');
-    let lastScrollY = window.scrollY;
-    if (header) {
-      window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          header.classList.add('-translate-y-full');
-        } else {
-          header.classList.remove('-translate-y-full');
-        }
-        lastScrollY = currentScrollY;
-      });
-    }
-</script>
