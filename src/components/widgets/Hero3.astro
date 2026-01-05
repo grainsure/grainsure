@@ -1,0 +1,146 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  
+  image = await Astro.slots.render('image'),
+  mobileImage = await Astro.slots.render('mobileImage'),
+
+  id,
+  bg = await Astro.slots.render('bg'),
+
+  /* ⭐ [ใหม่] เพิ่มตัวแปรรับค่าสำหรับปรับแต่ง Style จากภายนอก */
+  titleClass = "",
+  subtitleClass = "",
+  taglineClass = "",
+  bgOverlayClass = "", // เอาไว้ใส่เงา overlay หรือ gradient เอง
+} = Astro.props;
+---
+
+<section 
+  class="relative not-prose min-h-[75vh] md:min-h-screen flex items-end md:items-center" 
+  {...id ? { id } : {}}
+>  
+  <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+    
+    <div class={`absolute inset-0 z-10 pointer-events-none ${bgOverlayClass}`}></div>
+    
+    {
+      mobileImage && (
+        <div class="absolute inset-0 w-full h-full md:hidden">
+          {typeof mobileImage === 'string' ? (
+            <Fragment set:html={mobileImage} />
+          ) : (
+            <Image
+              /* ⭐ [ใหม่] เพิ่ม brightness-100 ให้สว่างไว้ก่อน */
+              class="absolute inset-0 w-full h-full object-cover object-center brightness-100"
+              widths={[400, 768]}
+              sizes="100vw"
+              loading="eager"
+              width={768} 
+              height={1024} 
+              {...mobileImage}
+            />
+          )}
+        </div>
+      )
+    }
+
+    {
+        image && (
+          <div class={`relative w-full h-full ${mobileImage ? 'hidden md:block' : ''}`}>
+            {typeof image === 'string' ? (
+              <Fragment set:html={image} />
+            ) : (
+              <Image
+                /* ⭐ [ใหม่] เพิ่ม brightness-100 ให้สว่างไว้ก่อน */
+                class="absolute inset-0 w-full h-full object-cover object-center brightness-100"
+                widths={[400, 768, 1024, 2040]}
+                sizes="100vw"
+                loading="eager"
+                width={2040} 
+                height={1080}
+                {...image}
+              />
+            )}
+          </div>
+        )
+    }
+  </div>
+
+  <div class="relative w-full z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="py-12 md:py-20 text-left">
+        
+        {/* Tagline */}
+        {
+          tagline && (
+            <p
+              /* ⭐ [ใหม่] แทรก ${taglineClass} เข้าไปท้ายสุด */
+              class={`text-base text-gray-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${taglineClass}`}
+              set:html={tagline}
+            />
+          )
+        }
+
+        {/* Title */}
+        {
+          title && (
+            <h1
+              /* ⭐ [ใหม่] แทรก ${titleClass} เข้าไปท้ายสุด */
+              class={`text-3xl md:text-7xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade max-w-4xl ${titleClass}`}
+              set:html={title}
+            />
+          )
+        }
+
+        {/* Subtitle & Actions */}
+        <div class="max-w-2xl mr-auto">
+          {
+            subtitle && (
+              <p
+                /* ⭐ [ใหม่] แทรก ${subtitleClass} เข้าไปท้ายสุด */
+                class={`text-xl text-gray-100 mb-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${subtitleClass}`}
+                set:html={subtitle}
+              />
+            )
+          }
+          {
+            actions && (
+              <div class="max-w-xs sm:max-w-md flex flex-nowrap flex-col sm:flex-row sm:justify-start gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:w-auto">
+                      <Button class="w-full sm:mb-0" {...(action || {})}  />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+        </div>
+
+        {content && <Fragment set:html={content} />}
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute inset-0 pointer-events-none z-0 hidden" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+
+</section>
