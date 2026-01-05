@@ -32,15 +32,17 @@ const {
             
             {/* จุดที่แก้ไข: ใช้ set:html แทน {amount} เพื่อให้ใส่ tag span ได้ */}
             {amount && (
-              <div class="font-heading text-primary text-[2.6rem] font-bold dark:text-white lg:text-5xl xl:text-6xl">
-                {amount}
-              </div>
+              <div 
+                class="font-heading text-primary text-[2.6rem] font-bold dark:text-white lg:text-5xl xl:text-6xl"
+                set:html={amount}
+              />
             )}
 
             {title && (
-              <div class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base">
-                {title}
-              </div>
+              <div
+                class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base"
+                set:html={title}
+                />
             )}
           </div>
         ))
