@@ -18,16 +18,15 @@ const {
   id,
   bg = await Astro.slots.render('bg'),
 
-  /* ⭐ [ใหม่] เพิ่มตัวแปรรับค่าสำหรับปรับแต่ง Style จากภายนอก */
   titleClass = "",
   subtitleClass = "",
   taglineClass = "",
-  bgOverlayClass = "", // เอาไว้ใส่เงา overlay หรือ gradient เอง
+  bgOverlayClass = "", 
 } = Astro.props;
 ---
 
 <section 
-  class="relative not-prose min-h-[75vh] md:min-h-screen flex items-end md:items-center" 
+  class="relative not-prose min-h-[75vh] md:min-h-screen flex items-end md:items-end" 
   {...id ? { id } : {}}
 >  
   <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
@@ -41,7 +40,6 @@ const {
             <Fragment set:html={mobileImage} />
           ) : (
             <Image
-              /* ⭐ [ใหม่] เพิ่ม brightness-100 ให้สว่างไว้ก่อน */
               class="absolute inset-0 w-full h-full object-cover object-center brightness-100"
               widths={[400, 768]}
               sizes="100vw"
@@ -62,7 +60,6 @@ const {
               <Fragment set:html={image} />
             ) : (
               <Image
-                /* ⭐ [ใหม่] เพิ่ม brightness-100 ให้สว่างไว้ก่อน */
                 class="absolute inset-0 w-full h-full object-cover object-center brightness-100"
                 widths={[400, 768, 1024, 2040]}
                 sizes="100vw"
@@ -85,7 +82,6 @@ const {
         {
           tagline && (
             <p
-              /* ⭐ [ใหม่] แทรก ${taglineClass} เข้าไปท้ายสุด */
               class={`text-base text-gray-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${taglineClass}`}
               set:html={tagline}
             />
@@ -96,7 +92,6 @@ const {
         {
           title && (
             <h1
-              /* ⭐ [ใหม่] แทรก ${titleClass} เข้าไปท้ายสุด */
               class={`text-3xl md:text-7xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade max-w-4xl ${titleClass}`}
               set:html={title}
             />
@@ -108,7 +103,6 @@ const {
           {
             subtitle && (
               <p
-                /* ⭐ [ใหม่] แทรก ${subtitleClass} เข้าไปท้ายสุด */
                 class={`text-xl text-gray-100 mb-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${subtitleClass}`}
                 set:html={subtitle}
               />
