@@ -1,0 +1,354 @@
+---
+import heroImage from '~/assets/images/KU60-02L.png';       // ภาพแนวนอน (Desktop)
+import heroMobile from '~/assets/images/KU60-02H.png'; // ภาพแนวตั้ง (Mobile)
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Button from '~/components/ui/Button.astro';
+import Image from '~/components/common/Image.astro';
+
+// Metadata สำหรับ SEO
+const metadata = {
+  title: 'KU60 เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ - Grainsure',
+  description:
+    'รายละเอียดเครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ รุ่นKU60  แม่นยำ ทนทาน ใช้งานง่าย เหมาะสำหรับเกษตรกร โรงงานอุตสาหกรรม และห้องปฏิบัติการ',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="วัดความชื้นเมล็ดได้หลากหลาย"
+    title="KU60"
+    subtitle="<strong>เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ</strong> แม่นยำ ทนทาน ใช้งานง่าย<br>รองรับการวัดเมล็ดพืชและวัสดุหลากหลายชนิด ผลิตตามความต้องการของลูกค้า<br>ใช้ได้ทั้งในห้องปฏิบัติการและภาคสนาม"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'สั่งซื้อ / สอบถามราคา',
+        href: 'https://line.me/ti/p/~@grainsure',
+        icon: 'tabler:message-circle',
+        target: '_blank',
+        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
+      },
+      {
+        text: 'ดูวิดีโอสาธิต',
+        href: '#video-demo',
+        icon: 'tabler:player-play',
+        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
+      },
+    ]}
+    
+    image={{
+      src: heroImage, 
+      alt: 'เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ KU60',
+    }}
+
+    mobileImage={{
+      src: heroMobile,
+      alt: 'เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ KU60',
+    }}
+
+    bgOverlayClass="bg-gradient-to-tr from-black/60 via-black/10 to-transparent"
+    titleClass="drop-shadow-[0_5px_10px_rgba(100,100,100,0.9)]"
+    subtitleClass="text-xs md:text-xl"
+  />
+
+  <Content
+    isReversed
+    title="ทำไมต้อง KU60?"
+    items={[
+      {
+        title: 'เที่ยงตรง ได้มาตราฐาน',
+        description:
+          'ผ่านการสอบเทียบเครื่องต่อเครื่อง โดยอ้างอิงจากผลการศึกษาตัวอย่างของเมล็ดพืชตามมาตรฐานการวัดความชื้น',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'รองรับวัดความชื้นเมล็ดได้หลากหลาย',
+        description:
+          '<strong>รุ่นมาตรฐาน </strong>จะวัดได้ 5 ชนิด(ข้าวโพด ข้าวเปลือก ถั่วเหลือง ถั่วเขียว ข้าวฟ่าง)<br><strong>รุ่นผลิตเฉพาะลูกค้า</strong> จะสามารถวัดได้สูงสุด 7 ชนิดต่อเครื่อง โดยลูกค้าระบุชนิดที่ต้องการเมื่อสั่งซื้อเครื่อง',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'รับผลิตตามความต้องการ',
+        description:
+          'ผลิตตามความต้องการของลูกค้าได้ ไม่มีจำนวนขั้นต่ำ พร้อมให้คำแนะนำในการเลือกชนิดเมล็ดที่เหมาะสมกับการใช้งาน',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'ใช้งานง่าย วัดค่าได้รวดเร็ว',
+        description:
+          'เครื่องออกแบบมาให้ใช้งานง่าย เพียงตวงตัวอย่างเต็มถ้วยตวง เทตัวอย่างลงในช่องวัดช้าๆ รอไม่เกิน 10 วินาที ก็ทราบค่าความชื้นได้ทันที',
+        icon: 'tabler:thermometer',
+      },
+      {
+        title: 'ทนทานงานหนัก',
+        description: 'ตัวเครื่องทำจากโลหะ แข็งแรง ทนการกระแทก ใช้งานดีทั้งภาคสนามและในห้องปฏิบัติการ',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'ลดความผิดพลาด สะดวกกว่าด้วยฟังก์ชันช่วยวัด',
+        description: 'วัดค่าเฉลี่ยในการวัดหลายครั้ง ดูจำนวนครั้งที่วัด อ่านค่าอุณหภูมิเมล็ด ชดเชยอุณหภูมิอัตโนมัติ',
+        icon: 'tabler:settings-automation',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/KU60-04.png', // รูปประกอบ
+      alt: 'การใช้งาน KU60',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ วัดเที่ยงตรง ได้มาตรฐาน
+      </h3>
+      <p>
+        KU60 ถูกออกแบบเพื่อรองรับการวัดความชื้นในวัสดุที่เป็นเม็ดทุกชนิด สามารถปรับเทียบให้วัดความชื้นในเมล็ดพืชทั่วไป และเม็ดวัสดุหรือเมล็ดพืชที่เป็นเฉพาะของลูกค้าได้ เช่น เม็ดโกโก้ เม็ดกาแฟ กากมันสำปะหลังป่น กลีบดอกดาวเรือง อาหารสัตว์อัดเม็ด ปุ๋ยอัดเม็ด อาหารอัดเม็ด เป็นต้น
+        <br>ด้วยเทคโนโลยีที่วิจัยและพัฒนาโดยคนไทยเพื่อคนไทยได้มีเครื่องมือที่ดี เพื่อยกระดับผลผลิตให้มีคุณภาพสูง ด้วยเครื่องมือที่น่าเชื่อถือ ราคาไม่แพง และมั่นใจด้วยบริการหลังการขายที่ดูแลกันยาวๆไม่ทอดทิ้งกัน
+      </p>
+    </Fragment>
+  </Content>
+
+  <section class="py-16 bg-blue-50 dark:bg-slate-800/20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold font-heading mb-4">ข้อมูลจำเพาะ (Specification)</h2>
+        <p class="text-xl text-gray-600 dark:text-slate-400">รายละเอียดทางเทคนิคของเครื่องรุ่น KU60</p>
+      </div>
+
+      <div class="overflow-x-auto bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+        <table class="w-full text-left text-sm md:text-base">
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white w-1/3 bg-gray-50 dark:bg-slate-800/50">พืชที่วัดได้</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">รุ่นมาตรฐานวัดได้ 5 ชนิด(ข้าวโพด ข้าวเปลือก ถั่วเหลือง ถั่วเขียว ข้าวฟ่าง)<br>รุ่นผลิตเฉพาะลูกค้าจะสามารถวัดได้สูงสุด 7 ชนิดต่อเครื่อง</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ปริมาณข้าวเปลือกตัวอย่าง</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300"> 50 - 100 กรัม(ขึ้นกับชนิดเมล็ด ให้ใช้ตามที่ระบุในคู่มือ) </td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">วัดความชื้นได้สูงสุด</th>
+              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0-40%(ขึ้นกับชนิดเมล็ด)</td>
+            </tr>
+            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ช่วงการวัดความชื้น</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0-40%(ขึ้นกับชนิดเมล็ด)</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความละเอียด</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0.1%</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความแม่นยำ</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">± 0.1%(ขึ้นกับชนิดเมล็ด)</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">วัดอุณหภูมิได้สูงสุด</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">50°C</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ช่วงการวัดอุณหภูมิ</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">10-50°C</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความละเอียดอุณหภูมิ</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0.1°C</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">การประมวลผล</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ระบบดิจิตอล:ควบคุมด้วยไมโครโปรเซสเซอร์</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ฟังก์ชั่นเสริม</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>แสดงค่าความชื้นเฉลี่ย(สูงสุด99ตัวอย่าง)</li>
+                    <li>แสดงจำนวนครั้งที่วัดได้(สูงสุด99ครั้ง)</li>
+                    <li>แสดงค่าอุณหภูมิเมล็ด</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">แหล่งพลังงาน</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ถ่านสี่เหลี่ยม 9โวลต์(6F22/PP3) </td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ขนาด / น้ำหนัก</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">164 x 94 x 40 มม. / 1.5 กก.</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">อุปกรณ์ในกล่อง</th>
+                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>ตัวเครื่อง KU60</li>
+                    <li>กล่องพกพา</li>
+                    <li>ถ่าน 9โวลต์ 1 ก้อน</li>
+                    <li>กรวยเท</li>
+                    <li>ถ้วยตวง</li>
+                    <li>เครื่องชั่งน้ำหนักแบบดิจิทัล</li>
+                    <li>คู่มือการใช้งานภาษาไทย</li>
+                  </ul>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div id="video-demo" class="py-16 bg-white dark:bg-slate-900 overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-10 max-w-3xl mx-auto">
+        <div class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-red-600 uppercase bg-red-100 rounded-full">
+          Video Manual
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">คู่มือการใช้งานรูปแบบวีดีโอ</h2>
+        <p class="text-xl text-gray-600 dark:text-slate-400">
+          เรียนรู้วิธีการใช้งานเครื่องวัดความชื้นเมล็ด KU60 ครบทุกขั้นตอน
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white font-bold text-sm">1</span>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">แนะนำเครื่อง (Shorts)</h3>
+          </div>
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10 bg-black">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/mVxpVuAlhls"
+              title="KU60 ตอนที่1 แนะนำเครื่องวัดความชื้น รุ่น KU60"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            แนะนำอุปกรณ์และส่วนประกอบต่างๆ ของเครื่อง KU60 (คลิปสั้นแนวตั้ง)
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">2</span>
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">ขั้นตอนการวัดความชื้น</h3>
+          </div>
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/8z_oUim3PYA"
+              title="KU60 ตอนที่2 ขั้นตอนการใช้เครื่องวัดความชื้นเมล็ดรุ่นKU60"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            สาธิตวิธีการใช้งาน ตั้งแต่การเตรียมเครื่อง การใส่ตัวอย่าง และการอ่านค่าอย่างละเอียด
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 mb-2">
+             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">3</span>
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">การวัดหาค่าเฉลี่ย</h3>
+          </div>
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/6cBcpH6MvSI"
+              title="KU60 ตอนที่3 วัดความชื้นเมล็ดเฉลี่ย"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            วิธีการวัดความชื้นแบบหลายครั้งเพื่อหาค่าเฉลี่ย เพิ่มความแม่นยำในการตรวจสอบ
+          </p>
+        </div>
+
+         <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-600 text-white font-bold text-sm">4</span>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">เพิ่มเติม: วิธีใช้เครื่องชั่ง</h3>
+            </div>
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10">
+              <iframe
+                class="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/xCACKRvsaus"
+                title="วิธีใช้ตาชั่งดิจิตอลร่วมกับเครื่องวัดความชื้น EE-KU และ KU60"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">
+               วิธีการใช้เครื่องชั่งดิจิตอลอย่างถูกวิธี และการดูแลรักษา (ข้อมูลเสริม)
+            </p>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <Features3
+    title="เอกสารและคู่มือ"
+    subtitle="ดาวน์โหลดข้อมูลเพื่อศึกษาเพิ่มเติม"
+    columns={2}
+    items={[
+      {
+        title: 'Brochure (โบรชัวร์สินค้า)',
+        description: 'รายละเอียดสเปกและจุดเด่นทั้งหมด PDF ไฟล์',
+        icon: 'tabler:file-download',
+        callToAction: {
+          text: 'ดาวน์โหลด PDF',
+          href: '/downloads/ku60-brochureTH.pdf',
+          variant: 'link',
+          icon: 'tabler:download',
+        },
+      },
+      {
+        title: 'User Manual (คู่มือการใช้งาน)',
+        description: 'วิธีการใช้งาน การตั้งค่า และการดูแลรักษา',
+        icon: 'tabler:book',
+        callToAction: {
+          text: 'ดาวน์โหลดคู่มือ',
+          href: '/downloads/ku60-manualTH.pdf',
+          variant: 'link',
+          icon: 'tabler:download',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features3>
+
+  <CallToAction
+    title="พร้อมเป็นเจ้าของความแม่นยำหรือยัง?"
+    subtitle="สั่งซื้อวันนี้ พร้อมรับบริการหลังการขายที่ดีที่สุด"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'สั่งซื้อผ่าน LINE',
+        href: 'https://line.me/ti/p/~@grainsure',
+        icon: 'tabler:brand-line',
+        target: '_blank',
+        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
+      },
+      {
+        text: 'โทรปรึกษา: 081-611-9016',
+        href: 'tel:<br>0816119016',
+        icon: 'tabler:phone',
+        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
+      },
+    ]}
+  />
+</Layout>
