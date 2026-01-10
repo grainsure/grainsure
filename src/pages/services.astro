@@ -1,6 +1,7 @@
 ---
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content2.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
@@ -35,19 +36,19 @@ const metadata = {
     items={[
       {
         title: 'รับซ่อมเครื่องวัดความชื้นของ Grainsure ทุกรุ่น ไม่จำกัดปีผลิต/ปีที่ซื้อ',
-        icon: 'tabler:wand',
+        icon: 'tabler:tool',
       },
       {
         title: 'ดูแลครบ จบทุกปัญหา..ซ่อมได้ทุกอาการเสีย',
         description:
           'เราเข้าใจทุกชิ้นส่วนอย่างลึกซึ้ง จึงพร้อมซ่อมแซมได้ทุกสภาพความเสียหาย ทั้งจากการเสื่อมสภาพตามกาลเวลา อุบัติเหตุที่ไม่คาดคิด หรือการใช้งานผิดวิธี เพื่อให้คุณได้เครื่องมือคู่ใจกลับไปใช้งานโดยเร็วที่สุด',
-        icon: 'tabler:settings',
+        icon: 'tabler:shield-check',
       },
       {
         title: 'ประเมินราคาตามจริง ยุติธรรม โปร่งใส',
         description:
           'ค่าใช้จ่ายอ้างอิงตามต้นทุนอะไหล่และค่าแรงจริงโดยไม่มีการบวกเพิ่มเกินความจำเป็น สำหรับกรณีซ่อมแซมเพียงเล็กน้อย เราพร้อมดูแลและอำนวยความสะดวกด้วยความเต็มใจ เพื่อให้ท่านสามารถนำเครื่องกลับไปใช้งานได้อย่างคุ้มค่าที่สุด',
-        icon: 'tabler:presentation',
+        icon: 'tabler:report-money',
       },
     ]}
     image={{
@@ -59,6 +60,118 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">บริการซ่อมเครื่องวัดความชื้น</h3>
     </Fragment>
   </Content>
+
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    id="RenewServices"
+    isReversed
+    title='บริการต่ออายุใบรับรอง <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 font-extrabold pt-4"><br />เครื่องวัดความชื้น KU72</span>'
+    items={[
+      {
+        title: 'บริการเป็นผู้แทน ยื่นขอต่ออายุใบรับรองเครื่องวัดความชื้นKU72(ขอการรับรองชั้นหลัง)กับ สำนักงานกลางชั่งตวงวัด กรมการค้าภายใน กระทรวงพาณิชย์',
+        description:
+          'ขั้นตอนดำเนินการดังนี้',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: '1 : <span class="font-medium">ตรวจสอบวันหมดอายุรับรอง</span>',
+        description:
+          'ตรวจสอบวันหมดอายุรับรอง ตรงสติกเกอร์ตราครุฑของสำนักชั่งตวงวัดที่ติดไว้ข้างเครื่อง โดยใบรับรองมีอายุคราวละ 2 ปี',
+        icon: 'tabler:calendar-time',
+      },
+      {
+        /* แก้ตรงนี้: ใส่ Class แต่งให้เป็นปุ่มสีเขียว */
+        title: '2 : กรอกข้อมูลหนังสือมอบอำนาจ',
+        description: `กรอกข้อมูลหนังสือมอบอำนาจให้ครบถ้วนและถูกต้อง ตามแบบฟอร์มที่ให้โหลดนี้ และเซ็นต์ลงนามผู้มอบอำนาจและพยาน2คนให้ครบถ้วน
+        <div class="flex flex-wrap gap-3 mt-3">
+            
+            <a href="/downloads/Authorization-Form.pdf" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 bg-red-600 rounded-lg hover:bg-red-700 shadow-md hover:shadow-lg no-underline w-full sm:w-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                  <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4"></path>
+                  <path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6"></path>
+                  <path d="M17 18h2"></path>
+                  <path d="M20 15h-3v6"></path>
+                  <path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z"></path>
+                </svg>
+                โหลดหนังสือมอบอำนาจ (.pdf)
+            </a>
+
+            <a href="/downloads/Authorization-Form.docx" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg no-underline w-full sm:w-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                  <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4"></path>
+                  <path d="M5 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z"></path>
+                  <path d="M17 16.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0"></path>
+                </svg>
+                โหลดหนังสือมอบอำนาจ (.docx)
+            </a>
+          </div>
+        `,        
+        icon: 'tabler:file-pencil' /* เปลี่ยนไอคอนเป็นรูปเครื่องคิดเลขให้สื่อความหมาย */,
+      },
+      {
+        /* แก้ตรงนี้: ใส่ Class แต่งให้เป็นปุ่มสีเขียว */
+        title: `
+        `,
+      },
+
+      {
+      title: '3 : <span class="font-medium">เอกสารหลักฐานประกอบยื่นคำขอ</span>',
+      description: `
+        <ul class="list-disc list-inside space-y-2"> <li>
+            <span class="font-bold">หนังสือมอบอำนาจผู้ครอบครองเครื่อง</span> มอบอำนาจให้
+            <p class="pl-8 text-lg font-normal text-gray-900 mt-1">
+              บริษัท เกรนชัวร์ จำกัด<br>เลขที่ 77/58 หมู่2 ตำบลบางเลน<br/>อำเภอบางใหญ่ จังหวัดนนทบุรี
+            </p>
+            <p class="pl-4 text-normal font-normal text-gray-700 mt-1">
+            มีอำนาจในการตรวจสอบเครื่องวัดความชื้น 
+            <br class="hidden md:inline" />และส่งสำนักชั่งตวงวัด เพื่อขอหนังสือรับรองชั้นหลัง<br>**พร้อมติด อากรสแตมป์ 10 บาท
+            </p>
+          </li>
+
+          <li class="font-bold">สำเนาบัตรประชาชนผู้ครอบครอง</li>
+          <p class="pl-4 text-normal font-normal text-gray-700 mt-1">
+            พร้อมเซ็นต์รับรองสำเนา จำนวน 1 ฉบับ
+          </p>
+        </ul>
+      `,
+      icon: 'tabler:clipboard-text',
+      },
+      {
+        title: '4 : <span class="font-medium">เครื่องวัดความชื้น KU72</span>',
+        description: 'เตรียมเครื่องวัดความชื้น KU72 ที่ต้องการส่งตรวจเพื่อต่ออายุรับรอง',
+        icon: 'tabler:device-analytics',
+      },
+      {
+        title: '5 : <span class="font-medium">ส่งเครื่องวัดความชื้นพร้อมเอกสาร</span>',
+      description: `
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            <span class="font-bold">ส่งมาที่</span>
+            <p class="pl-8 text-lg font-normal text-gray-900 mt-1">
+              นายชัยวัฒน์ ชัยกุล<br>
+              ชั้นM ตึกสถาบันค้นคว้าและพัฒนา<br class="hidden md:inline" />
+              เทคโนโลยีการผลิตทางอุตสาหกรรม(RdiPT)<br/>
+              มหาวิทยาลัยเกษตรศาสตร์<br/>
+              50 ถนนงามวงศ์วาน แขวงลาดยาว<br/>เขตจตุจักร กทม. 10900
+            </p>
+          </li>
+        </ul>
+      `,
+      icon: 'tabler:truck-delivery',
+      },
+    ]}
+    image={{
+      src: RenewService,
+      alt: 'โปรแกรมคำนวณความชื้นเมล็ด GS moisture Calculator ',
+    }}
+  />
+
 
   <Content
     id="RepairServices"
@@ -89,6 +202,7 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">บริการซ่อมเครื่องวัดความชื้น</h3>
     </Fragment>
   </Content>
+
 
 <CallToAction
   actions={[
