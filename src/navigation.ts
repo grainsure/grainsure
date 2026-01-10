@@ -13,8 +13,13 @@ export const headerData = {
     },
     {
       text: 'บริการ',
-      href: getPermalink('/#services-main'),
+      href: getPermalink('/services'),
+    },       
+    {
+          text: 'เกี่ยวกับเรา',
+          href: getPermalink('/about-us'),
     },
+
   ],
   // actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
 };
@@ -34,7 +39,11 @@ export const footerData = {
         },
         {
           text: 'บริการ',
-          href: getPermalink('/#services-main'),
+          href: getPermalink('/services'),
+        },
+        {
+          text: 'เกี่ยวกับเรา',
+          href: getPermalink('/about-us'),
         },
       ],
     },
