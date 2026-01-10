@@ -1,0 +1,146 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats2.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+
+const metadata = {
+  title: 'About us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="เกี่ยวกับเรา"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Caos Image',
+    }}
+  >
+    <Fragment slot="title">
+      บริษัท เกรนชัวร์ จำกัด <br />
+      <span class="text-accent dark:text-white">Grainsure Co.Ltd</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      บริษัทต่อยอดเทคโนโลยีงานวิจัย การวัดความชื้นในเมล็ดพืช เม็ดผลการเกษตร และเมล็ดวัสดุ ที่เริ่มต้นการศึกษาวิจัยและพัฒนาเครื่องวัดความชื้นเมล็ดกว่า 40 ปีที่แล้ว<br>
+      ปัจจุบันคือผู้ผลิตเครื่องวัดความชื้นในเมล็ด รายแรกและรายเดียวของประเทศไทย มีผลิตภัณฑ์ภายใต้ Grainsure ทั้งหมด 4 รุ่นคือ KU72-PADDY KU72-CORN KU60 และ EE-KU
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="สถิติเกี่ยวกับเรา"
+    stats={[
+      {
+        title: 'ประสบการณ์และการวิจัย',
+        amount: '>40 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ปี</span>',
+      },
+      { title: 'ระยะเวลาการขาย', amount: '40 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ปี</span>' },
+      { title: 'ยอดขายสะสม', amount: '<span class="text-xl lg:text-5xl font-medium">>10,000</span> <span class="text-xl lg:text-3xl text-gray-500 font-medium">ตัว</span>' },
+      { title: 'ต่างประเทศ', amount: ' >11 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ประเทศ</span>' },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="จากงานวิจัยสู่เครื่องมือคุณภาพ<br>เคียงคู่เกษตรกรไทยมากว่า 40 ปี"
+    subtitle="เครื่องวัดความชื้น “เกรนชัวร์” คือผลผลิตจากความมุ่งมั่นของ รศ.ชัยวัฒน์ ชัยกุล และทีมวิจัยคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ ที่เริ่มพัฒนามาตั้งแต่ปี พ.ศ. 2524 ด้วยปณิธานที่อยากให้เกษตรกรไทยมีเครื่องมือควบคุมคุณภาพที่ “แม่นยำ ทนทาน ราคาจับต้องได้” พร้อมบริการหลังการขายที่ดูแลกันยาวนาน เพื่อเกษตรกรสร้างผลผลิตที่มีคุณภาพขายได้ราคาดี"
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'เราเริ่มศึกษาวิจัย',
+        description:
+          'ศึกษาคุณสมบัติทางไฟฟ้าของเมล็ดพืชไทย และวิจัยเปรียบเทียบกับวิธีการอบมาตรฐานสากล (Air Oven Method) เพื่อสร้างฐานข้อมูลที่แม่นยำที่สุด',
+        icon: 'tabler:microscope',
+      },
+      {
+        title: 'ออกแบบ พัฒนาอย่างต่อเนื่อง',
+        description:
+          'เรามุ่งมั่นออกแบบเครื่องวัดความชื้นให้เปี่ยมด้วยความแม่นยำตามมาตรฐานสากล ทนทานต่อทุกสภาพการใช้งาน พร้อมเดินหน้าวิจัยและพัฒนาอย่างไม่หยุดยั้ง',
+        icon: 'tabler:settings-automation',
+      },
+      {
+        title: 'ผลิต จำหน่ายและให้บริการครบวงจร',
+        description:
+          'เพราะเราควบคุมการผลิตเองทุกขั้นตอน ตั้งแต่งานวิจัยจนถึงประกอบชิ้นส่วน เราจึงรู้จักทุกกลไก เข้าใจทุกการทำงาน มั่นใจได้ในบริการหลังการขายที่รวดเร็ว',
+        icon: 'tabler:heart-handshake',
+      },
+    ]}
+  />
+
+  <Steps2
+    title="สิ่งที่เรายึดมั่น (Our Core Values)"
+    subtitle="ตลอดระยะเวลากว่า 40 ปี ทีมวิจัยและเกรนชัวร์ยึดถือหลักการ 3 ประการเป็นหัวใจสำคัญในการสร้างสรรค์ผลิตภัณฑ์ เพื่อให้เกษตรกรไทยได้ใช้เครื่องมือที่มีคุณภาพทัดเทียมสากล ในราคาที่เข้าถึงได้จริง"
+    items={[
+{
+      title: 'แม่นยำตามหลักวิชาการ',
+      description:
+        'เครื่องทุกตัวผ่านการสอบเทียบมาตรฐาน อ้างอิงวิธีอบแห้ง (Air Oven Method) เพื่อผลลัพธ์ที่เที่ยงตรงและเชื่อถือได้ เพราะความชื้นของเมล็ดพืชคือรายได้ของคุณ เราจึงทุ่มเทพัฒนานวัตกรรมเพื่อให้คุณมั่นใจได้ว่า ทุกครั้งที่วัดค่า... คือความยุติธรรมและความถูกต้องที่คุณสมควรได้รับ',
+      icon: 'tabler:number-1', // หรือใช้ icon ตัวเลข 1
+    },
+    {
+      title: 'ทนทาน ซ่อมแซมได้',
+      description:
+        'ออกแบบให้ทนงานหนัก และซ่อมได้ทุกชิ้นส่วน ลดขยะอิเล็กทรอนิกส์ เมื่อเสียต้องมีอะไหล่ซ่อมได้ทุกชิ้น ไม่ต้องซื้อใหม่ยกเครื่อง ช่วยประหยัดต้นทุนระยะยาวให้ลูกค้า',
+      icon: 'tabler:number-2',
+    },
+    {
+      title: 'จริงใจ ไม่ทอดทิ้งลูกค้า',
+      description:
+        'เราดูแลกันยาวๆ ด้วยบริการหลังการขายที่รวดเร็ว มีอะไหล่พร้อมบริการตลอดอายุการใช้งาน ตัดปัญหาเรื่องเครื่องเสียแล้วหาที่ซ่อมไม่ได้',
+      icon: 'tabler:number-3',
+    },
+    ]}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="ที่ตั้งของเรา"
+    tagline="Find us"
+    columns={2}
+    items={[
+      {
+        title: 'บริษัท เกรนชัวร์ จำกัด',
+        description: '77/58 หมู่ 2 ถนนบางกรวย-ไทรน้อย ต.บางเลน อ.บางใหญ่ จ.นนทบุรี 11140',
+      },
+      {
+        title: 'ห้องปฏิบัติการวัดความชื้น',
+        description: 'ชั้น M ตึกสถาบันค้นคว้าและพัฒนาเทคโนโลยีการผลิตทางอุตสาหกรรม มหาวิทยาลัยเกษตรศาสตร์ (วิทยาเขตบางเขน)',
+      },
+    ]}
+  />
+
+
+  <CallToAction
+    title="ติดต่อเรา"
+    subtitle="สอบถาม ปรึกษา ขอใบเสนอราคา"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'LINE: @Grainsure',
+        href: 'https://line.me/ti/p/~@grainsure',
+        icon: 'tabler:brand-line',
+        target: '_blank',
+        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
+      },
+      {
+        text: 'โทร: 081-611-9016',
+        href: 'tel:0816119016',
+        icon: 'tabler:phone',
+        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
+      },
+    ]}
+  />
+
+</Layout>
