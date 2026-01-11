@@ -1,11 +1,13 @@
 ---
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Hero from '~/components/widgets/Hero3.astro';
 import Stats from '~/components/widgets/Stats2.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import AboutUsimg from '~/assets/images/About-Us-img.png';
+
 
 
 const metadata = {
@@ -19,13 +21,13 @@ const metadata = {
   <Hero
     tagline="เกี่ยวกับเรา"
     image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: AboutUsimg,
       alt: 'Caos Image',
     }}
   >
     <Fragment slot="title">
       บริษัท เกรนชัวร์ จำกัด <br />
-      <span class="text-accent dark:text-white">Grainsure Co.Ltd</span>
+      <span class="text-yellow-400 dark:text-yellow-300 font-extrabold">Grainsure Co.Ltd</span>
     </Fragment>
 
     <Fragment slot="subtitle">

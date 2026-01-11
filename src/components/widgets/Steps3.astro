@@ -1,0 +1,99 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Timeline from '~/components/ui/Timeline.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+
+// 1. แก้ไข Type: เพื่อให้รองรับ mobileImage โดยไม่ Error
+import type { Steps as BaseProps } from '~/types';
+
+export interface Props extends BaseProps {
+  mobileImage?: string | any;
+}
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  image = await Astro.slots.render('image'),
+  mobileImage = await Astro.slots.render('mobileImage'), // รับค่า mobileImage
+  isReversed = false,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+  <div class:list={['flex flex-col gap-8 md:gap-12', { 'md:flex-row-reverse': isReversed }, { 'md:flex-row': image || mobileImage }]}>
+    
+    <div class:list={['md:py-4 md:self-center', { 'md:basis-1/2': image || mobileImage }, { 'w-full': !image && !mobileImage }]}>
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'text-left rtl:text-right',
+          title: 'text-3xl lg:text-4xl',
+          ...((classes?.headline as object) ?? {}),
+        }}
+      />
+      <Timeline items={items} classes={classes?.items as Record<string, never>} />
+    </div>
+
+    {
+      (image || mobileImage) && (
+        <div class="relative md:basis-1/2">
+          
+          {/* --- ส่วนแสดงผลรูปมือถือ (Mobile Image) --- */}
+          {/* อันนี้แสดงปกติตาม Flow ไม่ Absolute เพราะมือถือแสดงแนวตั้งต่อกัน */}
+          {mobileImage && (
+            <div class="w-full md:hidden">
+              {typeof mobileImage === 'string' ? (
+                <Fragment set:html={mobileImage} />
+              ) : (
+                <Image
+                  class="inset-0 object-cover object-top w-full rounded-md shadow-lg bg-gray-400 dark:bg-slate-700"
+                  widths={[400, 768]}
+                  sizes="100vw"
+                  layout="responsive"
+                  width={500}
+                  height={500}
+                  src={mobileImage?.src || mobileImage}
+                  alt={mobileImage?.alt || ''}
+                  {...mobileImage}
+                />
+              )}
+            </div>
+          )}
+
+          {/* --- ส่วนแสดงผลรูป Desktop (Image ปกติ) --- */}
+          {/* ใช้สไตล์เดิม (md:absolute, md:h-full, layout="cover") */}
+          {image && (
+            <div class={`w-full ${mobileImage ? 'hidden md:block' : 'block'}`}>
+              {typeof image === 'string' ? (
+                <Fragment set:html={image} />
+              ) : (
+                <Image
+                  class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
+                  widths={[400, 768]}
+                  sizes="(max-width: 768px) 100vw, 432px"
+                  width={432}
+                  height={768}
+                  layout="cover" 
+                  src={image?.src || image}
+                  alt={image?.alt || ''}
+                  {...image}
+                />
+              )}
+            </div>
+          )}
+          
+        </div>
+      )
+    }
+  </div>
+</WidgetWrapper>
