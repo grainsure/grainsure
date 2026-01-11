@@ -31,79 +31,75 @@ const products = [
     description: 'วัดความชื้นเมล็ดได้หลากหลาย ตามชนิดเมล็ดที่ได้ทำการสอบเทียบไว้ล่วงหน้า ผลิตตามความต้องการของลูกค้าได้ ไม่มีจำนวนขั้นต่ำ มีข้อมูลการสอบเทียบเมล็ดมาตรฐานแล้ว ให้เลือกกว่า100ชนิด',
     image: '~/assets/images/KU60-01.png',
     link: '/Products/grain-moisture-meter-ku60',
-    features: ['วัดความชื้นเมล็ดได้หลากหลายชนิด ขึ้นกับการทำสอบเทียบ', 'กำหนดชนิดได้สูงสุด 7 ชนิด สำหรับรุ่นมาตรฐานวัดได้5ชนิด', 'ควบคุมด้วยไมโครโปรเซสเซอร์****'],
+    features: ['วัดความชื้นเมล็ดได้หลากหลายชนิด', 'กำหนดชนิดได้สูงสุด 7 ชนิด', 'ควบคุมด้วยไมโครโปรเซสเซอร์****'],
   },
   {
     title: 'EE-KU',
     alt1 : 'เครื่องวัดความชื้นเมล็ด EE-KU',
     subtitle: 'สำหรับวัดความชื้นเมล็ดทั่วไป รุ่นประหยัด',
-    description: 'สำหรับวัดความชื้นเมล็ดทั่วไป รุ่นพื้นฐาน ทนทาน ใช้งานง่ายที่สุด ราคาประหยัด มีให้เลือก3รุ่นย่อย คือ วัดข้าวโพดเลี้ยงสัตว์ กาแฟสาร และเมล็ดทั่วไป(ใช้ตารางเทียบความชื้น)',
+    description: 'ทนทาน ใช้งานง่ายที่สุด ราคาประหยัด มีให้เลือก3รุ่นย่อย คือ วัดข้าวโพดเลี้ยงสัตว์ กาแฟสาร และเมล็ดทั่วไป(ใช้ตารางเทียบความชื้น)',
     image: '~/assets/images/EEKU-01.png', 
     link: '/Products/grain-moisture-meter-eeku',
-    features: ['วัดข้าวโพดเลี้ยงสัตว์/กาแฟสาร(อ่านโดยตรง)และเมล็ดทั่วไป(ตารางเทียบความชื้น)', 'ระบบอนาล็อก', 'ใช้งานง่าย', 'ราคาประหยัด'],
+    features: ['วัดข้าวโพด/กาแฟสาร และเมล็ดทั่วไป', 'ระบบอนาล็อก', 'ใช้งานง่าย', 'ราคาประหยัด'],
   },
 ];
 ---
-<WidgetWrapper id="products" isDark={false} containerClass="max-w-7xl mx-auto" bg='<div class="absolute inset-0 bg-white dark:bg-transparent"></div>'>
+<WidgetWrapper id="products" isDark={false} containerClass="max-w-7xl mx-auto px-4 sm:px-6" bg='<div class="absolute inset-0 bg-white dark:bg-transparent"></div>'>
   
   <Headline
     title="ผลิตภัณฑ์คุณภาพจาก Grainsure"
     tagline="Products"
-    subtitle="Grainsure มีเครื่องวัดความชื้นเมล็ดหลากหลายรุ่น ครอบคลุมทุกการใช้งาน เพื่อให้เหมาะสมกับความต้องการของลูกค้าแต่ละราย ใช้ได้ทั้งในห้องปฏิบัติการและภาคสนาม จุดเด่นด้วยความแม่นยำ ทนทานทุกสภาพการใช้งาน และใช้งานง่ายด้วย และมั่นใจด้วยบริการหลังการขายที่ดูแลกันยาวๆไม่ทอดทิ้งกัน"
-    classes={{ container: 'max-w-xl sm:mx-auto lg:max-w-2xl', title: 'text-3xl md:text-4xl font-bold' }}
+    subtitle="Grainsure มีเครื่องวัดความชื้นเมล็ดหลากหลายรุ่น ครอบคลุมทุกการใช้งาน เพื่อให้เหมาะสมกับความต้องการของลูกค้าแต่ละราย"
+    classes={{ container: 'max-w-xl sm:mx-auto lg:max-w-2xl mb-8 md:mb-12', title: 'text-2xl md:text-4xl font-bold' }}
   />
 
-  <div class="grid gap-6 row-gap-5 md:grid-cols-2 lg:grid-cols-4 -mb-6">
+  <div class="grid gap-8 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
     {products.map((product) => (
-      /* เปลี่ยนจาก div เป็น a เพื่อให้กดติดทั้งการ์ด 100% */
       <a 
         href={product.link} 
-        class="group relative flex flex-col justify-between rounded-xl bg-white dark:bg-slate-900 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800"
+        class="group flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800"
       >
         
-        {/* ส่วนรูปภาพ พร้อมระบบแปลงเป็น WebP อัตโนมัติ */}
-        <div class="relative overflow-hidden h-48">
+        <div class="relative aspect-video sm:aspect-square md:aspect-video overflow-hidden">
              <Image
                 src={product.image}
                 alt={product.alt1}
                 class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 format="webp" 
                 widths={[400, 800]} 
-                sizes="(max-width: 767px) 90vw, 25vw"
+                sizes="(max-width: 767px) 100vw, 25vw"
                 width={400} 
                 height={300}
-                layout="responsive"
               />
-              <div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">
+              <div class="absolute top-3 right-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">
                 {product.title}
               </div>
         </div>
 
-        <div class="p-5 flex-1 flex flex-col">
-            <div class="mb-2">
-                <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                  เครื่องวัดความชื้น<br>รุ่น {product.title}
+        <div class="p-6 flex-1 flex flex-col">
+            <div class="mb-3">
+                <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors mb-1">
+                  รุ่น {product.title}
                 </h3>
-                <p class="text-sm text-primary font-medium">{product.subtitle}</p>
+                <p class="text-xs text-primary font-bold tracking-wide uppercase">{product.subtitle}</p>
             </div>
             
-            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
                 {product.description}
             </p>
 
-            <ul class="text-[10px] text-gray-500 mb-4 space-y-1">
+            <ul class="text-xs text-gray-500 mb-6 space-y-2">
                 {product.features.map(f => (
-                    <li class="flex items-center">
-                        <svg class="w-3 h-3 text-green-500 mr-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                        <span>{f}</span>
+                    <li class="flex items-start">
+                        <svg class="w-4 h-4 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span class="leading-tight">{f}</span>
                     </li>
                 ))}
             </ul>
 
             <div class="mt-auto">
-                {/* ตกแต่งเลียนแบบปุ่ม แต่ไม่ใช่แท็ก <a> เพื่อไม่ให้ Link ซ้อนกัน */}
-                <div class="w-full bg-primary text-white text-center py-2 rounded-md font-semibold text-sm group-hover:bg-primary-dark transition-colors">
-                  ดูรายละเอียด
+                <div class="w-full bg-primary text-white text-center py-3 rounded-xl font-bold text-sm shadow-sm group-hover:bg-primary-700 transition-colors">
+                  ดูรายละเอียดสินค้า
                 </div>
             </div>
         </div>
@@ -111,55 +107,38 @@ const products = [
     ))}
   </div>
 
-  <div class="mt-12 mx-auto max-w-5xl">
-    <div class="rounded-2xl bg-blue-50 dark:bg-slate-800/50 p-6 md:p-8 border border-blue-100 dark:border-slate-700 flex flex-col md:flex-row gap-6">
-      
-      <div class="shrink-0 flex items-start justify-center md:justify-start">
-        <div class="p-3 bg-white dark:bg-slate-700 rounded-full shadow-sm text-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-             <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"></path>
-             <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"></path>
-             <path d="M9.7 17l4.6 0"></path>
-          </svg>
-        </div>
+  <div class="mt-16 mx-auto max-w-5xl">
+    <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-6 md:p-10 border border-slate-100 dark:border-slate-700">
+      <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-primary/10 rounded-lg text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"></path><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"></path><path d="M9.7 17l4.6 0"></path></svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white">หมายเหตุ</h4>
       </div>
-
-      <div class="text-left">
-        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">💡 หมายเหตุ</h4>
         
-        <ul class="grid md:grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-slate-400">
-          <li class="flex items-start gap-2">
-            <span class="text-primary mt-1">•</span>
-            <span>
-              <strong>คุณสมบัติตามประกาศกระทรวงฯ** : </strong>ตามประกาศกระทรวงพาณิชย์ เรื่อง กำหนดชนิดและลักษณะของเครื่องวัดความชื้นข้าวเปลือก รายละเอียดของวัสดุที่ใช้ผลิต อัตราเผื่อเหลือเผื่อขาด และอายุคำรับรอง พ.ศ.2562
-            </span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-primary mt-1">•</span>
-            <span>
-              <strong>คุณสมบัติตามประกาศกระทรวงฯ*** : </strong>ตามประกาศกระทรวงพาณิชย์ เรื่อง กำหนดชนิดและลักษณะของเครื่องวัดความชื้นข้าวโพด รายละเอียดของวัสดุที่ใช้ผลิต อัตราเผื่อเหลือเผื่อขาด และอายุคำรับรอง พ.ศ.2562
-            </span>
-          </li>
-           <li class="flex items-start gap-2">
-            <span class="text-primary mt-1">•</span>
-            <span>
-              <strong>มีตราแสดงการตรวจรับรอง* : </strong> ตรวจรับรองโดยสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน กระทรวงพาณิชย์ ตาม พระราชบัญญัติมาตราชั่งตวงวัด พ.ศ.2542
-            </span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-primary mt-1">•</span>
-            <span>
-              <strong>ควบคุมด้วยไมโครโปรเซสเซอร์**** : </strong> การประมวลผลความชื้นด้วยระบบดิจิตอลควบคุมด้วยไมโครโปรเซสเซอร์ ทำให้ได้ค่าที่แม่นยำ มีการชดเชยอุณหภูมิอัตโนมัติ สามารถดูค่าเฉลี่ยจากการวัดหลายครั้งได้
-            </span>
-          </li>
-        </ul>
-        
-        <div class="mt-6 pt-4 border-t border-blue-200 dark:border-slate-700">
-           <p class="text-xs text-muted italic">
-             หากมีข้อสงสัยเพิ่มเติม <a href="https://line.me/ti/p/~@grainsure" class="text-primary hover:underline font-bold" data-astro-reload>โปรดติดต่อเรา คลิกที่นี่</a> สอบถามทีมงานได้ทันที
-           </p>
-        </div>
+      <ul class="grid md:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-slate-400">
+        <li class="flex items-start gap-3">
+          <span class="text-primary font-bold">**</span>
+          <span><strong>ข้าวเปลือก:</strong> ตามประกาศกระทรวงพาณิชย์ พ.ศ. 2562</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-primary font-bold">***</span>
+          <span><strong>ข้าวโพด:</strong> ตามประกาศกระทรวงพาณิชย์ พ.ศ. 2562</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-primary font-bold">*</span>
+          <span><strong>การตรวจรับรอง:</strong> โดยสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-primary font-bold">****</span>
+          <span><strong>ไมโครโปรเซสเซอร์:</strong> ระบบดิจิตอล แม่นยำสูง ชดเชยอุณหภูมิอัตโนมัติ</span>
+        </li>
+      </ul>
+      
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 text-center md:text-left">
+         <p class="text-sm text-slate-500 italic">
+           สงสัยเพิ่มเติม? <a href="https://line.me/ti/p/~@grainsure" class="text-primary hover:underline font-bold" data-astro-reload>คุยกับทีมงานทาง Line คลิก</a>
+         </p>
       </div>
     </div>
   </div>
