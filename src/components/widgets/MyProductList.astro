@@ -4,7 +4,7 @@ import Headline from '~/components/ui/Headline.astro';
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 
-// ข้อมูลสินค้า (คงเดิม 100%)
+// ข้อมูลสินค้า (คืนค่าข้อความเดิมของพี่ทั้งหมด ห้ามแตะต้อง)
 const products = [
   {
     title: 'KU72-PADDY',
@@ -19,7 +19,7 @@ const products = [
     title: 'KU72-CORN',
     alt1 : 'เครื่องวัดความชื้นข้าวโพด KU72-CORN',
     subtitle: 'สำหรับข้าวโพด',
-    description: 'ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด สามารถใช้ในการกำหนดราคาซื้อ-ขายข้าวโพดเลี้ยงสัตว์ได้ถูกต้องตามกฏหมาย',
+    description: 'ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด สามารถใช้ในการกำหนดราคาซื้อ-ขายข้าวโพดเลี้ยงสัตว์ได้ถูกต้องตามกฎหมาย',
     image: '~/assets/images/KU72-CORN01.png',
     link: '/Products/corn-moisture-meter-ku72',
     features: ['วัดข้าวโพดเลี้ยงสัตว์เท่านั้น', 'คุณสมบัติตามประกาศกระทรวงฯ ***', 'มีตราแสดงการตรวจรับรอง *', 'ควบคุมด้วยไมโครโปรเซสเซอร์****'],
@@ -31,16 +31,16 @@ const products = [
     description: 'วัดความชื้นเมล็ดได้หลากหลาย ตามชนิดเมล็ดที่ได้ทำการสอบเทียบไว้ล่วงหน้า ผลิตตามความต้องการของลูกค้าได้ ไม่มีจำนวนขั้นต่ำ มีข้อมูลการสอบเทียบเมล็ดมาตรฐานแล้ว ให้เลือกกว่า100ชนิด',
     image: '~/assets/images/KU60-01.png',
     link: '/Products/grain-moisture-meter-ku60',
-    features: ['วัดความชื้นเมล็ดได้หลากหลายชนิด', 'กำหนดชนิดได้สูงสุด 7 ชนิด', 'ควบคุมด้วยไมโครโปรเซสเซอร์****'],
+    features: ['วัดความชื้นเมล็ดได้หลากหลายชนิด ขึ้นกับการทำสอบเทียบ', 'กำหนดชนิดได้สูงสุด 7 ชนิด สำหรับรุ่นมาตรฐานวัดได้5ชนิด', 'ควบคุมด้วยไมโครโปรเซสเซอร์****'],
   },
   {
     title: 'EE-KU',
     alt1 : 'เครื่องวัดความชื้นเมล็ด EE-KU',
     subtitle: 'สำหรับวัดความชื้นเมล็ดทั่วไป รุ่นประหยัด',
-    description: 'ทนทาน ใช้งานง่ายที่สุด ราคาประหยัด มีให้เลือก3รุ่นย่อย คือ วัดข้าวโพดเลี้ยงสัตว์ กาแฟสาร และเมล็ดทั่วไป(ใช้ตารางเทียบความชื้น)',
+    description: 'สำหรับวัดความชื้นเมล็ดทั่วไป รุ่นพื้นฐาน ทนทาน ใช้งานง่ายที่สุด ราคาประหยัด มีให้เลือก3รุ่นย่อย คือ วัดข้าวโพดเลี้ยงสัตว์ กาแฟสาร และเมล็ดทั่วไป(ใช้ตารางเทียบความชื้น)',
     image: '~/assets/images/EEKU-01.png', 
     link: '/Products/grain-moisture-meter-eeku',
-    features: ['วัดข้าวโพด/กาแฟสาร และเมล็ดทั่วไป', 'ระบบอนาล็อก', 'ใช้งานง่าย', 'ราคาประหยัด'],
+    features: ['วัดข้าวโพดเลี้ยงสัตว์/กาแฟสาร(อ่านโดยตรง)และเมล็ดทั่วไป(ตารางเทียบความชื้น)', 'ระบบอนาล็อก', 'ใช้งานง่าย', 'ราคาประหยัด'],
   },
 ];
 ---
@@ -49,7 +49,7 @@ const products = [
   <Headline
     title="ผลิตภัณฑ์คุณภาพจาก Grainsure"
     tagline="Products"
-    subtitle="Grainsure มีเครื่องวัดความชื้นเมล็ดหลากหลายรุ่น ครอบคลุมทุกการใช้งาน เพื่อให้เหมาะสมกับความต้องการของลูกค้าแต่ละราย"
+    subtitle="Grainsure มีเครื่องวัดความชื้นเมล็ดหลากหลายรุ่น ครอบคลุมทุกการใช้งาน เพื่อให้เหมาะสมกับความต้องการของลูกค้าแต่ละราย ใช้ได้ทั้งในห้องปฏิบัติการและภาคสนาม จุดเด่นด้วยความแม่นยำ ทนทานทุกสภาพการใช้งาน และใช้งานง่ายด้วย และมั่นใจด้วยบริการหลังการขายที่ดูแลกันยาวๆไม่ทอดทิ้งกัน"
     classes={{ container: 'max-w-xl sm:mx-auto lg:max-w-2xl mb-8 md:mb-12', title: 'text-2xl md:text-4xl font-bold' }}
   />
 
@@ -60,6 +60,7 @@ const products = [
         class="group flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800"
       >
         
+        {/* รูปภาพปรับขนาดให้สวยบนมือถือ */}
         <div class="relative aspect-video sm:aspect-square md:aspect-video overflow-hidden">
              <Image
                 src={product.image}
@@ -76,18 +77,20 @@ const products = [
               </div>
         </div>
 
-        <div class="p-6 flex-1 flex flex-col">
+        <div class="p-5 flex-1 flex flex-col">
             <div class="mb-3">
-                <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors mb-1">
+                <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors">
                   รุ่น {product.title}
                 </h3>
                 <p class="text-xs text-primary font-bold tracking-wide uppercase">{product.subtitle}</p>
             </div>
             
-            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+            {/* คำอธิบายยาวๆ ของพี่แสดงครบถ้วน 100% */}
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
                 {product.description}
             </p>
 
+            {/* รายการจุดเด่นของพี่แสดงครบถ้วน 100% */}
             <ul class="text-xs text-gray-500 mb-6 space-y-2">
                 {product.features.map(f => (
                     <li class="flex items-start">
@@ -98,7 +101,7 @@ const products = [
             </ul>
 
             <div class="mt-auto">
-                <div class="w-full bg-primary text-white text-center py-3 rounded-xl font-bold text-sm shadow-sm group-hover:bg-primary-700 transition-colors">
+                <div class="w-full bg-primary text-white text-center py-3 rounded-xl font-bold text-sm group-hover:bg-primary-dark transition-colors">
                   ดูรายละเอียดสินค้า
                 </div>
             </div>
@@ -107,6 +110,7 @@ const products = [
     ))}
   </div>
 
+  {/* ส่วนหมายเหตุของพี่แสดงครบถ้วน 100% */}
   <div class="mt-16 mx-auto max-w-5xl">
     <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-6 md:p-10 border border-slate-100 dark:border-slate-700">
       <div class="flex items-center gap-3 mb-6">
@@ -119,19 +123,19 @@ const products = [
       <ul class="grid md:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-slate-400">
         <li class="flex items-start gap-3">
           <span class="text-primary font-bold">**</span>
-          <span><strong>ข้าวเปลือก:</strong> ตามประกาศกระทรวงพาณิชย์ พ.ศ. 2562</span>
+          <span><strong>คุณสมบัติตามประกาศกระทรวงฯ** : </strong>ตามประกาศกระทรวงพาณิชย์ เรื่อง กำหนดชนิดและลักษณะของเครื่องวัดความชื้นข้าวเปลือก รายละเอียดของวัสดุที่ใช้ผลิต อัตราเผื่อเหลือเผื่อขาด และอายุคำรับรอง พ.ศ.2562</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-primary font-bold">***</span>
-          <span><strong>ข้าวโพด:</strong> ตามประกาศกระทรวงพาณิชย์ พ.ศ. 2562</span>
+          <span><strong>คุณสมบัติตามประกาศกระทรวงฯ*** : </strong>ตามประกาศกระทรวงพาณิชย์ เรื่อง กำหนดชนิดและลักษณะของเครื่องวัดความชื้นข้าวโพด รายละเอียดของวัสดุที่ใช้ผลิต อัตราเผื่อเหลือเผื่อขาด และอายุคำรับรอง พ.ศ.2562</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-primary font-bold">*</span>
-          <span><strong>การตรวจรับรอง:</strong> โดยสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน</span>
+          <span><strong>มีตราแสดงการตรวจรับรอง* : </strong> ตรวจรับรองโดยสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน กระทรวงพาณิชย์ ตาม พระราชบัญญัติมาตราชั่งตวงวัด พ.ศ.2542</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-primary font-bold">****</span>
-          <span><strong>ไมโครโปรเซสเซอร์:</strong> ระบบดิจิตอล แม่นยำสูง ชดเชยอุณหภูมิอัตโนมัติ</span>
+          <span><strong>ควบคุมด้วยไมโครโปรเซสเซอร์**** : </strong> การประมวลผลความชื้นด้วยระบบดิจิตอลควบคุมด้วยไมโครโปรเซสเซอร์ ทำให้ได้ค่าที่แม่นยำ มีการชดเชยอุณหภูมิอัตโนมัติ สามารถดูค่าเฉลี่ยจากการวัดหลายครั้งได้</span>
         </li>
       </ul>
       
