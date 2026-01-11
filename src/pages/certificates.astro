@@ -1,10 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Image from '~/components/common/Image.astro';
 import Headline from '~/components/ui/Headline.astro';
+import { Image, getImage } from 'astro:assets'; // ใช้ Image มาตรฐานเพื่อความชัวร์
 
-// Import รูปภาพ
+// Import รูปภาพต้นฉบับ
 import Cert1 from '~/assets/images/cert-manufacture.jpg';
 import Cert2 from '~/assets/images/cert-repair.jpg';
 import Cert3 from '~/assets/images/cert-sale.jpg';
@@ -15,75 +15,79 @@ const metadata = {
   title: 'ใบรับรองและใบอนุญาต',
 };
 
-const certificates = [
+const rawCertificates = [
   { src: Cert1, alt: 'ใบรับรองผู้ผลิต (Manufacture)' },
   { src: Cert2, alt: 'ใบอนุญาตซ่อม (Repair)' },
   { src: Cert3, alt: 'ใบอนุญาตขาย (Sale)' },
   { src: Cert4, alt: 'ผลสอบเทียบ (Lab Report 1)' },
   { src: Cert5, alt: 'ผลสอบเทียบ (Lab Report 2)' },
 ];
+
+// เตรียมข้อมูลและ URL สำหรับ Modal
+const certificates = await Promise.all(
+  rawCertificates.map(async (cert) => {
+    // บังคับให้สร้าง URL ของไฟล์ WebP ขนาด 1200px สำหรับ Modal
+    const optimizedForModal = await getImage({
+      src: cert.src,
+      format: 'webp',
+      width: 1200,
+      quality: 80,
+    });
+    
+    return {
+      ...cert,
+      modalUrl: optimizedForModal.src, // นี่คือ path ของไฟล์ .webp ใน dist
+    };
+  })
+);
 ---
 
 <Layout metadata={metadata}>
   
-  {/* 👉 จุดที่ 1: เพิ่มพื้นหลังไล่สี (Gradient Background) 
-      เราใส่ slot="bg" เพื่อแทรกฉากหลังเข้าไป
-      - from-blue-50: เริ่มต้นด้านบนด้วยสีฟ้าที่จางมากๆ
-      - to-white: ไล่ลงมาเป็นสีขาว
-  */}
   <WidgetWrapper id="certificates" isDark={false} containerClass="max-w-7xl relative">
     <fragment slot="bg">
       <div class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-slate-800 dark:to-slate-900 pointer-events-none" aria-hidden="true"></div>
     </fragment>
     
-    {/* หัวข้อ */}
     <Headline
       title="มาตรฐานที่คุณวางใจได้"
       subtitle="ใบอนุญาตและผลการทดสอบจากหน่วยงานราชการ ยืนยันความแม่นยำและถูกต้องตามกฎหมาย"
       classes={{ 
         container: 'mb-12',
         title: 'text-4xl md:text-5xl font-bold tracking-tighter font-heading',
-        /* 👉 จุดที่ 3: เพิ่มสีสันให้ Subtitle */
         subtitle: 'text-xl text-blue-600 dark:text-blue-400 opacity-80' 
       }}
     />
 
-    {/* Grid Layout */}
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 px-4">
       {
         certificates.map((cert) => (
           <div 
             class="group relative cursor-pointer perspective-1000"
-            onclick={`openModal('${cert.src.src}')`} 
+            onclick={`openModal('${cert.modalUrl}')`} 
           >
-            {/* ตัวการ์ดเอกสาร 
-                👉 จุดที่ 2: เพิ่มสีที่ขอบตอน Hover (group-hover:border-primary-500)
-            */}
             <div class="relative w-full bg-white rounded-xl shadow-md transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-xl group-hover:rotate-1 border-2 border-transparent group-hover:border-primary-500 overflow-hidden ring-1 ring-gray-100 dark:ring-gray-700">
               
-              {/* รูปภาพ */}
               <div class="aspect-[210/297] overflow-hidden relative">
-                 {/* เพิ่มฉากหลังให้รูปนิดหน่อยเพื่อให้รูปขาวไม่จม */}
                 <div class="absolute inset-0 bg-gray-50 dark:bg-slate-800"></div>
                 <Image
                   src={cert.src}
                   alt={cert.alt}
+                  width={400}
+                  height={566}
+                  format="webp"
                   class="w-full h-full object-cover relative z-10 transition-transform duration-700 group-hover:scale-105 p-2"
-                  widths={[400]}
                 />
               </div>
 
-              {/* Overlay "ขยายดูภาพ" - ปรับให้ปุ่มมีสีสันขึ้น */}
               <div class="absolute inset-0 bg-primary-900/20 group-hover:bg-primary-900/40 transition-all duration-300 flex items-end justify-center opacity-0 group-hover:opacity-100 pb-6">
                   <span class="bg-primary-600 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-zoom-in w-5 h-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /><path d="M12 7l0 6" /><path d="M9 10l6 0" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /><path d="M12 7l0 6" /><path d="M9 10l6 0" /></svg>
                       ขยายดูภาพ
                   </span>
               </div>
-
             </div>
 
-            {/* ชื่อเอกสารด้านล่าง - ปรับสีให้ชัดขึ้น */}
             <p class="mt-4 text-sm md:text-base font-bold text-center text-gray-700 group-hover:text-primary-700 transition-colors">
               {cert.alt}
             </p>
@@ -92,7 +96,6 @@ const certificates = [
       }
     </div>
 
-    {/* Lightbox (หน้าต่างซูมรูป) */}
     <div id="imageModal" class="fixed inset-0 z-[9999] hidden bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeModal()">
       <button class="absolute top-5 right-5 text-white/80 hover:text-white text-4xl font-bold focus:outline-none transition-colors">&times;</button>
       <img id="modalImage" src="" alt="Certificate Full Size" class="max-h-[90vh] max-w-[95vw] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 border-4 border-white" />
@@ -105,9 +108,11 @@ const certificates = [
     function openModal(imageSrc) {
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
+      
+      // กำหนด src เป็นไฟล์ที่ย่อแล้ว
       modalImg.src = imageSrc;
+      
       modal.classList.remove('hidden');
-      // ล็อกไม่ให้เลื่อนหน้าจอหลัง
       document.body.style.overflow = 'hidden';
       setTimeout(() => {
         modal.classList.remove('opacity-0');
@@ -122,7 +127,6 @@ const certificates = [
       modal.classList.add('opacity-0');
       modalImg.classList.remove('scale-100');
       modalImg.classList.add('scale-95');
-      // ปลดล็อกหน้าจอหลัง
       document.body.style.overflow = 'auto';
       setTimeout(() => {
         modal.classList.add('hidden');
