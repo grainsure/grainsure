@@ -25,11 +25,15 @@ import distributionImg from '~/assets/images/service01.png';
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-6 auto-rows-fr">
       
+      {/* 1. บริการซ่อมเครื่องวัดความชื้น (รูปใหญ่) */}
       <div class="lg:row-start-2 lg:col-start-2 lg:row-span-2 lg:col-span-2 group relative overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-xl cursor-pointer min-h-0 aspect-video md:aspect-auto md:min-h-[300px]">
         <Image 
           src={distributionImg}
           alt="Service Center"
           class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+          format="webp"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 66vw, 66vw"
           width={1200}
           height={800}
         />
@@ -40,11 +44,15 @@ import distributionImg from '~/assets/images/service01.png';
         </div>
       </div>
 
+      {/* 2. รับดำเนินการต่ออายุแทน (รูปทรงสูง) */}
       <div class="md:row-span-2 group relative overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-xl cursor-pointer min-h-0 aspect-video md:aspect-auto md:min-h-[400px]">
         <Image 
           src={warehouseImg}
           alt="Renew Certificate"
           class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+          format="webp"
+          widths={[400, 800]}
+          sizes="(max-width: 767px) 100vw, 33vw"
           width={800}
           height={1200}
         />
@@ -55,11 +63,15 @@ import distributionImg from '~/assets/images/service01.png';
         </div>
       </div>
 
+      {/* 3. รับผลิตตามความต้องการ */}
       <div class="group relative overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-xl cursor-pointer min-h-0 aspect-video md:aspect-auto md:min-h-[250px]">
         <Image 
           src={fleetImg}
           alt="Made to order"
           class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          format="webp"
+          widths={[400, 800]}
+          sizes="(max-width: 767px) 100vw, 33vw"
           width={800}
           height={600}
         />
@@ -70,11 +82,15 @@ import distributionImg from '~/assets/images/service01.png';
         </div>
       </div>
 
+      {/* 4. วิเคราะห์ความชื้นวัสดุเฉพาะ */}
       <div class="group relative overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-xl cursor-pointer min-h-0 aspect-video md:aspect-auto md:min-h-[250px]">
         <Image 
           src={manufacturingImg}
           alt="Lab Analysis"
           class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          format="webp"
+          widths={[400, 800]}
+          sizes="(max-width: 767px) 100vw, 33vw"
           width={800}
           height={600}
         />
@@ -85,11 +101,15 @@ import distributionImg from '~/assets/images/service01.png';
         </div>
       </div>
 
+      {/* 5. ฐานข้อมูลเมล็ดกว่า 100 ชนิด */}
       <div class="lg:row-start-3 group relative overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-xl cursor-pointer min-h-0 aspect-video md:aspect-auto md:min-h-[250px]">
         <Image 
           src={commandCenterImg}
           alt="Grain Database"
           class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          format="webp"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 767px) 100vw, 33vw"
           width={1200}
           height={600}
         />

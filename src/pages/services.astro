@@ -21,17 +21,24 @@ const metadata = {
 
 <Layout metadata={metadata}>
   
-  <Hero
+<Hero
     tagline="บริการครบวงจร ไม่ทอดทิ้งกัน"
     title="บริการของเรา"
     subtitle="ดูแลอย่างจริงใจ ด้วยบริการหลังการขายที่ใส่ใจตลอดอายุการใช้งาน พร้อมช่วยคุณบริหารจัดการค่าบำรุงรักษาให้คุ้มค่าที่สุด"
-    actions={[{ variant: 'primary', target: '_blank', text: 'ดูรายละเอียดบริการ', href: '/services#RepairServices' }]}
+    actions={[
+      { 
+        variant: 'primary', 
+        target: '_self', // เปลี่ยนจาก _blank เป็น _self เพื่อให้เลื่อนในหน้าเดิมได้นุ่มนวล
+        text: 'ดูรายละเอียดบริการ', 
+        /* ✅ เติม / หน้า # เพื่อความแม่นยำ */
+        href: '/services/#Fix-Repair' // เปลี่ยนเป็น ID ที่ตั้งไว้จริงคือ Fix-Repair
+      }
+    ]}
     image={{
       src: HeroImage,
       alt: 'บริการหลังการขาย Grainsure',
     }}
   />
-
   <Content
     isReversed
     id="Fix-Repair"
