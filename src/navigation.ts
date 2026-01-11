@@ -77,19 +77,19 @@ export const footerData = {
       links: [
         {
           text: 'ซ่อมเครื่องวัดความชื้น',
-          href: getPermalink('/services') + '#Fix-Repair',
+          href: getPermalink('/services/') + '#Fix-Repair',
         },
         {
           text: 'ต่ออายุใบรับรอง',
-          href: getPermalink('/services') + '#cert-renewal',
+          href: getPermalink('/services/') + '#cert-renewal',
         },
         {
           text: 'รับผลิตตามสั่ง',
-          href: getPermalink('/services') + '#made-to-order',
+          href: getPermalink('/services/') + '#made-to-order',
         },
         {
           text: 'เมล็ดที่รองรับ',
-          href: getPermalink('/services') + '#grain-features',
+          href: getPermalink('/services/') + '#grain-features',
         },
       ],
     },    
