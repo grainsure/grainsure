@@ -16,6 +16,10 @@ export const headerData = {
       href: getPermalink('/services'),
     },       
     {
+      text: 'คลังความรู้',
+      href: getPermalink('/article'),
+    },       
+    {
           text: 'เกี่ยวกับเรา',
           href: getPermalink('/about-us'),
     },
@@ -94,8 +98,12 @@ export const footerData = {
       ],
     },    
     {
-      title: 'เครื่องมือ',
+      title: 'สิ่งน่าสนใจ',
       links: [
+        {
+          text: 'คลังความรู้',
+          href: getPermalink('/article'),
+        },
         {
           text: 'โปรแกรมคำนวณความชื้น',
           href: getPermalink('/') + '#gs-calculator',

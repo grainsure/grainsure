@@ -6,7 +6,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 const navItems = [
   { 
-    text: 'หน้าแรก', 
+    text: 'บ้าน', 
     href: '/', 
     icon: 'tabler:home' 
   },
@@ -17,11 +17,11 @@ const navItems = [
   },
   { 
     text: 'ความรู้', 
-    href: '/#products', 
+    href: '/article', 
     icon: 'tabler:book' // ในรูปเป็นถุงช้อปปิ้ง
   },
   { 
-    text: 'โทรสอบถาม', 
+    text: 'โทร', 
     href: 'tel:0812345678', // **อย่าลืมเปลี่ยนเบอร์ตรงนี้ครับ**
     icon: 'tabler:phone' 
   },
