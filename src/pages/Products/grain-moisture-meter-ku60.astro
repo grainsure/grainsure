@@ -1,6 +1,6 @@
 ---
-import heroImage from '~/assets/images/KU60-02L.png';       // ภาพแนวนอน (Desktop)
-import heroMobile from '~/assets/images/KU60-02H.png'; // ภาพแนวตั้ง (Mobile)
+import heroImage from '~/assets/images/KU60-02L.jpg';       // ภาพแนวนอน (Desktop)
+import heroMobile from '~/assets/images/KU60-02H.jpg'; // ภาพแนวตั้ง (Mobile)
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero3.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -8,6 +8,8 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 // import Button from '~/components/ui/Button.astro'; // ไม่ได้ใช้ Comment ออก
 // import Image from '~/components/common/Image.astro'; // ไม่ได้ใช้ Comment ออก
+import contentImage from '~/assets/images/KU60-04.jpg';
+
 
 // Metadata สำหรับ SEO
 const metadata = {
@@ -94,8 +96,11 @@ const metadata = {
       },
     ]}
     image={{
-      src: '~/assets/images/KU60-04.png', // รูปประกอบ
+      src: contentImage,
       alt: 'การใช้งาน เครื่องวัดความชื้น KU60',
+      width: 800,
+      height: 800,
+      format: 'webp',
     }}
   >
     <Fragment slot="content">

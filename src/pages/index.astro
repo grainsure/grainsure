@@ -1,9 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+const { image } = Astro.props;
 
 import Image from '~/components/common/Image.astro'; // เรียกใช้ Component รูปภาพ
-import heroBg from '~/assets/images/gs-bg1.png'; // รูป PC
-import heroBgMobile from '~/assets/images/gs-bg3.png'; // รูปมือถือ
+import heroBg from '~/assets/images/gs-bg1.jpg'; // รูป PC
+import heroBgMobile from '~/assets/images/gs-bg3.jpg'; // รูปมือถือ
 
 import Hero from '~/components/widgets/Hero3.astro';
 import Note from '~/components/widgets/Note.astro';
@@ -19,7 +21,7 @@ import Stats from '~/components/widgets/Stats2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import MyProductList from '~/components/widgets/MyProductList.astro';
 import GSImageGrid from '~/components/widgets/GS-ImageGrid.astro';
-import gsCalImg from '~/assets/images/GScal.png';
+import gsCalImg from '~/assets/images/GScal.jpg';
 
 const metadata = {
   // title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -195,7 +197,7 @@ const metadata = {
     ]}
     image={{
       src: gsCalImg,
-      alt: 'โปรแกรมคำนวณความชื้นเมล็ด GS moisture Calculator ',
+      alt: 'โปรแกรมคำนวณความชื้นเมล็ด GS moisture Calculator',
     }}
   />
 

@@ -1,19 +1,16 @@
 ---
-import heroImage from '~/assets/images/EEKU-02L.png';       // ภาพแนวนอน (Desktop)
-import heroMobile from '~/assets/images/EEKU-02H.png'; // ภาพแนวตั้ง (Mobile)
+import heroImage from '~/assets/images/EEKU-02L.jpg';
+import heroMobile from '~/assets/images/EEKU-02H.jpg';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero3.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features3 from '~/components/widgets/Features3.astro';
-// import Button from '~/components/ui/Button.astro'; // ไม่ได้ใช้ในโค้ดนี้ comment ออกได้
-// import Image from '~/components/common/Image.astro'; // ไม่ได้ใช้ในโค้ดนี้ comment ออกได้
+import contentImage from '~/assets/images/EEKU-04.jpg';
 
-// Metadata สำหรับ SEO
 const metadata = {
   title: 'EE-KU เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ - Grainsure',
-  description:
-    'รายละเอียดเครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ รุ่นEE-KU ทนทาน ใช้งานง่าย เหมาะสำหรับเกษตรกร โรงงานอุตสาหกรรม',
+  description: 'รายละเอียดเครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ รุ่นEE-KU ทนทาน ใช้งานง่าย เหมาะสำหรับเกษตรกร โรงงานอุตสาหกรรม',
 };
 ---
 
@@ -32,23 +29,20 @@ const metadata = {
         class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
       },
       {
-        text: 'ดูวิดีโอสาธิต',
+        text: 'ดู่วิดีโอสาธิต',
         href: '#video-demo',
         icon: 'tabler:player-play',
         class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
       },
     ]}
-    
     image={{
       src: heroImage, 
       alt: 'เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ EE-KU',
     }}
-
     mobileImage={{
       src: heroMobile,
       alt: 'เครื่องวัดความชื้นเมล็ดพืชและเม็ดวัสดุ EE-KU',
     }}
-
     bgOverlayClass="bg-gradient-to-tr from-black/60 via-black/10 to-transparent"
     titleClass="drop-shadow-[0_5px_10px_rgba(100,100,100,0.9)]"
     subtitleClass="text-xs md:text-xl"
@@ -60,26 +54,22 @@ const metadata = {
     items={[
       {
         title: 'เที่ยงตรง ได้มาตราฐาน',
-        description:
-          'ผ่านการสอบเทียบเครื่องต่อเครื่อง โดยอ้างอิงจากผลการศึกษาตัวอย่างของเมล็ดพืชตามมาตรฐานการวัดความชื้น',
+        description: 'ผ่านการสอบเทียบเครื่องต่อเครื่อง โดยอ้างอิงจากผลการศึกษาตัวอย่างของเมล็ดพืชตามมาตรฐานการวัดความชื้น',
         icon: 'tabler:target-arrow',
       },
       {
         title: 'รองรับวัดความชื้นเมล็ดได้หลากหลาย',
-        description:
-          '<strong>รุ่นมาตรฐาน </strong>ให้เลือกวัดได้ ข้าวโพด หรือ เมล็ดกาแฟสาร<br><strong>รุ่นผลิตเฉพาะลูกค้า หรือเมล็ดพืชชนิดอื่นๆ</strong> จะวัดโดยการนำค่าที่ได้จากเครื่อง ไปเทียบกับตารางความชื้นที่จัดทำขึ้นสำหรับเมล็ดพืชชนิดนั้นๆ',
+        description: '<strong>รุ่นมาตรฐาน </strong>ให้เลือกวัดได้ ข้าวโพด หรือ เมล็ดกาแฟสาร<br><strong>รุ่นผลิตเฉพาะลูกค้า หรือเมล็ดพืชชนิดอื่นๆ</strong> จะวัดโดยการนำค่าที่ได้จากเครื่อง ไปเทียบกับตารางความชื้นที่จัดทำขึ้นสำหรับเมล็ดพืชชนิดนั้นๆ',
         icon: 'tabler:target-arrow',
       },
       {
         title: 'รับผลิตตามความต้องการ',
-        description:
-          'ผลิตตามความต้องการของลูกค้าได้ ไม่มีจำนวนขั้นต่ำ พร้อมให้คำแนะนำในการเลือกชนิดเมล็ดที่เหมาะสมกับการใช้งาน',
+        description: 'ผลิตตามความต้องการของลูกค้าได้ ไม่มีจำนวนขั้นต่ำ พร้อมให้คำแนะนำในการเลือกชนิดเมล็ดที่เหมาะสมกับการใช้งาน',
         icon: 'tabler:target-arrow',
       },
       {
         title: 'ใช้งานง่าย วัดค่าได้รวดเร็ว',
-        description:
-          'เครื่องออกแบบมาให้ใช้งานง่าย เพียงตวงตัวอย่างเต็มถ้วยตวง เทตัวอย่างลงในช่องวัดช้าๆ รอไม่เกิน 10 วินาที ก็ทราบค่าความชื้นได้ทันที',
+        description: 'เครื่องออกแบบมาให้ใช้งานง่าย เพียงตวงตัวอย่างเต็มถ้วยตวง เทตัวอย่างลงในช่องวัดช้าๆ รอไม่เกิน 10 วินาที ก็ทราบค่าความชื้นได้ทันที',
         icon: 'tabler:thermometer',
       },
       {
@@ -93,9 +83,13 @@ const metadata = {
         icon: 'tabler:settings-automation',
       },
     ]}
+    /* ย้าย Image มาอยู่ใน Property image ให้ถูกต้องตามโครงสร้าง AstroWind */
     image={{
-      src: '~/assets/images/EEKU-04.png', // รูปประกอบ
+      src: contentImage,
       alt: 'การใช้งาน เครื่องวัดความชื้น EE-KU',
+      width: 800,
+      height: 800,
+      format: 'webp',
     }}
   >
     <Fragment slot="content">
@@ -109,249 +103,4 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <section class="py-16 bg-blue-50 dark:bg-slate-800/20">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold font-heading mb-4">ข้อมูลจำเพาะ (Specification)</h2>
-        <p class="text-xl text-gray-600 dark:text-slate-400">รายละเอียดทางเทคนิคของเครื่องรุ่น EE-KU</p>
-      </div>
-
-      <div class="overflow-x-auto bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
-        <table class="w-full text-left text-sm md:text-base">
-          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white w-1/3 bg-gray-50 dark:bg-slate-800/50">พืชที่วัดได้</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ข้าวโพด หรือ เมล็ดกาแฟสาร(อ่านโดยตรง)<br>หรือเมล็ดพืชชนิดทั่วไป(ใช้ตารางเทียบความชื้น)</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ปริมาณข้าวเปลือกตัวอย่าง</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300"> 50 - 100 กรัม(ขึ้นกับชนิดเมล็ด ให้ใช้ตามที่ระบุในคู่มือ) </td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-              <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">วัดความชื้นได้สูงสุด</th>
-              <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0-50%(ขึ้นกับชนิดเมล็ด)</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ช่วงการวัดความชื้น</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0-50%(ขึ้นกับชนิดเมล็ด)</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความละเอียด</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0.1%</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความแม่นยำ</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">± 0.6-±1.0%(ขึ้นกับชนิดเมล็ด)</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">วัดอุณหภูมิได้สูงสุด</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">50°C(เทอร์โมมิเตอร์ภายนอกแบบแท่งแก้ว)</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ช่วงการวัดอุณหภูมิ</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">0-50°C(เทอร์โมมิเตอร์ภายนอกแบบแท่งแก้ว)</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ความละเอียดอุณหภูมิ</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">1°C</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">การประมวลผล</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ระบบอนาล็อก</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ฟังก์ชั่นเสริม</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">-
-                </td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">แหล่งพลังงาน</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">ถ่านสี่เหลี่ยม 9โวลต์(6F22/PP3) </td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">ขนาด / น้ำหนัก</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">164 x 94 x 40 มม. / 1.5 กก.</td>
-              </tr>
-              <tr class="hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-                <th class="py-4 px-6 font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800/50">อุปกรณ์ในกล่อง</th>
-                <td class="py-4 px-6 text-gray-700 dark:text-gray-300">
-                  <ul class="list-disc list-inside space-y-1">
-                    <li>ตัวเครื่อง EE-KU</li>
-                    <li>กล่องพกพา</li>
-                    <li>ถ่าน 9โวลต์ 1 ก้อน</li>
-                    <li>กรวยเท</li>
-                    <li>ถ้วยตวง</li>
-                    <li>เครื่องชั่งน้ำหนักแบบดิจิทัล</li>
-                    <li>คู่มือการใช้งานภาษาไทย</li>
-                  </ul>
-                </td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <div id="video-demo" class="py-16 bg-white dark:bg-slate-900 overflow-hidden">
-    <div class="container mx-auto px-4 sm:px-6">
-      
-      <div class="text-center mb-12 max-w-3xl mx-auto">
-        <div class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-red-600 uppercase bg-red-100 rounded-full">
-          Video Manual
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">คู่มือการใช้งานรูปแบบวีดีโอ</h2>
-        <p class="text-xl text-gray-600 dark:text-slate-400">
-          เรียนรู้วิธีการใช้งานเครื่องวัดความชื้นเมล็ด EE-KU อย่างละเอียด
-        </p>
-      </div>
-
-      <div class="max-w-4xl mx-auto mb-16">
-        <div class="flex items-center justify-center gap-3 mb-4">
-            <span class="flex items-center justify-center w-10 h-10 rounded-full bg-red-600 text-white font-bold text-lg">1</span>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">ขั้นตอนการใช้งาน (Main Tutorial)</h3>
-        </div>
-        <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-900/10 dark:ring-white/10 bg-black">
-          <iframe
-            class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/vr-MXo4IliI"
-            title="ขั้นตอนการใช้งานเครื่องวัดความชื้นรุ่น EE-KU"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <p class="text-center text-gray-600 dark:text-gray-400 mt-4 text-lg">
-            ภาพรวมขั้นตอนการใช้งานเครื่องวัดความชื้น รุ่น EE-KU ตั้งแต่เริ่มต้นจนได้ค่าความชื้น
-        </p>
-      </div>
-
-      <div class="text-center mb-8 max-w-3xl mx-auto pt-8 border-t border-gray-200 dark:border-gray-700">
-        <h3 class="text-2xl font-bold font-heading mb-2">เทคนิคและการเตรียมอุปกรณ์ (Techniques & Preparation)</h3>
-        <p class="text-gray-600 dark:text-slate-400">
-            รายละเอียดเพิ่มเติมเกี่ยวกับการใช้อุปกรณ์เสริมและการเตรียมตัวอย่าง
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-        
-        <div class="flex flex-col gap-4">
-          <div class="flex items-center gap-3 mb-2">
-             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">2</span>
-             <h3 class="text-xl font-bold text-gray-900 dark:text-white">วิธีใช้เครื่องชั่งดิจิตอลร่วมกับเครื่องวัด</h3>
-          </div>
-          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10">
-            <iframe
-              class="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/xCACKRvsaus"
-              title="วิธีใช้ตาชั่งดิจิตอลร่วมกับเครื่องวัดความชื้น"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <p class="text-gray-600 dark:text-gray-400 text-sm">
-            สาธิตการใช้เครื่องชั่งดิจิตอลเพื่อเตรียมตัวอย่างให้ได้น้ำหนักที่ถูกต้องก่อนการวัด
-          </p>
-        </div>
-
-        <div class="flex flex-col gap-4">
-          <div class="flex items-center gap-3 mb-2">
-             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">3</span>
-             <h3 class="text-xl font-bold text-gray-900 dark:text-white">การเตรียมตัวอย่างสำหรับวัดความชื้น</h3>
-          </div>
-          <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-gray-900/10 dark:ring-white/10">
-            <iframe
-              class="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/6iwLftE0Feg"
-              title="การเตรียมตัวอย่างสำหรับวัดความชื้น"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <p class="text-gray-600 dark:text-gray-400 text-sm">
-            ขั้นตอนการเตรียมเมล็ดตัวอย่างและการใส่อุปกรณ์ให้ถูกต้องเพื่อให้ได้ค่าที่แม่นยำ
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-  <Features3
-    title="เอกสารและคู่มือ"
-    subtitle="ดาวน์โหลดข้อมูลเพื่อศึกษาเพิ่มเติม"
-    columns={2}
-    items={[
-      {
-        title: 'โบรชัวร์สินค้า ข้าวโพด(Brochure)',
-        description: 'รายละเอียดสเปกและจุดเด่นทั้งหมด PDF ไฟล์',
-        icon: 'tabler:file-download',
-        callToAction: {
-          text: 'ดาวน์โหลด PDF',
-          href: '/downloads/EEKU-corn-brochureTH.pdf',
-          variant: 'link',
-          icon: 'tabler:download',
-        },
-      },
-      {
-        title: 'คู่มือการใช้งานวัด ข้าวโพด (User Manual)',
-        description: 'วิธีการใช้งาน การตั้งค่า และการดูแลรักษา',
-        icon: 'tabler:book',
-        callToAction: {
-          text: 'ดาวน์โหลดคู่มือ',
-          href: '/downloads/EEKU-corn-manualTH.pdf',
-          variant: 'link',
-          icon: 'tabler:download',
-        },
-      },
-      {
-        title: 'โบรชัวร์สินค้า กาแฟสาร(Brochure)',
-        description: 'รายละเอียดสเปกและจุดเด่นทั้งหมด PDF ไฟล์',
-        icon: 'tabler:file-download',
-        callToAction: {
-          text: 'ดาวน์โหลด PDF',
-          href: '/downloads/EEKU-coffee-brochureTH.pdf',
-          variant: 'link',
-          icon: 'tabler:download',
-        },
-      },
-      {
-        title: ' คู่มือการใช้งานวัด กาแฟสาร (User Manual)',
-        description: 'วิธีการใช้งาน การตั้งค่า และการดูแลรักษา',
-        icon: 'tabler:book',
-        callToAction: {
-          text: 'ดาวน์โหลดคู่มือ',
-          href: '/downloads/EEKU-coffee-manualTH.pdf',
-          variant: 'link',
-          icon: 'tabler:download',
-        },
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features3>
-
-  <CallToAction
-    title="พร้อมเป็นเจ้าของความแม่นยำหรือยัง?"
-    subtitle="สั่งซื้อวันนี้ พร้อมรับบริการหลังการขายที่ดีที่สุด"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'LINE: @Grainsure',
-        href: 'https://line.me/ti/p/~@grainsure',
-        icon: 'tabler:brand-line',
-        target: '_blank',
-        class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
-      },
-      {
-        text: 'โทร: 081-611-9016',
-        href: 'tel:0816119016',
-        icon: 'tabler:phone',
-        class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
-      },
-    ]}
-  />
-</Layout>
+  </Layout>
