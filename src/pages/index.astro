@@ -205,7 +205,28 @@ const metadata = {
   <BlogLatestPosts
     title="Grainsure Insights"
     information={`คลังความรู้เพื่อเกษตรกรไทย เจาะลึกเทคโนโลยีการวัดความชื้นและเทคนิคการจัดการเมล็ดพันธุ์ เพื่อลดการสูญเสียและยกระดับมาตรฐานผลผลิตทางการเกษตรอย่างยั่งยืน`}
-  />
+  >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>    
+    </BlogLatestPosts>
+
+  <CallToAction
+    title="บทความอื่นๆเพิ่มเติม"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'คลังความรู้',
+        href: '/article',  /* ลิงก์ไปหน้า About (ถ้าชื่อไฟล์เป็น about-us.astro ให้แก้เป็น /about-us ครับ) */
+        icon: 'tabler:article',
+      },
+    ]}
+  >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>    
+    </CallToAction>
+
   <!-- Stats Widget ****************** -->
 
   <Stats
