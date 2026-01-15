@@ -1,0 +1,216 @@
+---
+publishDate: 2026-01-15T09:00:00Z
+title: "ไขข้อข้องใจ! ทำไมต้องหักราคา ตามความชื้น?"
+excerpt: "ทำไมราคาหน้าป้ายกับเงินที่ได้จริงไม่เท่ากัน? ความชื้นมีผลอย่างไรกับราคาซื้อขายผลผลิต มาดูวิธีคำนวณส่วนต่างความชื้นและวิธีช่วยให้เกษตรกรโดนหักเงินน้อยที่สุด"
+image: "~/assets/images/blog/why-grain-moisture-deduction/moisture-price.jpg"
+category: agri-knowledge
+tags:
+  - grain-moisture
+  - rice-moisture
+  - corn-moisture
+  - agriculture-knowledge
+  - farmers-guide
+metadata:
+  description: "เจาะลึกเหตุผลที่ผู้รับซื้อต้องหักน้ำหนักความชื้นผลผลิต พร้อมตัวอย่างการคำนวณเงินที่หายไปอย่างละเอียด"
+---
+
+<style is:inline>{`
+  .blog-container {
+    font-family: 'Sarabun', 'Prompt', sans-serif;
+    line-height: 1.8;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+  }
+  .header-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header-section h1 {
+    color: #1a2a3a;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  .intro-text {
+    font-size: 1.1em;
+    color: #555;
+  }
+  .main-content h2 {
+    color: #27ae60;
+    font-size: 1.6em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-left: 6px solid #27ae60;
+    padding-left: 15px;
+  }
+  .blog-image-container {
+    margin: 25px 0;
+    text-align: center;
+  }
+  .image-caption {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    font-style: italic;
+  }
+  .highlight-quote {
+    background: #fff9f0;
+    border-left: 6px solid #f39c12;
+    padding: 20px;
+    margin: 30px 0;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #d35400;
+  }
+  .calc-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 35px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  .calc-step {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .calc-step:last-of-type {
+    border-bottom: none;
+  }
+  .calc-label {
+    font-weight: bold;
+    color: #2ecc71;
+    display: block;
+    font-size: 0.95em;
+  }
+  .calc-result {
+    font-size: 1.4em;
+    color: #c0392b;
+    font-weight: bold;
+  }
+  .btn-calculator {
+    display: inline-block;
+    background-color: #27ae60;
+    color: #ffffff !important;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+  }
+  .btn-calculator:hover {
+    background-color: #219150;
+    transform: translateY(-2px);
+  }
+  .cta-summary {
+    background: #2c3e50;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 50px;
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+  }
+`}</style>
+
+<div className="blog-container">
+
+  <div className="header-section">
+    <div className="blog-image-container">
+      <span className="image-caption">การวัดความชื้นที่แม่นยำคือกุญแจสำคัญของราคาผลผลิต</span>
+    </div>
+    <h1>ไขข้อข้องใจ! ทำไมผู้รับซื้อต้องหักความชื้น?<br />พร้อมวิธีคำนวณเงินที่หายไป</h1>
+    <p className="intro-text">
+      <strong>"ทำไมราคาหน้าป้ายกับเงินที่ได้จริงไม่เท่ากัน?"</strong>นี่คือคำถามยอดฮิตที่เกษตรกรหลายคนเจ็บปวดใจ เมื่อนำผลผลิตที่เพิ่งเกี่ยวสดๆ ไปขาย แล้วโดนหักเงินเพราะ "ความชื้น" บทความนี้จะพาไปไขคำตอบครับ
+    </p>
+  </div>
+
+  <div className="main-content">
+
+    ## 1. ทำไมผู้รับซื้อ ต้อง "หักความชื้น"?
+
+    สาเหตุหลักที่ผู้รับซื้อ ไม่สามารถรับซื้อผลผลิตที่มีความชื้นสูงในราคาเต็มได้ มีเหตุผลสำคัญดังนี้:
+
+    * **เราขาย "เนื้อผลผลิต" ไม่ใช่ "น้ำ":** ผลผลิตเกี่ยวสดมีความชื้นสูง (25-30%) ซึ่งน้ำหนักส่วนหนึ่งคือน้ำ
+    * **ผลผลิตชื้นเก็บไม่ได้:** หากไม่ลดความชื้น ผลผลิตจะเกิดความร้อน เชื้อรา และเน่าเสียทันที
+
+    <hr />
+
+    ## 2. มาตรฐานความชื้นอยู่ที่เท่าไหร่?
+
+    โดยทั่วไป ความชื้นที่เหมาะสมของผลผลิตแต่ละชนิดจะแตกต่างกันไป 
+    เช่น ข้าวเปลือกและข้าวโพด ความชื้นที่ **13-15%**
+
+    * **15%:** ราคาเต็มมาตรฐาน
+    * **เกิน 15%:** ถูกหักน้ำหนัก
+    * **ต่ำกว่า 15%:** (ผลผลิตแห้ง) อาจได้ราคาบวกเพิ่ม
+
+    <hr />
+
+    ## 3. วิธีคำนวณ: เงินหายไปเท่าไหร่?
+
+    สูตรมาตรฐานสากลที่นิยมใช้คือ:
+
+    <div className="highlight-quote">
+      "ความชื้นทุกๆ 1% ที่เกินมา จะถูกหักน้ำหนัก 1.5%"
+    </div>
+
+    <div className="calc-box">
+      <h3 style={{ marginTop: 0, color: '#1a2a3a' }}>ตัวอย่างการคำนวณจริง</h3>
+      <p><em>สมมติขายข้าวหอมมะลิ 1 ตัน (1,000 กก.) ราคาป้าย 12,000 บาท/ตัน แต่<strong>วัดความชื้นได้ 25%</strong></em></p>
+      
+      <div className="calc-step">
+        <span className="calc-label">ขั้นตอนที่ 1: หาความชื้นส่วนเกิน</span>
+        25% (ที่วัดได้) - 15% (มาตรฐาน) = <strong>เกินมา 10%</strong>
+      </div>
+      
+      <div className="calc-step">
+        <span className="calc-label">ขั้นตอนที่ 2: คำนวณน้ำหนักที่ถูกหัก (สูตร x1.5)</span>
+        10% x 1.5 = <strong>ถูกหัก 15%</strong><br />
+        คิดเป็นน้ำหนัก: 1,000 กก. x 15% = <strong>150 กิโลกรัม</strong>
+      </div>
+      
+      <div className="calc-step">
+        <span className="calc-label">ขั้นตอนที่ 3: สรุปยอดเงินที่จะได้รับ</span>
+        น้ำหนักเหลือขายจริง: 1,000 - 150 = <strong>850 กก.</strong><br />
+        เงินที่ได้รับ: 850 x 12 บาท = <span className="calc-result">10,200 บาท</span>
+      </div>
+      
+      <p style={{ textAlign: 'center', marginTop: '15px', fontWeight: 'bold', color: '#e74c3c' }}>
+        ⚠️ สรุป: เงินหายไปทันที 1,800 บาท/ตัน!
+      </p>
+
+      <div style={{ textAlign: 'center', marginTop: '25px', borderTop: '1px solid #e2e8f0', paddingTop: '20px' }}>
+        <a className="btn-calculator" href="/#gs-calculator">
+          คลิกเปิดโปรแกรมคำนวณความชื้น
+        </a>
+      </div>
+    </div>
+
+    <hr />
+
+    ## 4. ทำอย่างไรให้โดนหักน้อยที่สุด?
+
+    1.  **เกี่ยวระยะพลับพลึง:** อย่าเกี่ยวผลผลิตสดเกินไป ช่วงรวงเหลืองปลายโค้ง ความชื้นจะอยู่ประมาณ 20-24%
+    2.  **ระบายน้ำก่อนเกี่ยว:** ไขน้ำออก 7-10 วันก่อนเกี่ยว ช่วยลดความชื้นในเมล็ด
+    3.  **ตากผลผลิตเอง:** หากมีลานตาก การลดความชื้นเหลือ 15% เอง จะทำให้ได้ราคาเต็ม
+
+  </div>
+
+  <div className="cta-summary">
+    <h3>สรุป</h3>
+    <p>การเข้าใจวิธีคำนวณความชื้น ช่วยให้เกษตรกรวางแผนได้แม่นยำขึ้นว่าจะขายสดหรือตากก่อน</p>
+    <div style={{ margin: '20px 0', borderTop: '1px solid rgba(255,255,255,0.1)' }}></div>
+    <p>ต้องการเครื่องวัดความชื้นที่แม่นยำเหมือนผู้รับซื้อ ใช่มั้ย? ทักหาเราได้ที่ Grainsure!</p>
+  </div>
+
+</div>
