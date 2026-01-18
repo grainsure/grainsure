@@ -124,7 +124,7 @@ const metadata = {
   />
 
 
-  <CallToAction
+<CallToAction
     title="ติดต่อเรา"
     subtitle="สอบถาม ปรึกษา ขอใบเสนอราคา"
     actions={[
@@ -134,15 +134,46 @@ const metadata = {
         href: 'https://line.me/ti/p/~@grainsure',
         icon: 'tabler:brand-line',
         target: '_blank',
+        // เพิ่ม onclick สำหรับวัดผล Line
+        onclick: "return gtag_report_conversion_line('https://line.me/ti/p/~@grainsure')",
         class: 'bg-green-600 hover:bg-green-700 border-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800',
       },
       {
         text: 'โทร: 081-611-9016',
         href: 'tel:0816119016',
         icon: 'tabler:phone',
+        // เพิ่ม onclick สำหรับวัดผลการโทร
+        onclick: "return gtag_report_conversion_call('tel:0816119016')",
         class: 'bg-red-600 hover:bg-red-700 border-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800',
       },
     ]}
   />
 
+<script is:inline>
+  function gtag_report_conversion_call(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17371749507/eYarCJ_TwOcbEIO5v9tA', // รหัสปุ่มโทร
+        'value': 1.0,
+        'currency': 'THB',
+        'event_callback': callback
+    });
+    return false;
+  }
+
+  function gtag_report_conversion_line(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17371749507/RARzCLzn4ucbEIO5v9tA', // รหัสปุ่ม Line
+        'value': 1.0,
+        'currency': 'THB',
+        'event_callback': callback
+    });
+    return false;
+  }
+</script>
 </Layout>
