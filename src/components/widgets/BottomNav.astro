@@ -12,15 +12,15 @@ const navItems = [
     text: 'โทร', 
     href: 'tel:0816119016', 
     icon: 'tabler:phone',
-    // ใช้รหัสเฉพาะสำหรับการโทร
-    onclick: "return gtag_report_conversion_call('tel:0816119016')"
+    // ปรับชื่อฟังก์ชันให้ตรงกับ script ด้านล่าง
+    onclick: "return gtag_report_phone('tel:0816119016')"
   },
   { 
     text: 'Line', 
     href: 'https://line.me/ti/p/~@grainsure#~', 
     icon: 'tabler:message-circle-2',
-    // ใช้รหัสเฉพาะสำหรับ Line
-    onclick: "return gtag_report_conversion_line('https://line.me/ti/p/~@grainsure#~')"
+    // ปรับชื่อฟังก์ชันให้ตรงกับ script ด้านล่าง
+    onclick: "return gtag_report_line('https://line.me/ti/p/~@grainsure#~')"
   },
 ];
 ---
@@ -54,15 +54,15 @@ const navItems = [
 </nav>
 
 <script is:inline>
-  // ฟังก์ชันสำหรับวัดผลการโทร
-  function gtag_report_conversion_call(url) {
+  // ฟังก์ชันสำหรับวัดผลการโทร (ใช้รหัสใหม่ hYTN...)
+  function gtag_report_phone(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
         window.location = url;
       }
     };
     gtag('event', 'conversion', {
-        'send_to': 'AW-17371749507/eYarCJ_TwOcbEIO5v9tA',
+        'send_to': 'AW-17371749507/hYTNCOyt4OcbEIO5v9tA',
         'value': 1.0,
         'currency': 'THB',
         'event_callback': callback
@@ -70,8 +70,8 @@ const navItems = [
     return false;
   }
 
-  // ฟังก์ชันสำหรับวัดผล Line
-  function gtag_report_conversion_line(url) {
+  // ฟังก์ชันสำหรับวัดผล Line (ใช้รหัสเดิม RARz...)
+  function gtag_report_line(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
         window.location = url;
