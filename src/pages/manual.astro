@@ -1,0 +1,133 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+const { image } = Astro.props;
+
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+// ข้อมูลสินค้า (คืนค่าข้อความเดิมของพี่ทั้งหมด ห้ามแตะต้อง)
+const products = [
+  {
+    title: 'KU72-PADDY',
+    alt1 : 'คู่มือเครื่องวัดความชื้นข้าวเปลือก KU72-PADDY',
+    subtitle: 'สำหรับข้าวเปลือก',
+    description: '',
+    image: '~/assets/images/KU72-PADDY01.jpg',
+    link: '/M/KU72paddy.pdf',
+    features: [],
+  },
+  {
+    title: 'KU72-CORN',
+    alt1 : 'เครื่องวัดความชื้นข้าวโพด KU72-CORN',
+    subtitle: 'สำหรับข้าวโพด',
+    description: '',
+    image: '~/assets/images/KU72-CORN01.jpg',
+    link: '/M/KU72corn.pdf',
+    features: [],
+  },
+  {
+    title: 'KU60',
+    alt1 : 'เครื่องวัดความชื้นเมล็ด KU60',
+    subtitle: 'สำหรับเมล็ดพืชหรือเมล็ดทั่วไป',
+    description: '',
+    image: '~/assets/images/KU60-01.jpg',
+    link: '/M/KU60.pdf',
+    features: [],
+  },
+  {
+    title: 'EE-KU ข้าวโพด',
+    alt1 : 'เครื่องวัดความชื้นเมล็ด EE-KU ข้าวโพด',
+    subtitle: 'สำหรับวัดความชื้นเมล็ดข้าวโพด',
+    description: '',
+    image: '~/assets/images/EEKU-01corn.jpg', 
+    link: '/M/EEKU.pdf',
+    features: [],
+  },
+  {
+    title: 'EE-KU กาแฟสาร',
+    alt1 : 'เครื่องวัดความชื้นเมล็ด EE-KU กาแฟสาร',
+    subtitle: 'สำหรับวัดความชื้นเมล็ด กาแฟสาร',
+    description: '',
+    image: '~/assets/images/EEKU-01coffee.jpg', 
+    link: '/M/EEKU-Cof.pdf',
+    features: [],
+  },
+];
+const metadata = {
+  // title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+---
+<WidgetWrapper id="Manual" isDark={false} containerClass="max-w-7xl mx-auto px-4 sm:px-6" bg='<div class="absolute inset-0 bg-white dark:bg-transparent"></div>'>
+  
+  <Headline
+    title="ดาวน์โหลดคู่มือการใช้งานเครื่องวัดความชื้น"
+    tagline="Downloads Manual"
+    subtitle="โปรดเลือกตามรุ่นที่ใช้งาน"
+    classes={{ container: 'max-w-xl sm:mx-auto lg:max-w-2xl mb-8 md:mb-12', title: 'text-2xl md:text-4xl font-bold' }}
+  />
+
+  <div class="grid gap-8 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    {products.map((product) => (
+      <a 
+        href={product.link} 
+        class="group flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800"
+      >
+        
+        {/* รูปภาพปรับขนาดให้สวยบนมือถือ */}
+        <div class="relative aspect-video sm:aspect-square md:aspect-video overflow-hidden">
+             <Image
+                src={product.image}
+                alt={product.alt1}
+                class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                format="webp" 
+                widths={[400, 800]} 
+                sizes="(max-width: 767px) 100vw, 25vw"
+                width={400} 
+                height={300}
+              />
+              <div class="absolute top-3 right-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">
+                {product.title}
+              </div>
+        </div>
+
+        <div class="p-5 flex-1 flex flex-col">
+            <div class="mb-3">
+                <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                  คู่มือใช้งาน {product.title}
+                </h3>
+                <p class="text-xs text-primary font-bold tracking-wide uppercase">{product.subtitle}</p>
+            </div>
+            
+            {/* คำอธิบายยาวๆ ของพี่แสดงครบถ้วน 100% */}
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                {product.description}
+            </p>
+
+            {/* รายการจุดเด่นของพี่แสดงครบถ้วน 100% */}
+            <ul class="text-xs text-gray-500 mb-6 space-y-2">
+                {product.features.map(f => (
+                    <li class="flex items-start">
+                        <svg class="w-4 h-4 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span class="leading-tight">{f}</span>
+                    </li>
+                ))}
+            </ul>
+
+            <div class="mt-auto">
+                <div class="w-full bg-primary text-white text-center py-3 rounded-xl font-bold text-sm group-hover:bg-primary-dark transition-colors">
+                  คลิกดาวน์โหลด คู่มือ
+                </div>
+            </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</WidgetWrapper>
+</Layout>

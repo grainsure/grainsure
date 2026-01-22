@@ -108,6 +108,10 @@ export const footerData = {
           text: 'โปรแกรมคำนวณความชื้น',
           href: getPermalink('/') + '#gs-calculator',
         },
+        {
+          text: 'คู่มือการใช้งาน',
+          href: getPermalink('/manual'),
+        },
       ],
     },    
   ],
