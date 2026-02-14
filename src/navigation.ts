@@ -120,6 +120,7 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('') },
   ],
   socialLinks: [
+    { ariaLabel: 'Email', icon: 'tabler:mail', href: 'mailto:eeku.grainsure@gmail.com' },
     { ariaLabel: 'Line', icon: 'tabler:brand-line', href: 'https://line.me/ti/p/~@grainsure#~' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/Grainsure/' },
   ],
