@@ -22,6 +22,10 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+  site: 'https://grainsure.co.th',
+  // ถ้าเป็นตอน build (production) ให้ใช้ 'always' เพื่อ SEO
+  // ถ้าเป็นตอนรันในเครื่อง (development) ให้ใช้ 'ignore' เพื่อให้รูปไม่พัง
+  trailingSlash: process.env.NODE_ENV === 'production' ? 'always' : 'ignore',
   output: 'static',
 
   integrations: [
