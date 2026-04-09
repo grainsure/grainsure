@@ -9,7 +9,8 @@ export const headerData = {
     },
     {
       text: 'ผลิตภัณฑ์',
-      href: getPermalink('/#products'),
+//      href: getPermalink('/#products'),
+      href: '/#products',
     },
     {
       text: 'บริการ',
