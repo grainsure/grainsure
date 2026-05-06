@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+
+// Import รูปภาพ
+import warehouseImg from '~/assets/images/renewcert01.jpg';
+import fleetImg from '~/assets/images/MadeByOrder01.jpg';
+import manufacturingImg from '~/assets/images/MCLab01.jpg';
+import commandCenterImg from '~/assets/images/grain01.jpg';
+import distributionImg from '~/assets/images/service01.jpg';
+---
+
+<section id="services-main" class="bg-slate-100 md:py-24">
+  <div class="container mx-auto px-0 md:px-6 lg:px-8">
+    
+    <div class="flex flex-col justify-center pt-16 pb-10 md:pt-0 md:pb-16 text-center px-4">
+      <div class="inline-block self-center px-4 py-1.5 mb-4 bg-teal-100 text-teal-800 text-xs md:text-sm font-semibold rounded-full border border-teal-200 shadow-sm">
+        บริการของเรา
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
+        บริการ <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600">ที่ครบวงจร</span>
+      </h2>
+      <p class="text-base md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        ดูแลอย่างจริงใจ ด้วยบริการหลังการขายที่ใส่ใจตลอดอายุการใช้งาน พร้อมช่วยคุณบริหารจัดการค่าบำรุงรักษาให้คุ้มค่าที่สุด
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-6">
+      
+      <div class="relative aspect-[16/9] md:aspect-auto md:h-auto md:row-start-2 md:col-start-2 md:row-span-2 md:col-span-2 group overflow-hidden cursor-pointer md:rounded-2xl shadow-xl">
+        <Image 
+          src={distributionImg} 
+          alt="บริการซ่อมเครื่องวัดความชื้น" 
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          widths={[400, 800, 1200]} 
+          sizes="(max-width: 768px) 100vw, 66vw"
+          format="webp"
+          quality="mid"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/10 to-transparent"></div>
+        <div class="absolute bottom-6 md:bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <h3 class="text-xl md:text-2xl font-bold mb-1 md:mb-2">บริการซ่อมเครื่องวัดความชื้น</h3>
+          <p class="text-xs md:text-base text-slate-200 opacity-90">ซ่อมได้ทุกอาการ ทุกรุ่น มีอะไหล่แท้พร้อมให้บริการทันที</p>
+        </div>
+      </div>
+
+      <div class="relative aspect-[16/9] md:aspect-auto md:h-auto md:row-span-2 group overflow-hidden cursor-pointer md:rounded-2xl shadow-xl">
+        <Image 
+          src={warehouseImg} 
+          alt="รับดำเนินการต่ออายุแทน" 
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          widths={[400, 800]} 
+          sizes="(max-width: 768px) 100vw, 33vw"
+          format="webp"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/10 to-transparent"></div>
+        <div class="absolute bottom-6 md:bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <h3 class="text-xl md:text-2xl font-bold mb-1 md:mb-2">รับดำเนินการต่ออายุแทน</h3>
+          <p class="text-xs md:text-base text-slate-200 opacity-90">จัดการยื่นขอใบรับรองแทนให้ทุกขั้นตอน</p>
+        </div>
+      </div>
+
+      <div class="relative aspect-[16/9] md:aspect-auto md:h-auto group overflow-hidden cursor-pointer md:rounded-2xl shadow-xl">
+        <Image src={fleetImg} alt="..." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 33vw" format="webp" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-0 right-0 p-6 md:p-8 text-white">
+          <h3 class="text-lg md:text-xl font-bold">รับผลิตตามความต้องการ</h3>
+          <p class="hidden md:block text-xs text-slate-200">ไม่มีจำกัดจำนวนสั่งซื้อขั้นต่ำ</p>
+        </div>
+      </div>
+
+      <div class="relative aspect-[16/9] md:aspect-auto md:h-auto group overflow-hidden cursor-pointer md:rounded-2xl shadow-xl">
+        <Image src={manufacturingImg} alt="..." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 33vw" format="webp" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-0 right-0 p-6 md:p-8 text-white">
+          <h3 class="text-lg md:text-xl font-bold">วิเคราะห์ความชื้นวัสดุเฉพาะ</h3>
+          <p class="hidden md:block text-xs text-slate-200">ออกแบบเครื่องวัดตามโจทย์ของคุณ</p>
+        </div>
+      </div>
+
+      <div class="relative aspect-[16/9] md:aspect-auto md:h-auto md:row-start-3 group overflow-hidden cursor-pointer md:rounded-2xl shadow-xl">
+        <Image src={commandCenterImg} alt="..." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" widths={[400, 800, 1200]} sizes="(max-width: 768px) 100vw, 33vw" format="webp" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/10 to-transparent"></div>
+        <div class="absolute bottom-6 left-0 right-0 p-6 md:p-8 text-white">
+          <h3 class="text-lg md:text-xl font-bold">ฐานข้อมูลเมล็ดกว่า 100 ชนิด</h3>
+          <p class="hidden md:block text-xs text-slate-200">มีข้อมูลพร้อมผลิตทันที</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-12 md:py-20 flex flex-col justify-center text-center px-4">
+      <h3 class="text-xl md:text-2xl font-bold mb-6 text-slate-800">พร้อมรับบริการจากเราหรือยัง?</h3>
+      <a 
+        href="/services/" 
+        class="inline-flex items-center self-center px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-bold text-white bg-gradient-to-r from-teal-600 to-teal-800 rounded-full shadow-xl hover:-translate-y-1 active:scale-95 transition-all group"
+      >
+        ดูรายละเอียดบริการทั้งหมด
+        <svg class="w-5 h-5 md:w-6 md:h-6 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+
+  </div>
+</section>

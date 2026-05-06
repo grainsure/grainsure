@@ -1,0 +1,82 @@
+---
+import { APP_BLOG } from 'astrowind:config';
+
+import Grid from '~/components/blog/Grid.astro';
+
+import { getBlogPermalink } from '~/utils/permalinks';
+import { findLatestPosts } from '~/utils/blog';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { Widget } from '~/types';
+import Button from '~/components/ui/Button.astro';
+import { getPermalink, cleanSlug } from '~/utils/permalinks'; // ต้องมีตัวนี้เพื่อสร้างลิงก์ Tag
+
+export interface Props extends Widget {
+  title?: string;
+  linkText?: string;
+  linkUrl?: string | URL;
+  information?: string;
+  count?: number;
+  posts?: any[];
+}
+
+const {
+  title = await Astro.slots.render('title'),
+  linkText = 'View all posts',
+  linkUrl = getBlogPermalink(),
+  information = await Astro.slots.render('information'),
+  count = 4,
+  posts: passedPosts = [],
+  tags = [], // 2. รับค่า tags ตรงนี้
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+//const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
+const posts = passedPosts.length > 0 ? passedPosts : (APP_BLOG.isEnabled ? await findLatestPosts({ count }) : []);
+---
+
+{
+  APP_BLOG.isEnabled ? (
+    <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
+      <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
+        {title && (
+          <div class="md:max-w-sm">
+            <h2
+              class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2"
+              set:html={title}
+            />
+            {APP_BLOG.list.isEnabled && linkText && linkUrl && (
+              <Button variant="link" href={linkUrl}>
+                {' '}
+                {linkText} »
+              </Button>
+            )}
+          </div>
+        )}
+
+        {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
+      </div>
+
+      <Grid posts={posts} />
+      {/* 3. เพิ่มส่วนแสดงผล Tags ตรงนี้ครับ[cite: 8, 9, 12] */}
+      {tags.length > 0 && (
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-3 border-t border-gray-100 dark:border-slate-800 pt-8">
+          <span class="text-sm font-bold text-gray-500 uppercase tracking-wider w-full text-center mb-2">เลือกอ่านตามหัวข้อที่สนใจ:</span>
+{tags.map((tag) => (
+            <a
+              {/* 2. ใช้ cleanSlug ครอบตัวแปร tag ตรงนี้ครับ */}
+              href={getPermalink(cleanSlug(tag), 'tag')} 
+              class="px-4 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-full text-sm font-medium text-gray-700 dark:text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 shadow-sm"
+            >
+              # {tag}
+            </a>
+          ))}
+        </div>
+      )}      
+    </WidgetWrapper>
+  ) : (
+    <Fragment />
+  )
+}

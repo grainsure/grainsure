@@ -1,0 +1,69 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { getEntry } from 'astro:content'; // 1. เพิ่มการดึงข้อมูลจาก Collection
+import { blogCategoryRobots, getStaticPathsBlogCategory } from '~/utils/blog';
+
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogCategory({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths> & { category: Record<string, string> };
+
+const { page, category } = Astro.props as Props;
+const currentPage = page.currentPage ?? 1;
+
+// 2. ดึงข้อมูล Metadata จาก JSON ในโฟลเดอร์ src/content/category/
+// โดยใช้ category.id หรือ slug เป็นชื่อไฟล์ (เช่น sensors.json)
+const categoryEntry = await getEntry('category', category.id || category.slug);
+const categoryData = categoryEntry?.data;
+
+const metadata = {
+  // 3. ใช้ค่าจาก JSON ถ้าไม่มีให้ใช้ชื่อหมวดหมู่ที่ส่งมาจาก Props เป็นค่าสำรอง
+  title: `${categoryData?.title || category.title} ${currentPage > 1 ? ` — หน้า ${currentPage}` : ''} | Grainsure`,
+  description: categoryData?.description || `รวมบทความเกี่ยวกับ ${category.title} และเทคโนโลยีการเกษตรแม่นยำ`,
+  
+  robots: {
+    index: blogCategoryRobots?.index && currentPage === 1,
+    follow: blogCategoryRobots?.follow,
+  },
+  openGraph: {
+    type: 'blog',
+    description: categoryData?.description || `คลังความรู้ในหมวดหมู่ ${category.title}`,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="relative px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-7xl overflow-hidden">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-slate-900 pointer-events-none -z-10" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl mx-auto">
+      <Headline
+        subtitle={categoryData?.description || `รวบรวมเทคนิคและสาระน่ารู้ที่เกี่ยวข้องกับหมวดหมู่ "${category.title}"`}
+      >
+        <span class="text-accent dark:text-white highlight">
+          {categoryData?.title || category.title}
+        </span>
+        <br />
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 font-extrabold">
+          Grainsure Insights
+        </span>
+      </Headline>
+
+      <div class="mt-8">
+        <BlogList posts={page.data} />
+      </div>
+
+      <div class="mt-10 border-t border-gray-200 dark:border-slate-700 pt-8">
+        <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+      </div>
+    </div>
+  </section>
+</Layout>

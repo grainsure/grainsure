@@ -1,0 +1,411 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+const { image } = Astro.props;
+
+import Image from '~/components/common/Image.astro'; // เรียกใช้ Component รูปภาพ
+import heroBg from '~/assets/images/gs-bg1.jpg'; // รูป PC
+import heroBgMobile from '~/assets/images/gs-bg3.jpg'; // รูปมือถือ
+
+import Hero from '~/components/widgets/Hero3.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import GSCalculator from '~/components/widgets/GS-Calculator.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import Content2 from '~/components/widgets/Content2.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import MyProductList from '~/components/widgets/MyProductList.astro';
+import GSImageGrid from '~/components/widgets/GS-ImageGrid.astro';
+import gsCalImg from '~/assets/images/GScal.jpg';
+import { getCollection } from 'astro:content';
+import { getPermalink } from '~/utils/permalinks'; // 1. Import ตัวช่วยสร้างลิงก์
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+
+// 1. ดึงบทความทั้งหมดจากโฟลเดอร์ post
+const allPosts = await getCollection('post');
+
+// 2. ดึงบทความเด่น 4 อันแรก (เรียงตาม priority ที่ตั้งไว้ใน MDX)[cite: 7]
+const featuredPosts = allPosts
+  .filter((post) => post.data.isFeatured)
+  .sort((a, b) => (a.data.priority || 99) - (b.data.priority || 99))
+  .slice(0, 4);
+
+// 3. ดึงบทความล่าสุด 4 อัน (กรองตัวที่ซ้ำกับบทความเด่นออก)[cite: 7]
+const latestPosts = allPosts
+  .filter((post) => !featuredPosts.some((f) => f.id === post.id))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 4);
+
+// 4. จัดรูปแบบข้อมูลใหม่ (Mapping) เพื่อให้ Widget และ URL ทำงานถูกต้อง[cite: 8, 10]
+const postsToDisplay = [...latestPosts , ...featuredPosts].map((post) => {
+  // ลบนามสกุลไฟล์ (.mdx) ออกจาก id เพื่อใช้เป็น slug
+  const slug = post.id.replace(/\.[^/.]+$/, ""); 
+  
+  return {
+    ...post,
+    ...post.data,
+    // สร้างลิงก์ตามรูปแบบ: /หมวดหมู่/ชื่อบทความ ตามที่ตั้งไว้ใน config
+    permalink: getPermalink(`${post.data.category}/${slug}`, 'post'), 
+  };
+});
+
+// ส่วนสำหรับตรวจสอบข้อมูลในหน้าจอ Terminal[cite: 7]
+console.log('--- Debugging Grainsure Blog ---');
+console.log('บทความทั้งหมด:', allPosts.length);
+console.log('บทความเด่นที่หาเจอ:', featuredPosts.length);
+console.log('รายชื่อบทความที่จะแสดง:', postsToDisplay.map(p => p.data.title));
+
+// 5. ดึง Tag ทั้งหมดจากบทความที่มี และทำให้ไม่ซ้ำกัน (Unique Tags)[cite: 2, 7]
+//const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+// --- ส่วน Logic ใน index.astro ---
+
+// 1. กำหนดลำดับ Tag ที่ต้องการให้เรียง (อันไหนขึ้นก่อนใส่ก่อน)
+const tagOrder = [
+  'grain moisture tool เครื่องวัดความชื้น',
+  'grainsure EE-KU',
+  'grainsure KU-60',
+  'grainsure KU-72-CORN',
+  'grainsure KU-72-PADDY',
+  'moisture content ความชื้นเมล็ด',
+  'maize ข้าวโพด',
+  'paddy ข้าว', // <--- ย้ายมาอยู่ใกล้ข้าวโพดแล้วครับ
+  'jagung',
+  'beras padi',
+  'DIT announcement กฎหมายชั่งตวงวัด'
+];
+
+// 2. ดึง Tag ทั้งหมดมาแล้วเรียงตามรายการข้างบน[cite: 7, 9]
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))]
+  .sort((a, b) => {
+    const indexA = tagOrder.indexOf(a);
+    const indexB = tagOrder.indexOf(b);
+    
+    // ถ้า Tag ไหนไม่ได้ระบุในลิสต์ ให้เอาไปไว้ท้ายสุด
+    if (indexA === -1 && indexB === -1) return 0;
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    
+    return indexA - indexB;
+  });
+// --- Debug Tag ---
+console.log('Tags ที่หาเจอ:', allTags);
+
+const metadata = {
+  title: 'Grainsure: เครื่องวัดความชื้นเมล็ดพืช ข้าว ข้าวโพด กาแฟ เม็ดผัก(Grain Moisture Meter) รุ่น KU72 KU60 EE-KU | Alat Ukur Kadar Air | Grainsure',
+  description: 'ผู้ผลิตเครื่องวัดความชื้นข้าว ข้าวโพด และเมล็ดพันธุ์ ประสบการณ์กว่า 40 ปี (Grain Moisture Meters for Paddy, Corn, Maize, Coffee, Jagung) รับซ่อม สอบเทียบ และต่ออายุใบรับรองกรมการค้าภายใน ครบวงจรที่สุดในไทย',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+<Hero
+  actions={[
+    {
+      variant: 'primary',
+      text: 'ติดต่อสอบถาม/ใบเสนอราคา',
+      href: 'https://line.me/ti/p/~@grainsure#~',
+      target: '_blank',
+      icon: 'tabler:message-circle-2-filled',
+      class: 'btn w-full bg-[#06C755] hover:bg-[#05b34c] text-white border-none shadow-xl',
+    },
+  ]}
+  
+  image={{ src: heroBg, alt: 'ผลิตภัณฑ์เครื่องวัดความชื้น Grainsure : Grainsure Moisture Meters' }}
+  mobileImage={{ src: heroBgMobile, alt: 'ผลิตภัณฑ์เครื่องวัดความชื้น Grainsure : Grainsure Moisture Meters' }}
+
+  /* 🎨 ปรับแต่งความชัดตรงนี้ */
+  /* Title: ปรับเงา Overlay บนภาพ */
+  bgOverlayClass="bg-gradient-to-tr from-black/70 via-black/10 to-transparent"
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+   taglineClass=""
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+  titleClass="drop-shadow-[0_5px_10px_rgba(100,100,100,0.9)] [-webkit-text-stroke:1.0px_black]"
+  
+  /* Subtitle: ขอบดำบาง 0.5px + เงาดำรองพื้น */
+  subtitleClass=""
+>
+  <Fragment slot="title">
+    <span class="text-yellow-400">Moisture Meter</span><br /><span class="hidden xl:inline"></span>
+    <span class="text-white">เครื่องวัดความชื้น</span><br /><span class="hidden xl:inline"></span>
+    <span class="text-red text-2xl md:text-5xl">โดย Grainsure</span><br /><span class="hidden xl:inline"></span>
+    {/*    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-teal-200 to-blue-300 font-bold">
+      เมล็ดพืชและเม็ดวัสดุ
+    </span>  */}   
+  </Fragment>
+<Fragment slot="subtitle">
+  <div class="mb-6 font-bold text-white !text-2xl sm:!text-4xl text-left">
+    <div class="py-0.5">วัดความชื้นข้าวโพด</div>
+    <div class="py-0.5">วัดความชื้นข้าวเปลือก</div>
+    <div class="py-0.5">วัดความชื้นเมล็ดกาแฟ</div>
+    <div class="py-0.5">วัดความชื้นธัญพืช</div>
+    <div class="py-0.5">วัดความชื้นเมล็ดผัก</div>
+  </div>
+
+  <!-- รายการจุดเด่นแบบ Bullet Points -->
+  <ul class="text-white text-left inline-block space-y-2 text-lg sm:text-xl">
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>มีใบรับรองประกอบธุรกิจ ผลิต จำหน่าย ซ่อม สอบเทียบเครื่องวัดความชื้น</span>
+    </li>
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>ผลิต จำหน่ายมานานกว่า 40 ปี มั่นใจในคุณภาพ</span>
+    </li>
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>บริการหลังการขายและซ่อมบำรุงตลอดอายุการใช้งาน</span>
+    </li>
+  </ul>
+</Fragment>
+{/*
+  <Fragment slot="subtitle">
+    <span class="block mb-1 font-bold text-white !text-2xl sm:!text-4xl">
+      ราคาถูกที่สุดในท้องตลาด แม่นยำ ทนทาน <br />ดูแลยาวนาน ผ่านรับรองมาตรฐานจากหน่วยงานที่น่าเชื่อถือ
+    </span>
+    <span class="text-white">
+      วิจัยพัฒนาและผลิตจำหน่าย ด้วยประสบการณ์ยาวนานกว่า 40 ปี
+    </span>
+  </Fragment>
+  */}
+</Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <!-- <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" /> -->
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="Our-Features"
+    tagline="Features"
+    title="ทำไมต้องเลือก <br /> <span class='bg-clip-text md:text-5xl text-transparent bg-gradient-to-r from-emerald-600 to-blue-600 font-extrabold leading-normal py-2 md:py-6 inline-block mt-0 '>เครื่องวัดความชื้นของเรา?</span>"
+    subtitle='<span class="font-bold text-gray-900 dark:text-white text-lg">4 ทศวรรษแห่งความแม่นยำ เคียงข้างเกษตรกรไทย</span><br />จากงานวิจัยสู่เครื่องวัดความชื้นอันดับต้นๆ ที่บริษัทชั้นนำไว้วางใจมานานกว่า 40 ปี มาตรฐานที่คนไทยสร้าง เพื่อความมั่งคั่งของผลิตผลไทยอย่างยั่งยืน'
+    items={[
+      {
+        title: 'เที่ยงตรง แม่นยำ ใช้งานง่าย',
+        description:
+          'ทุกเครื่องผ่านการสอบเที่ยบตามมาตรฐาน เพื่อความแม่นยำสูงสุดในการวัดความชื้นเมล็ดพืชและวัสดุชนิดเม็ดตามที่ลูกค้ากำหนด ใช้งานง่ายเพียงไม่กี่ขั้นตอน พร้อมวัดผลได้ทันที',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'ทนทาน ทุกสภาพการใช้งาน',
+        description:
+          'ตัวเครื่องทำจากเหล็ก ทนแรงกระแทก ทนทานต่อสภาพแวดล้อมการใช้งานที่หลากหลาย ทั้งในโรงงาน คลังสินค้า และภาคสนาม รองรับการใช้งานหนักได้อย่างมั่นใจ',
+        icon: 'tabler:hammer',
+      },
+      {
+        title: 'ซื้อครั้งเดียว ดูแลยาวๆ',
+        description:
+          'บริการหลังการขายโดยทีมงานมืออาชีพ พร้อมให้คำปรึกษาและดูแลเครื่องวัดความชื้นของคุณอย่างต่อเนื่อง เพื่อให้มั่นใจว่าเครื่องของคุณจะทำงานได้อย่างเต็มประสิทธิภาพตลอดเวลา',
+        icon: 'tabler:shield-heart',
+      },
+      {
+        title: 'ราคาย่อมเยา คุ้มค่า จับต้องได้',
+        description:
+          'รับผลิตเครื่องวัดความชื้น ชนิดเมล็ด ตามความต้องการเฉพาะของลูกค้าแต่ละราย ไม่มีจำนวนขั้นต่ำในการสั่งซื้อ พร้อมบริการให้คำปรึกษาเพื่อเลือกเครื่องที่เหมาะสมกับการใช้งานของคุณ',
+        icon: 'tabler:file-dollar',
+      },
+      {
+        title: 'เชี่ยวชาญด้านการวัดความชื้นเมล็ด',
+        description:
+          'ประสบการณ์กว่า 40 ปี ในการวิจัยและพัฒนาเครื่องวัดความชื้นเมล็ดพืชและวัสดุชนิดเม็ด เพื่อตอบโจทย์ความต้องการของลูกค้าอย่างแท้จริง เป็นผู้ผลิตและจำหน่ายเครื่องวัดความชื้นเมล็ดโดยตรง',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'ผ่านการรับรองมาตรฐานตามกฎหมาย',
+        description:
+          'เครื่องวัดความชื้นข้าวโพด และข้าวเปลือก ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน กระทรวงพาณิชย์ สามรถนำไปใช้ในเชิงพาณิชย์ได้อย่างถูกต้องตามกฎหมาย (โปรดสอบถามรุ่นที่มีการรับรอง)',
+        icon: 'tabler:certificate',
+      },
+{
+        title: 'มีใบอนุญาตประกอบการด้านเครื่องวัดความชื้นเมล็ดข้าว,ข้าวโพด',
+        description: `
+          เราดำเนินกิจการถูกต้อง มีเอกสารรับรองครบถ้วน
+          <br/>
+          <a href="/certificates/" class="inline-block mt-3 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition shadow-md">
+            📄 ดูใบอนุญาต
+          </a>
+        `,
+        icon: 'tabler:certificate',
+      },    ]}
+   >
+    <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>    
+  </Features> 
+
+  <!-- product -->
+  <MyProductList />
+
+  <!-- Service -->
+  <GSImageGrid />
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    id="gs-calculator"
+    tagline="Utility Tools"
+    title='โปรแกรม <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 font-extrabold pt-4">คำนวณความชื้น</span><br />รู้ต้นทุน <span class="text-orange-500 font-bold">เห็นกำไร</span> ทันที!'
+    items={[
+      {
+        title: '',
+        description:
+          'ฟรี โปรแกรมสำหรับเกษตรกรและผู้ประกอบการคำนวณหากำไรจากการลดความชื้น คำนวณหาปริมาณน้ำที่ประกอบอยู่ในเมล็ด เพื่อวางแผนการจัดการเมล็ดก่อนนำไปขายหรือจัดเก็บ สามารถคำนวณหาความชื้นหลังจากลดความชื้นแล้ว อีกทั้งช่วยในการประเมินต้นทุนและความคุ้มค่าในการดำเนินการ ซึ่งต้องเตรียมข้อมูลดังนี้',
+        icon: 'tabler:package',
+      },
+      {
+        title: '1 : <span class="font-medium">ปริมาณของเมล็ดเริ่มต้น</span>',
+        description:
+          'ชั่งน้ำหนักเมล็ดที่เราจะทำการปรับความชื้น ใช้หน่วยน้ำหนักอะไรก็ได้เช่น กิโลกรัม, ตัน, ปอนด์ เป็นต้น ผลการคำนวณที่ได้มาจะขึ้นอยู่กับหน่วยน้ำหนักที่เราใช้',
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: '2 : <span class="font-medium">ค่าความชื้นเริ่มต้น</span>',
+        description:
+          'ค่าความชื้นของเมล็ดเริ่มต้นที่วัดมาได้ ต้องเป็นความชื้นที่ถถูกต้อง วิธีที่สะดวกที่สุดคือการใช้เครื่องวัดความชื้นเมล็ดที่ได้มาตรฐาน ถ้าค่าที่วัดได้ถูกต้องการคำนวณก็จะถูกต้องตามไปด้วย',
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: '3 : <span class="font-medium">ค่าความชื้นที่ต้องการ</span>',
+        description: 'ค่าความชื้นของเมล็ดที่เราต้องการหลังจากการลดความชื้นแล้ว',
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: '4 : <span class="font-medium">ต้นทุนดำเนินการ(ทางเลือก)</span>',
+        description:
+          'ต้นทุนที่ใช้ในการลดความชื้นเมล็ดต่อหน่วยน้ำหนัก ราคาขายสด ราคาขายที่ความชื้นเป้าหมาย เช่น ค่าไฟฟ้า ค่าจ้างแรงงาน เป็นต้น ถ้าไม่ต้องการคำนวณกำไรก็ไม่ต้องกรอกข้อมูลนี้',
+        icon: 'tabler:letter-case',
+      },
+      {
+        /* แก้ตรงนี้: ใส่ Class แต่งให้เป็นปุ่มสีเขียว */
+        title: `
+          <a href="/GScalculator/" class="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-white transition duration-300 bg-green-600 rounded-lg hover:bg-green-700 shadow-md hover:shadow-lg no-underline">
+             Ready! เริ่มคำนวณ (คลิกเลย)
+          </a>
+        `,
+        icon: 'tabler:calculator' /* เปลี่ยนไอคอนเป็นรูปเครื่องคิดเลขให้สื่อความหมาย */,
+        description: 'เปิดโปรแกรมคำนวณความชื้นเมล็ดทันที',
+      },
+    ]}
+    image={{
+      src: gsCalImg,
+      alt: 'โปรแกรมคำนวณความชื้นเมล็ด GS moisture Calculator',
+    }}
+  />
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Grainsure Insights"
+    posts={postsToDisplay}
+    tags={allTags}  {/* 1. เพิ่มการส่ง Prop ชื่อ tags เข้าไป */}
+    information={`คลังความรู้เพื่อเกษตรกรไทย เจาะลึกเทคโนโลยีการวัดความชื้นและเทคนิคการจัดการเมล็ดพันธุ์ เพื่อลดการสูญเสียและยกระดับมาตรฐานผลผลิตทางการเกษตรอย่างยั่งยืน`}
+  >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>    
+    </BlogLatestPosts>
+
+  <CallToAction
+    title="บทความอื่นๆ"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'คลังความรู้',
+        href: '/article/',  /* ลิงก์ไปหน้า About (ถ้าชื่อไฟล์เป็น about-us.astro ให้แก้เป็น /about-us ครับ) */
+        icon: 'tabler:article',
+      },
+    ]}
+  >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>    
+    </CallToAction>
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="คำถามที่พบบ่อย"
+    subtitle="รวบรวมทุกข้อสงสัยเกี่ยวกับการวัดความชื้น มาตรฐานการหักลดน้ำหนัก และการเลือกใช้เครื่องมือให้ตอบโจทย์การใช้งานของคุณ"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'ความชื้นของเมล็ดคืออะไร?',
+        description:
+          'ปริมาณน้ำที่มีอยู่ในเมล็ดพืช โดยแสดงผลเป็นร้อยละเทียบกับน้ำหนักเมล็ด<br /> <a href="/agri-knowledge/grain-moisture-content/" class="text-primary font-semibold hover:underline">รายละเอียดเพิ่มเติม..(คลิก)</a>',
+      },
+      {
+        title: 'ความชื้นแทรกอยู่ในเมล็ดพืชอย่างไร?',
+        description:
+          'น้ำที่อยู่ในเมล็ดพืชสามารถแยกเป็น2ส่วนหลักคือ น้ำที่เป็นส่วนประกอบของโครงสร้าง และน้ำส่วนอิสระที่อยู่ตามช่องว่างระหว่างเซลล์หรือตามรูพรุน<br /> <a href="/agri-knowledge/grain-moisture-structure" class="text-primary font-semibold hover:underline">รายละเอียดเพิ่มเติม..(คลิก)</a>',
+      },
+      {
+        title: 'ความชื้นมีผลต่อคุณภาพเมล็ดพันธุ์อย่างไร?',
+        description:
+          'ความชื้นที่เหมาะสมจะมีผลต่อ อายุการเก็บรักษา การงอก ความแข็งแรงของเมล็ด การเสื่อมสภาพของเมล็ดพันธุ์<br /> <a href="/agri-knowledge/grain-moisture-effect/" class="text-primary font-semibold hover:underline">รายละเอียดเพิ่มเติม..(คลิก)</a>',
+      },
+      {
+        title: "ทำไมต้องหักราคาซื้อ-ขายผลผลิต ตามความชื้น?",
+        description:
+          'ความชื้นมีผลต่อคุณภาพผลผลิต และเป็นตัวชี้วัดต้นทุนที่จะเกิดขึ้นภายหลังรับซื้อเพื่อยังคงรักษาคุณภาพเมล็ด<br /> <a href="/agri-knowledge/why-grain-moisture-deduction/" class="text-primary font-semibold hover:underline">รายละเอียดเพิ่มเติม..(คลิก)</a>',
+      },
+      {
+        title: "มีการกำหนด อัตราหักน้ำหนักตามความชื้นที่เหมาะสมในการซื่อ-ขายเมล็ดพืช หรือไม่?",
+        description:
+          'ไม่มีการกำหนดอัตราหักน้ำหนักตามความชื้นตายตัวสำหรับเมล็ดพืชทั่วๆไป แต่สำหรับ เมล็ดข้าวเปลือก และเมล็ดข้าวโพด มีประกาศของกรมการค้าภายใน กำหนดอัตราหักน้ำหนักตามความชื้น เพื่อใช้ในการซื้อ-ขาย ดูได้จากลิลก์ข้างล่างนี้..<br /><a href="/regulations/rice-moisture-deduction/" class="text-primary font-semibold hover:underline">อัตราหักน้ำหนักข้าวเปลือก..(คลิก)</a><br /><a href="/regulations/corn-moisture-deduction/" class="text-primary font-semibold hover:underline">อัตราหักน้ำหนักข้าวโพด..(คลิก)</a>',
+      },
+      {
+        title: "มีกฏหมาย ควบคุมเครื่องวัดความชื้นเพื่อการกำหนดราคาซื้อขายเมล็ดพืชหรือไม่?",
+        description:
+        `มีเฉพาะการวัดความชื้น ข้าวเปลือกและข้าวโพด เท่านั้น เป็นประกาศจากกระทรวงพาณิชย์ตามอำนาจใน พรบ.มาตราชั่งตวงวัด พ.ศ.2542 ประกาศนี้มีผลบังคับใช้ตั้งแต่ 11 มีนาคม พ.ศ.2562<br /><a href="/regulations/moisture-meter-regulation/" class="text-primary font-semibold hover:underline">ดูรายละเอียด..(คลิก)</a> `
+      },
+      {
+        title: "ความชื้นข้าวโพด ดีที่สุด กี่เปอร์เซ็นต์?",
+        description:
+        `ความชื้นช่วงเก็บเกี่ยวควรต่ำกว่า 23%<br/> ควรลดความชื้นให้ต่ำกว่า 17.5% ภายใน 48 ชั่วโมง หลังการกะเทาะ เพื่อป้องกันการเจริญของเชื้อรา<br/>และในการเก็บรักษา ควรอยู่ที่ประมาณ 14% <br /><a href="/corn-maize/optimum-moisture-corn-feed/" class="text-primary font-semibold hover:underline">ดูรายละเอียด..(คลิก)</a> `
+      },
+      {
+        title: "ความชื้นข้าวเปลือก ดีที่สุด กี่เปอร์เซ็นต์?",
+        description:
+        `การเก็บรักษา 2-3 เดือน: ควรลดความชื้นให้เหลือ 14% <br/>การเก็บรักษา นานกว่า 3 เดือน: ควรลดความชื้นให้ต่ำกว่า 12% เพื่อป้องกันแมลงและเชื้อรา<br/> ความชื้นที่เหมาะสมในการสี: 13 – 14%<br /><a href="/paddy-rice/post-harvest-rice-quality-guide/" class="text-primary font-semibold hover:underline">ดูรายละเอียด..(คลิก)</a> `
+      },
+      {
+        title: "มีบทความเพิ่มเติม ให้ความรู้เกี่ยวกับความชื้น ข้าวเปลือก ข้าวโพด หรือเมล็ดพืช หรือไม่?",
+        description:
+        `คลิกลิงก์ไปหน้าเพจ <a href="/article/" class="text-primary font-semibold hover:underline">"คลังความรู้"</a> ของเราได้เลยครับ เราจะรวบรวมข้อมูลงานวิจัยและสรุปให้อ่านเข้าใจง่าย และอัปเดตบทความใหม่ๆสม่ำเสมอ <br /><a href="/article/" class="text-primary font-semibold hover:underline">คลิกชม"คลังความรู้"ของเรา</a>`
+      },
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      {
+        title: 'ประสบการณ์และการวิจัย',
+        amount: '>40 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ปี</span>',
+      },
+      { title: 'ระยะเวลาการขาย', amount: '40 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ปี</span>' },
+      { title: 'ยอดขายสะสม</span>', amount: '<span class="text-xl lg:text-5xl font-medium">>10,000</span> <span class="text-xl lg:text-3xl text-gray-500 font-medium">ตัว</span>' },
+      { title: 'ต่างประเทศ', amount: ' >11 <span class="text-xl lg:text-3xl text-gray-500 font-medium">ประเทศ</span>' },
+]}
+  />
+<CallToAction
+    title="รู้จัก'เกรนชัวร์'ให้ดียิ่งขึ้น"
+    subtitle="จากจุดเริ่มต้นงานวิจัยในรั้วมหาวิทยาลัย สู่ผู้นำนวัตกรรมเครื่องวัดความชื้นเมล็ดพืชที่ครองใจเกษตรกรไทยมากว่า 40 ปี มาร่วมสัมผัสเส้นทางความมุ่งมั่นและปณิธานของเรา"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'อ่านประวัติความเป็นมา<br>About Us',
+        href: '/about-us/',  /* ลิงก์ไปหน้า About (ถ้าชื่อไฟล์เป็น about-us.astro ให้แก้เป็น /about-us ครับ) */
+      },
+    ]}
+  />  
+</Layout>

@@ -1,0 +1,72 @@
+site:
+  name: Grainsure
+  site: 'https://grainsure.co.th'
+  base: '/'
+  trailingSlash: true
+
+  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+
+# Default SEO metadata
+metadata:
+  title:
+    default: Grainsure | ผู้เชี่ยวชาญ ผลิต จำหน่าย และบริการหลังการขาย  เครื่องวัดความชื้นเมล็ด Moisture Meter
+    template: '%s — Grainsure'
+  description: "ผู้ผลิตและจำหน่าย เครื่องวัดความชื้นเมล็ดพืช เครื่องวัดความชื้นเมล็ด Moisture Meter ด้วยประสบการณ์กว่า 40 ปี พร้อมบริการหลังการขายตลอดอายุการใช้งาน ไม่ทอดทิ้งกัน"
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: Grainsure
+    images:
+      - url: '~/assets/images/gs-bg1.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: ''
+    site: ''
+    cardType: summary_large_image
+
+i18n:
+  language: th
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 9
+
+    post:
+      isEnabled: true
+      permalink: /%category%/%slug% # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'article' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'topic' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: true
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null 
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

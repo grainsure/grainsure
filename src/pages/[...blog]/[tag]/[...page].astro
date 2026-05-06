@@ -1,0 +1,53 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { getEntry } from 'astro:content'; // 1. เพิ่มการ import นี้
+import { blogTagRobots, getStaticPathsBlogTag } from '~/utils/blog';
+
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogTag({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page, tag } = Astro.props as Props;
+
+const currentPage = page.currentPage ?? 1;
+
+// 2. เพิ่มส่วนการดึงข้อมูลจาก Collection
+const tagEntry = await getEntry('tag', tag.slug);
+const tagDescription = tagEntry?.data?.description;
+
+const metadata = {
+  title: `Posts by tag '${tag.title}'${currentPage > 1 ? ` — Page ${currentPage} ` : ''}`,
+  // 3. รักษาส่วน robots ไว้ตามเดิมตามคำขอ
+  robots: {
+    index: blogTagRobots?.index,
+    follow: blogTagRobots?.follow,
+  },
+  // 4. เพิ่มการส่ง description เข้าไป
+  description: tagDescription || `รวมบทความเกี่ยวกับ ${tag.title}`,
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline>Tag: {tag.title}</Headline>
+    
+    {/* 5. เพิ่มการแสดงผล Description ใต้หัวข้อ */}
+    {tagDescription && (
+      <div class="mb-8 -mt-8 text-xl text-muted prose prose-lg max-w-none">
+        <p>{tagDescription}</p>
+      </div>
+    )}
+
+    <BlogList posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</Layout>

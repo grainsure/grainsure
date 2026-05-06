@@ -1,0 +1,96 @@
+---
+publishDate: 2026-04-30T11:00:00Z
+title: "การหักลดน้ำหนักข้าวเปลือกที่มีความชื้น"
+excerpt: "เกณฑ์มาตรฐานการซื้อขายข้าวเปลือกตามประกาศกรมการค้าภายใน เพื่อความเป็นธรรมต่อเกษตรกร"
+image: "~/assets/images/blog/rice-moisture-deduction/rice-deduction.jpg"
+category: rice
+tags:
+  - paddy ข้าว
+  - moisture content ความชื้นเมล็ด
+  - DIT announcement กฎหมายชั่งตวงวัด 
+  - beras padi
+  - grainsure KU-72-PADDY
+
+  
+metadata:
+  description: "กรมการค้าภายในกำหนดเกณฑ์การหักลดน้ำหนักข้าวเปลือกที่มีความชื้น เพื่อให้เกิดความเป็นธรรมในการซื้อขาย"
+---
+
+import { Image } from 'astro:assets';
+
+{/* Header Section: เน้นความเป็นทางการและความชัดเจน */}
+<div class="bg-gradient-to-br from-blue-700 via-blue-800 to-slate-900 text-white p-8 md:p-14 rounded-3xl text-center mb-10 shadow-xl border-b-8 border-blue-500">
+  <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">การหักลดน้ำหนักข้าวเปลือกที่มีความชื้น</h1>
+  <p class="text-xl md:text-2xl opacity-90 font-medium text-blue-50">มาตรฐานกรมการค้าภายใน เพื่อความเป็นธรรมในการค้าข้าว</p>
+</div>
+
+{/* เอกสารอ้างอิง */}
+<div class="max-w-4xl mx-auto mb-10 p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+  <strong class="text-slate-800 dark:text-slate-200 block mb-3">📄 เอกสารอ้างอิง:</strong>
+  <ul class="space-y-2 text-sm">
+    <li>
+      <a href="https://www.dit.go.th/media/rxunjxju/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AB-%E0%B8%81%E0%B8%A5%E0%B8%94%E0%B8%99-%E0%B8%B3%E0%B8%AB%E0%B8%99-%E0%B8%81%E0%B8%82-%E0%B8%B2%E0%B8%A7%E0%B9%80%E0%B8%9B%E0%B8%A5-%E0%B8%AD%E0%B8%81%E0%B8%97-%E0%B8%A1-%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%8A-%E0%B8%99.pdf" target="_blank" class="text-blue-600 hover:underline">บทความเผยแพร่ประจำสัปดาห์ กรมการค้าภายใน</a>
+    </li>
+    <li>
+      <a href="https://www.dit.go.th/media/440bq4hw/c3b12e3b-2cdf-4833-88b5-88ce32bc557a.pdf" target="_blank" class="text-blue-600 hover:underline">ประกาศกรมการค้าภายใน พ.ศ.2544 เรื่องการหักลดน้ำหนักข้าวเปลือกที่มีความชื้น</a>
+    </li>
+  </ul>
+</div>
+
+กรมการค้าภายในได้กำหนดมาตรฐานการซื้อขายข้าวเปลือก เพื่อให้เกิดความเป็นธรรมและสอดคล้องกับภาวะการค้า โดยกำหนดให้ข้าวเปลือกที่มีสิ่งเจือปนไม่เกินร้อยละ 2 ของน้ำหนัก มีเกณฑ์การหักลดน้ำหนัก **ในอัตราส่วนต่อ 1,000 กิโลกรัม** ดังนี้:
+
+{/* Table Section: ปรับปรุงให้อ่านง่ายและมีเส้นแบ่งชัดเจน */}
+<div class="my-10 relative overflow-x-auto shadow-2xl rounded-2xl border border-blue-200 dark:border-slate-700">
+  <table class="w-full text-center text-slate-700 dark:text-slate-300 border-collapse">
+    <thead class="text-white bg-blue-800 font-bold uppercase">
+      <tr>
+        <th class="px-6 py-4 border border-blue-700  text-white">ระดับความชื้น (%)</th>
+        <th class="px-6 py-4 border border-blue-700 text-white">เกณฑ์หักลดน้ำหนัก (สูงสุด/1,000 กก.)</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white dark:bg-slate-800">
+      <tr class="hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">
+        <td class="px-6 py-4 border border-slate-200 dark:border-slate-700">ไม่เกินร้อยละ 15</td>
+        <td class="px-6 py-4 border border-slate-200 dark:border-slate-700 font-bold text-green-600 uppercase">ไม่มีการหักลดน้ำหนัก</td>
+      </tr>
+      {[
+        ["เกิน 15% แต่ไม่เกิน 16%", "15 กิโลกรัม"],
+        ["เกิน 16% แต่ไม่เกิน 17%", "30 กิโลกรัม"],
+        ["เกิน 17% แต่ไม่เกิน 18%", "45 กิโลกรัม"],
+        ["เกิน 18% แต่ไม่เกิน 19%", "60 กิโลกรัม"],
+        ["เกิน 19% แต่ไม่เกิน 20%", "75 กิโลกรัม"],
+        ["เกิน 20% แต่ไม่เกิน 21%", "90 กิโลกรัม"],
+        ["เกิน 21% แต่ไม่เกิน 22%", "105 กิโลกรัม"],
+        ["เกิน 22% แต่ไม่เกิน 23%", "120 กิโลกรัม"]
+      ].map(([moisture, weight]) => (
+        <tr class="hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">
+          <td class="px-6 py-4 border border-slate-200 dark:border-slate-700 font-medium">{moisture}</td>
+          <td class="px-6 py-4 border border-slate-200 dark:border-slate-700">{weight}</td>
+        </tr>
+      ))}
+      <tr class="bg-blue-50 dark:bg-slate-900 font-bold">
+        <td class="px-6 py-4 border border-blue-200 dark:border-slate-700">เกินร้อยละ 23 ขึ้นไป</td>
+        <td class="px-6 py-4 border border-blue-200 dark:border-slate-700 text-blue-700 dark:text-blue-400">หักเพิ่มอีก 15 กิโลกรัม ต่อความชื้นทุกๆ 1%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="mb-10 p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-slate-400 italic text-sm text-slate-600 dark:text-slate-400">
+  <strong>หมายเหตุ:</strong> ส่วนข้าวเปลือกจำนวนที่มีปริมาณต่ำหรือสูงกว่าหน่วยที่กำหนดไว้ (1,000 กก.) ให้คิดเทียบหักน้ำหนักตามอัตราส่วน
+</div>
+{/* แนะนำวางต่อจากหมายเหตุท้ายตาราง */}
+<div class="not-prose my-10 bg-green-50 border-l-8 border-[#2e7d32] p-6 rounded-r-lg shadow-sm">
+  <h3 class="!text-[#2e7d32] text-xl font-bold mb-2 !mt-0">รักษาสิทธิของคุณด้วยมาตรฐานความชื้นที่แม่นยำ</h3>
+  <p class="text-gray-700 mb-4 text-base">
+    การหักน้ำหนักเพียง 0.5% ก็ส่งผลต่อรายได้จำนวนมาก มั่นใจทุกการซื้อขายด้วยเครื่องวัดความชื้น Grainsure รุ่นที่พัฒนาเพื่อข้าวเปลือกโดยเฉพาะ 
+  </p>
+  <ul class="list-disc ml-6 mb-6">
+    <li><a href="/Products/paddy-moisture-meter-ku72/" target="_blank" class="font-bold underline !text-[#2e7d32] hover:text-[#1b5e20]">KU72-PADDY</a> รองรับเพื่อการซื้อ-ขายข้าวโพด มีตรารับรองสำนักชั่งตวงวัด</li>
+  </ul>
+  <div class="flex flex-wrap gap-4">
+    <a href="/Products/paddy-moisture-meter-ku72/" class="bg-[#2e7d32] px-6 py-2 rounded-md font-medium hover:bg-[#1b5e20] transition shadow-md no-underline inline-block">
+      <span class="!text-white no-underline">เปิดดูรุ่นที่รองรับสำหรับข้าวเปลือก</span>
+    </a>
+  </div>
+</div>

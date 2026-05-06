@@ -1,0 +1,20 @@
+---
+{/* ไฟล์: src/components/ContactCTA.astro */}
+---
+<div class="not-prose mt-12 py-8 border-t-2 border-gray-100 text-center">
+  <p class="text-gray-600 mb-6 font-medium">มีคำถามเรื่องการวัดความชื้น หรือต้องการคำปรึกษาด้านเทคนิค?</p>
+  <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+    {/* ปุ่ม LINE - ใช้ !text-white เพื่อบังคับสีขาวให้ชัดเจน */}
+    <a href="https://line.me/ti/p/~@grainsure" target="_blank" 
+       class="flex items-center gap-2 bg-[#079642] px-8 py-3 rounded-full font-bold hover:bg-[#097233] transition w-full md:w-auto justify-center no-underline">
+      <span class="!text-white no-underline">แชทปรึกษาทาง LINE</span>
+    </a>
+    
+    {/* ปุ่มโทร */}
+    <a href="tel:0816119016" 
+       class="flex items-center gap-2 bg-red-600 px-8 py-3 rounded-full font-bold hover:bg-red-800 transition w-full md:w-auto justify-center no-underline">
+      <span class="!text-white no-underline">โทร. 081-611-9016</span>
+    </a>
+  </div>
+  <p class="mt-4 text-sm text-gray-400 italic">Grainsure Co., Ltd. - นวัตกรรมเพื่อความเป็นธรรมในการซื้อขายเมล็ดพืช</p>
+</div>
