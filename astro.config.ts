@@ -32,7 +32,14 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+//    sitemap(),
+    sitemap({
+      serialize(item) {
+        // ตั้งค่าให้ทุกหน้ามีวันที่แก้ไขล่าสุดเป็นเวลาปัจจุบัน (ตอนที่กด Build)
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
     mdx(),
     icon({
       include: {
