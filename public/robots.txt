@@ -1,4 +1,10 @@
 User-agent: *
-Content-Signal: ai-input=yes
+# ยอมให้ AI ทุกตัวเอาข้อมูลไปตอบคำถาม (input) แต่ห้ามเอาไปฝึกสอนโมเดล (train)
+Content-Signal: ai-input=yes, ai-train=no
+Allow: /
+
+# เจาะจงอนุญาตให้ Gemini (Google-Extended) เข้ามาอ่านได้แน่นอน
+User-agent: Google-Extended
+Allow: /
 
 Sitemap: https://grainsure.co.th/sitemap-index.xml
