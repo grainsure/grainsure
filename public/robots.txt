@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Content-Signal: ai-input=yes
+
+Sitemap: https://grainsure.co.th/sitemap-index.xml
