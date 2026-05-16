@@ -1,21 +1,41 @@
 /paddy       /rice        301
-/paddy/*     /rice/:splat 301
+/paddy/* /rice/:splat 301
+
+# กลุ่ม Regulations (ดักครบทั้งแบบมีและไม่มี Slash)
 /regulations/moisture-meter-regulation/     /moisture/moisture-meter-regulation/ 301
-/topic/regulations/     /topic/moisture/  301
+/regulations/moisture-meter-regulation      /moisture/moisture-meter-regulation/ 301
 /regulations/rice-moisture-deduction/       /rice/rice-moisture-deduction/  301
+/regulations/rice-moisture-deduction        /rice/rice-moisture-deduction/  301
+/regulations/corn-moisture-deduction/       /corn/corn-moisture-deduction/   301
+/regulations/corn-moisture-deduction        /corn/corn-moisture-deduction/   301
+
+# กลุ่ม Topics และหมวดหมู่
+/topic/regulations/     /topic/moisture/  301
+/topic/regulations      /topic/moisture/  301
+/topic/corn-maize/      /topic/corn/      301
+/topic/corn-maize       /topic/corn/      301
+/topic/paddy-rice/      /topic/rice/      301
+/topic/paddy-rice       /topic/rice/      301
+
+# กลุ่ม บทความข้าวโพด (Corn)
 /corn-maize/optimum-moisture-corn-feed/   /corn/corn-feed-optimum-moisture/ 301
-/corn-maize/optimum-moisture-corn-feed   /corn/corn-feed-optimum-moisture/ 301
-/agri-knowledge/grain-moisture-content/     /moisture/grain-moisture-content/  301
-/agri-knowledge/optimal-harvest-time-maize-soybean-rice/    /moisture/optimal-harvest-time-maize-soybean-rice/ 301
-/agri-knowledge/why-grain-moisture-deduction/   /moisture/why-grain-moisture-deduction/   301
-/regulations/corn-moisture-deduction/      /corn/corn-moisture-deduction/   301
+/corn-maize/optimum-moisture-corn-feed    /corn/corn-feed-optimum-moisture/ 301
+
+# กลุ่ม บทความข้าว (Rice)
 /paddy-rice/post-harvest-rice-quality-guide/    /rice/rice-post-harvest-quality-guide/  301
+/paddy-rice/post-harvest-rice-quality-guide     /rice/rice-post-harvest-quality-guide/  301
+
+# กลุ่ม คลังความรู้เก่า Agri-knowledge (เพิ่มแบบไม่มี Slash ดักไว้ให้)
+/agri-knowledge/grain-moisture-content/     /moisture/grain-moisture-content/  301
+/agri-knowledge/grain-moisture-content      /moisture/grain-moisture-content/  301
+/agri-knowledge/optimal-harvest-time-maize-soybean-rice/    /moisture/optimal-harvest-time-maize-soybean-rice/ 301
+/agri-knowledge/optimal-harvest-time-maize-soybean-rice     /moisture/optimal-harvest-time-maize-soybean-rice/ 301
+/agri-knowledge/why-grain-moisture-deduction/   /moisture/why-grain-moisture-deduction/   301
+/agri-knowledge/why-grain-moisture-deduction    /moisture/why-grain-moisture-deduction/   301
 /agri-knowledge/grain-moisture-effect/      /moisture/grain-moisture-effect/    301
+/agri-knowledge/grain-moisture-effect       /moisture/grain-moisture-effect/    301
 /agri-knowledge/grain-moisture-structure/   /moisture/grain-moisture-structure/ 301
-/topic/corn-maize/      /topic/corn/    301
-/topic/corn-maize      /topic/corn/    301
-/topic/paddy-rice/      /topic/rice/    301
-/paddy-rice/post-harvest-rice-quality-guide /topic/rice/ 301
-/topic/paddy-rice /topic/rice/ 301
-/topic/regulations /article/ 301
+/agri-knowledge/grain-moisture-structure    /moisture/grain-moisture-structure/ 301
+
+# อื่นๆ
 /manual     /manual/ 301
