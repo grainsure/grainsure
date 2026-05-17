@@ -1,0 +1,64 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+// รับค่า Props มาตรฐานตามสไตล์ AstroWind
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// ชุดข้อมูลสเปกเครื่องวัดความชื้นข้าวโพดทั้ง 3 รุ่น
+const products = [
+  { name: 'KU72-CORN', desc: 'แม่นยำสูงสุด เฉพาะทางข้าวโพด', loadcell: 'อัตโนมัติ (Load Cell)', density: 'ชดเชยอัตโนมัติ', price: 'ระดับอุตสาหกรรม' },
+  { name: 'KU60', desc: 'คุ้มค่า สารพัดประโยชน์', loadcell: 'อัตโนมัติ (ถ้วยตวง)', density: 'คำนวณตามปริมาตร', price: 'ระดับกลาง' },
+  { name: 'EE-KU', desc: 'รุ่นคลาสสิก ทนทานในตำนาน', loadcell: 'Manual (ชั่งแยก)', density: 'เปิดตารางแมนนวล', price: 'งบประหยัด' },
+];
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+
+  <div class="overflow-x-auto bg-white dark:bg-slate-900 rounded-lg shadow-md border border-gray-200 dark:border-slate-700">
+    <table class="w-full text-left border-collapse min-w-[650px]">
+      <thead>
+        <tr class="border-b border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
+          <th class="sticky left-0 bg-gray-50 dark:bg-slate-800 p-4 font-bold text-gray-700 dark:text-gray-300 z-10 w-[150px]">คุณสมบัติ</th>
+          {products.map((p, idx) => (
+            <th class={`p-4 text-center font-bold ${idx === 0 ? 'text-primary dark:text-blue-400 bg-blue-50/30 dark:bg-blue-900/10' : 'text-gray-900 dark:text-white'}`}>
+              {p.name}
+              <span class="block text-xs font-normal text-gray-500 dark:text-gray-400 mt-1">{p.desc}</span>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-slate-800 text-sm">
+        <tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+          <td class="sticky left-0 bg-white dark:bg-slate-900 p-4 font-semibold text-gray-900 dark:text-white z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] dark:shadow-none">การชั่งน้ำหนัก</td>
+          <td class="p-4 text-center bg-blue-50/10 dark:bg-blue-900/5 font-medium text-green-600 dark:text-green-400">{products[0].loadcell}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[1].loadcell}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[2].loadcell}</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+          <td class="sticky left-0 bg-white dark:bg-slate-900 p-4 font-semibold text-gray-900 dark:text-white z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] dark:shadow-none">ระบบความหนาแน่น</td>
+          <td class="p-4 text-center bg-blue-50/10 dark:bg-blue-900/5 text-gray-700 dark:text-gray-300">{products[0].density}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[1].density}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[2].density}</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+          <td class="sticky left-0 bg-white dark:bg-slate-900 p-4 font-semibold text-gray-900 dark:text-white z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] dark:shadow-none">ช่วงราคา/ความคุ้มค่า</td>
+          <td class="p-4 text-center bg-blue-50/10 dark:bg-blue-900/5 text-gray-700 dark:text-gray-300">{products[0].price}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[1].price}</td>
+          <td class="p-4 text-center text-gray-700 dark:text-gray-300">{products[2].price}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-center text-xs text-gray-400 mt-3 block md:hidden">💡 ปัดหน้าจอไปทางซ้าย-ขวา เพื่อดูตารางเปรียบเทียบรุ่นอื่น</p>
+</WidgetWrapper>

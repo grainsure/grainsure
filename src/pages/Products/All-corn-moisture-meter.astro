@@ -1,0 +1,97 @@
+---
+import heroBg from '~/assets/images/All-Corn-1080.jpg'; // รูป PC
+import heroBgMobile from '~/assets/images/All-Corn-1080Mb.jpg'; // รูปมือถือ
+import MyProductList from '~/components/widgets/MyCornList.astro';
+
+
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero3.astro';
+
+
+// Metadata สำหรับ SEO
+const metadata = {
+  // ไทย: รุ่น + เครื่องวัดความชื้นข้าวโพด + กรมการค้าภายใน | อังกฤษ: Corn Moisture Meter + DIT Approved
+  title: 'KU72-CORN เครื่องวัดความชื้นข้าวโพด ผ่านรับรองจากสำนักชั่งตวงวัด กรมการค้าภายใน ราคา | Grainsure',
+  
+  // ไทย: รายละเอียด + มาตรฐานกฎหมาย + ช่วงการวัด 10-35% | อังกฤษ: High-precision + Certified for trading + 10-35% range
+  description: 'รายละเอียดเครื่องวัดความชื้นข้าวโพด KU72-CORN ผ่านการรับรองจากสำนักงานกลางชั่งตวงวัด กรมการค้าภายใน ถูกต้องตามกฎหมาย แม่นยำ ทนทาน 10-35% เหมาะสำหรับโรงงานอาหารสัตว์และเกษตรกร.',
+};
+---
+
+<Layout metadata={metadata}>
+<Hero
+  actions={[
+    {
+      variant: 'primary',
+      text: 'ติดต่อสอบถาม/ใบเสนอราคา',
+      href: 'https://line.me/ti/p/~@grainsure#~',
+      target: '_blank',
+      icon: 'tabler:message-circle-2-filled',
+      class: 'btn w-full bg-[#06C755] hover:bg-[#05b34c] text-white border-none shadow-xl',
+    },
+  ]}
+  
+  image={{ src: heroBg, alt: 'ผลิตภัณฑ์เครื่องวัดความชื้น Grainsure : Grainsure Moisture Meters' }}
+  mobileImage={{ src: heroBgMobile, alt: 'ผลิตภัณฑ์เครื่องวัดความชื้น Grainsure : Grainsure Moisture Meters' }}
+
+  /* 🎨 ปรับแต่งความชัดตรงนี้ */
+  /* Title: ปรับเงา Overlay บนภาพ */
+  bgOverlayClass="bg-gradient-to-tr from-black/70 via-black/10 to-transparent"
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+   taglineClass=""
+
+  /* Title: ขอบดำหนา 1.5px + เงาดำฟุ้งๆ */
+  titleClass="drop-shadow-[0_5px_10px_rgba(100,100,100,0.9)] "
+  
+  /* Subtitle: ขอบดำบาง 0.5px + เงาดำรองพื้น */
+  subtitleClass=""
+>
+  <Fragment slot="title">
+    <span class="text-yellow-400">Corn Moisture Meter</span><br /><span class="hidden xl:inline"></span>
+    <span class="text-white">เครื่องวัดความชื้นข้าวโพด</span><br /><span class="hidden xl:inline"></span>
+    <span class="text-red text-2xl md:text-5xl">มีให้เลือก 3 รุ่น</span><br /><span class="hidden xl:inline"></span>
+    {/*    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-teal-200 to-blue-300 font-bold">
+      เมล็ดพืชและเม็ดวัสดุ
+    </span>  */}   
+  </Fragment>
+<Fragment slot="subtitle">
+  <div class="mb-6 font-bold text-white !text-2xl sm:!text-4xl text-left">
+    <div class="py-0.5">KU72-CORN</div>
+    <div class="py-0.5">KU-60</div>
+    <div class="py-0.5">EE-KU</div>
+  </div>
+
+  <!-- รายการจุดเด่นแบบ Bullet Points -->
+  <ul class="text-white text-left inline-block space-y-2 text-lg sm:text-xl">
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>เครื่องทนทาน ผลวัดแม่นยำได้มาตรฐาน พกพาสะดวก</span>
+    </li>
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>บริการหลังการขายและซ่อมบำรุงตลอดอายุการใช้งาน</span>
+    </li>    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>บริษัทมีใบรับรองประกอบธุรกิจ ผลิต จำหน่าย ซ่อม สอบเทียบเครื่องวัดความชื้น</span>
+    </li>
+    <li class="flex items-start">
+      <span class="mr-2">✔️</span>
+      <span>ผลิต จำหน่ายมานานกว่า 40 ปี มั่นใจในคุณภาพและมาตรฐาน</span>
+    </li>
+  </ul>
+</Fragment>
+{/*
+  <Fragment slot="subtitle">
+    <span class="block mb-1 font-bold text-white !text-2xl sm:!text-4xl">
+      ราคาถูกที่สุดในท้องตลาด แม่นยำ ทนทาน <br />ดูแลยาวนาน ผ่านรับรองมาตรฐานจากหน่วยงานที่น่าเชื่อถือ
+    </span>
+    <span class="text-white">
+      วิจัยพัฒนาและผลิตจำหน่าย ด้วยประสบการณ์ยาวนานกว่า 40 ปี
+    </span>
+  </Fragment>
+  */}
+</Hero>
+<MyProductList />
+
+</Layout>
